@@ -3,8 +3,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
-
-
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -35,7 +33,28 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
+
+    <%= f.fields_for :patient do |patient_form| %><br />
+
+      <div class="field">
+        <%= patient_form.label :age %><br />
+        <%= patient_form.number_field :age, autocomplete: "age" %>
+     </div>
+
+     <div class="field">
+        <%= patient_form.label :gender %><br />
+        <%= patient_form.select :gender,options_for_select(Patient.genders.keys.map { |key| [key.capitalize, key] }) ,autocomplete: "gender" %>
+     </div>
+
+       <div class="field">
+        <%= patient_form.label :blood_type %><br />
+        <%= patient_form.select :blood_type,options_for_select(Patient.blood_types.keys.map { |key| [key, key] }) ,autocomplete: "gender" %>
+     </div>
+
+    <%end %>
+
+
+   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
