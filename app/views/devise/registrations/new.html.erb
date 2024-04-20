@@ -1,60 +1,61 @@
+<%= stylesheet_link_tag 'signup_styles' %>
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <%= f.object.errors[:name].join(', ') if f.object.errors[:name].any? %>
   </div>
    
-    <div class="field">
+  <div class="field">
     <%= f.label :phone_number %><br />
     <%= f.number_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+    <%= f.object.errors[:phone_number].join(', ') if f.object.errors[:phone_number].any? %>
   </div>
    
-
-
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.object.errors[:email].join(', ') if f.object.errors[:email].any? %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.object.errors[:password].join(', ') if f.object.errors[:password].any? %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.object.errors[:password_confirmation].join(', ') if f.object.errors[:password_confirmation].any? %>
   </div>
 
+  <%= f.fields_for :patient do |patient_form| %>
+    <div class="field">
+      <%= patient_form.label :dob %><br />
+      <%= patient_form.date_field :dob, max: Date.today , autocomplete: "dob"%>
+      <%= patient_form.object.errors[:dob].join(', ') if patient_form.object.errors[:dob].any? %>
+    </div>
 
-    <%= f.fields_for :patient do |patient_form| %><br />
+    <div class="field">
+      <%= patient_form.label :gender %><br />
+      <%= patient_form.select :gender, options_for_select(Patient.genders.keys.map { |key| [key.capitalize, key] }) ,{ include_blank: "Select Gender" },autocomplete: "gender" %>
+      <%= patient_form.object.errors[:gender].join(', ') if patient_form.object.errors[:gender].any? %>
+    </div>
 
-      <div class="field">
-        <%= patient_form.label :age %><br />
-        <%= patient_form.number_field :age, autocomplete: "age" %>
-     </div>
+    <div class="field">
+      <%= patient_form.label :blood_type %><br />
+      <%= patient_form.select :blood_type, options_for_select(Patient.blood_types.keys.map { |key| [key, key] }),{ include_blank: "Select Blood_Type" }, autocomplete: "blood_type" %>
+      <%= patient_form.object.errors[:blood_type].join(', ') if patient_form.object.errors[:blood_type].any? %>
+    </div>
+  <% end %>
 
-     <div class="field">
-        <%= patient_form.label :gender %><br />
-        <%= patient_form.select :gender,options_for_select(Patient.genders.keys.map { |key| [key.capitalize, key] }) ,autocomplete: "gender" %>
-     </div>
-
-       <div class="field">
-        <%= patient_form.label :blood_type %><br />
-        <%= patient_form.select :blood_type,options_for_select(Patient.blood_types.keys.map { |key| [key, key] }) ,autocomplete: "gender" %>
-     </div>
-
-    <%end %>
-
-
-   <div class="actions">
+  <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>

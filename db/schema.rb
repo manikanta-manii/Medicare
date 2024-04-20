@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.1].define(version: 2024_04_20_055402) do
   create_table "patients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "gender"
-    t.integer "age"
+    t.date "dob"
     t.string "blood_type"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
