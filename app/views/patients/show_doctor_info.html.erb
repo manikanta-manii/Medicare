@@ -1,0 +1,10 @@
+
+<h1>Slots</h1>
+<%=User.find_by(id:@doctor.user_id).name%>
+<%=@doctor.rating%>
+<%=@doctor.specialization.name%><br/>
+<%="Booked slots"%>
+<%= @booked_slots%>
+<br/>
+<%="Availabel slots"%>
+<%= @slots%>

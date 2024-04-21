@@ -1,0 +1,8 @@
+<% @all_doctors.each do |doctor|%>
+<%= User.find_by(id:doctor.user_id).name %>
+<%= doctor.specialization.name %>
+<%= doctor.rating%><br/>
+<%= link_to "Book", url_for(controller: 'patients', action: 'show_doctor_info', id: doctor.id), class: "btn btn-primary" %>
+
+<%end%>
+ 

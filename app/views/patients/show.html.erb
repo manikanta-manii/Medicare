@@ -1,0 +1,6 @@
+<% @all_doctors.each do |doctor|%>
+<%= User.find_by(id:doctor.user_id).name %>
+<%= doctor.specialization.name %>
+<%= doctor.rating%><br/>
+<%= "ALL AVALIABLE SLOTS FOR TODAY" %>
+<%end%>

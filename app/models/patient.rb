@@ -6,7 +6,9 @@ class Patient < ApplicationRecord
   validates :blood_type , presence: { message: "Blood_type must be selected" }
   enum gender: { male: 'male', female: 'female'}
   enum blood_type: { 'A+': 'A+', 'A-': 'A-', 'B+': 'B+', 'B-': 'B-', 'AB+': 'AB+', 'AB-': 'AB-', 'O+': 'O+', 'O-': 'O-' }
-
+  
+  has_many :appointments, dependent: :destroy
+  has_many :doctors, through: :appointments
 
   private
 
