@@ -1,0 +1,4 @@
+<h1>Your Appointments</h1>
+<%= current_user.patient.appointments.each do |el|%>
+<%= el.slot_time %><br/>
+<%end%>

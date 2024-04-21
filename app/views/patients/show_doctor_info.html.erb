@@ -1,10 +1,17 @@
-
-<h1>Slots</h1>
-<%=User.find_by(id:@doctor.user_id).name%>
-<%=@doctor.rating%>
-<%=@doctor.specialization.name%><br/>
-<%="Booked slots"%>
-<%= @booked_slots%>
-<br/>
-<%="Availabel slots"%>
-<%= @slots%>
+<div class="doctor-info">
+  <h1>DOCTOR</h1>
+  <div class="doctor-details">
+    <p>Name:<%= User.find_by(id: @doctor.user_id).name %></p>
+    <p>Rating: <%= @doctor.rating %></p>
+    <p>Consulation Fee: <%= @doctor.consultation_fee %></p>
+    <p>Specialization: <%= @doctor.specialization.name %></p>
+  </div>
+  <br>
+  <br>
+  <h2>Available Slots</h2>
+  <ul class="slot-list">
+    <% @slots.each do |slot| %>
+      <li><%= button_to "#{slot}", { controller: 'patients', action: 'book_appointment', doctor_id: @doctor.id ,slot_time: "#{slot}" ,patient_id:@patient.id},method: :post, class: "btn btn-primary"%></li>
+    <% end %>
+  </ul>
+</div>

@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_patient, only: [ :show ,:edit, :update, :destroy]
   
     # GET /patients
@@ -53,6 +54,7 @@ class PatientsController < ApplicationController
         puts "#######################################"
         puts params
         @doctor = Doctor.find_by(id:params[:id])
+        @patient=current_user.patient
         
        @booked_slots = @doctor.appointments.where(status:"active").pluck(:slot_time)
        @booked_slots.each_with_index do |slot_time_str, index|
@@ -73,17 +75,34 @@ class PatientsController < ApplicationController
           exclusion_start_time..exclusion_end_time
         end
         @slots = Slotty.get_slots(
-        for_range: Time.new(current_time.year, current_time.month, current_time.day, current_time.hour, 0, 0)..Time.new(current_time.year, current_time.month, current_time.day, 18, 0, 0),
+        for_range: Time.new(current_time.year, current_time.month, current_time.day, 6, 0, 0)..Time.new(current_time.year, current_time.month, current_time.day, 24, 0, 0),
         slot_length_mins: 30,
         interval_mins: 30,
         exclude_times: exclude_times
         ).pluck(:time)
-        @slots.reject! { |slot| Time.parse(slot) < current_time }
+        @slots.reject!{ |slot| Time.parse(slot) < current_time }
         puts "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=="
         puts @slots
        
 
     end
+
+
+    def book_appointment
+
+       @appointment = Appointment.create(patient_id:params[:patient_id],doctor_id:params[:doctor_id],slot_time:params[:slot_time])
+       if @appointment.save
+        flash[:alert] = "BOOKED SUCCESFULLY"
+        redirect_to root_path
+       else
+        flash[:alert] = "Booking failed"
+        render :show_doctor_info
+       end
+    end
+
+    def show_appointment
+    
+   end
   
     private
       # Use callbacks to share common setup or constraints between actions.

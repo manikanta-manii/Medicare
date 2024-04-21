@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :patients do
     member do
       get 'show_doctor_info'
+      post 'book_appointment'
+      get 'show_appointment'
     end
   end 
   # Defines the root path route ("/")

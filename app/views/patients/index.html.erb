@@ -1,8 +1,10 @@
-<% @all_doctors.each do |doctor|%>
-<%= User.find_by(id:doctor.user_id).name %>
-<%= doctor.specialization.name %>
-<%= doctor.rating%><br/>
-<%= link_to "Book", url_for(controller: 'patients', action: 'show_doctor_info', id: doctor.id), class: "btn btn-primary" %>
+<% @all_doctors.each do |doctor| %>
+  <div class="doctor-entry">
+    <p><%= User.find_by(id: doctor.user_id).name %></p>
+    <p><%= doctor.specialization.name %></p>
+    <p>Rating: <%= doctor.rating %></p>
+    <%= link_to "Book", url_for(controller: 'patients', action: 'show_doctor_info', id: doctor.id), class: "btn btn-primary" %>
+  </div>
+<% end %>
 
-<%end%>
- 
+

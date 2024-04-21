@@ -1,0 +1,48 @@
+.doctor-entry {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .doctor-entry p {
+    margin: 0;
+  }
+  
+  .btn {
+    /* Your button styles here */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  .doctor-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .doctor-details {
+    margin-bottom: 10px;
+  }
+  
+  .doctor-details p {
+    margin: 5px 0;
+  }
+  
+  .slot-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .slot-list li {
+    margin-bottom: 5px;
+  }
+  
