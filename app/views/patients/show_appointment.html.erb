@@ -1,4 +1,10 @@
 <h1>Your Appointments</h1>
-<%= current_user.patient.appointments.each do |el|%>
-<%= el.slot_time %><br/>
-<%end%>
+
+ <ul class="slot-list">
+    <% @all_appointments.each do |el| %>
+      <li>
+      <%= button_to "#{el}", root_path, class: "btn btn-primary"%>
+      <%= button_to "cancel", root_path, class: "btn btn-danger"%>
+      </li>
+    <% end %>
+  </ul>

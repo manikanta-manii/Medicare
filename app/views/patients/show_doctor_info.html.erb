@@ -10,8 +10,16 @@
   <br>
   <h2>Available Slots</h2>
   <ul class="slot-list">
-    <% @slots.each do |slot| %>
-      <li><%= button_to "#{slot}", { controller: 'patients', action: 'book_appointment', doctor_id: @doctor.id ,slot_time: "#{slot}" ,patient_id:@patient.id},method: :post, class: "btn btn-primary"%></li>
-    <% end %>
+     
+     <% i = 0 %> 
+     <% "TODAYS SLOT #{Time.now().day}"%>
+     <% while @slots[i].day==Time.now().day%>
+     <%= button_to "#{@slots[i].strftime("%d/%m/%Y, %H:%M %p")} ", { controller: 'patients', action: 'book_appointment', doctor_id: @doctor.id ,slot_time: "#{@slots[i].strftime("%I:%M %p")}" ,slot_date: "#{@slots[i].day}",patient_id:@patient.id},method: :post, class: "btn btn-primary m-1"%>
+     <% i+=1%>
+      <%end%>
+      <% while i < @slots.length() %>
+        <%= button_to "#{@slots[i].strftime("%d/%m/%Y, %H:%M %p")} ", { controller: 'patients', action: 'book_appointment', doctor_id: @doctor.id ,slot_time: "#{@slots[i].strftime("%I:%M %p")}" ,slot_date: "#{@slots[i].day}",patient_id:@patient.id},method: :post, class: "btn btn-primary m-1"%>
+        <% i+=1%>
+      <%end%>
   </ul>
 </div>
