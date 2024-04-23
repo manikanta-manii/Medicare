@@ -13,11 +13,15 @@
   <button id="today-btn" data-patient-id=<%= current_user.patient.id%>>Today</button>
   <button id="tomo-btn" data-patient-id=<%= current_user.patient.id%>>Tomorrow</button>
   <div id="current_slots">
-    <%= "SLOT FOR DAY : #{Time.now().day} "%>
+    <!-- IMPLEMENT METHOD FUNCTION-->
      <%i=0%>
-     <% while @slots[i].day==Time.now().day%>
-     <%= button_to "#{@slots[i].strftime("%d/%m/%Y, %H:%M %p")} ", { controller: 'patients', action: 'book_appointment', doctor_id: @doctor.id ,slot_time: "#{@slots[i].strftime("%I:%M %p")}" ,slot_date: "#{@slots[i].day}",patient_id:@patient.id},method: :post, class: "btn btn-primary m-1"%>
+     <%@temp=[]%>
+     <% while i < @slots.length%>
+     <%if @slots[i].day == Time.now().day.to_i%>
+      <% @temp<<@slots[i]%>
+     <%end%>
      <% i+=1%>
       <%end%>
+      <%= render partial: "slots_display"%>
   </div>
 </div>

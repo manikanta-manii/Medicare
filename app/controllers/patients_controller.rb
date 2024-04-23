@@ -57,7 +57,7 @@ class PatientsController < ApplicationController
 
 
     def book_appointment
-
+      debugger
        @appointment = Appointment.create(patient_id:params[:patient_id],doctor_id:params[:doctor_id],slot_time:params[:slot_time])
        if @appointment.save
         flash[:alert] = "BOOKED SUCCESFULLY"
@@ -86,8 +86,8 @@ class PatientsController < ApplicationController
     end
     i+=1
   end
-  # puts "%%%%%%%%%%%%%"
-  # puts @temp.length()
+  puts "%%%%%%%%%%%%%"
+  puts @temp.length()
   render partial: "patients/slots_display"
  end
   
@@ -108,7 +108,7 @@ class PatientsController < ApplicationController
         
         @booked_slots = @doctor.appointments.where(status:"active").pluck(:slot_time)
         @booked_slots.each_with_index do |slot_time_str, index|
-        @booked_slots[index] = Time.parse(slot_time_str)
+             @booked_slots[index] = Time.parse(slot_time_str)
         end
         current_time = Time.now
         start_time = "08:00 AM".to_time

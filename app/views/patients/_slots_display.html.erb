@@ -1,7 +1,4 @@
-<%= "SLOT FOR DAY : #{@selected_day}"%>
-<br/>
-
-<%="NO OF SLOTS #{@temp.length}"%>
+<%="NO OF SLOTS #{@temp.length()}"%>
 <%@temp.each do |slot|%>
-<%= button_to "#{slot.strftime("%d/%m/%Y, %H:%M %p")} ", { controller: 'patients', action: 'book_appointment', doctor_id: @doctor.id ,slot_time: "#{slot.strftime("%I:%M %p")}" ,slot_date: "#{slot.day}",patient_id:@patient.id},method: :post, class: "btn btn-primary m-1"%>
+<%= button_to "#{slot.strftime("%d/%m/%Y, %H:%M %p")} ", { controller: 'patients', action: 'book_appointment', doctor_id: @doctor.id ,slot_time: slot ,patient_id:@patient.id},method: :post, class: "btn btn-primary m-1"%>
 <%end%>
