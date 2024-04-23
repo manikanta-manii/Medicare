@@ -57,7 +57,6 @@ class PatientsController < ApplicationController
 
 
     def book_appointment
-      debugger
        @appointment = Appointment.create(patient_id:params[:patient_id],doctor_id:params[:doctor_id],slot_time:params[:slot_time])
        if @appointment.save
         flash[:alert] = "BOOKED SUCCESFULLY"
@@ -69,11 +68,18 @@ class PatientsController < ApplicationController
     end
 
     def show_appointment
-      @all_appointments = current_user.patient.appointments.pluck(:slot_time)
-   end
-   def cancel_appointment
-    @all_appointments = current_user.patient.appointments.pluck(:slot_time)
- end
+      @all_appointments = current_user.patient.appointments
+    end
+    def cancel_appointment
+      @appointment = Appointment.find_by(id:params[:appointment_id])
+      @appointment.update(status: "canceled")
+      if @appointment.save
+        flash[:alert] = "CANCELED APPOINTMENT !"
+        redirect_to root_path
+      else
+        flash[:alert] = "Cancel failed !"
+      end
+    end
 
  def  slot_display
   @selected_day=params[:selected_day]

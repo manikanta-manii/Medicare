@@ -1,10 +1,18 @@
 <h1>Your Appointments</h1>
-
- <ul class="slot-list">
     <% @all_appointments.each do |el| %>
-      <li>
-      <%= button_to "#{el}", root_path, class: "btn btn-primary"%>
-      <%= button_to "cancel", root_path, class: "btn btn-danger"%>
-      </li>
+      <div class="d-flex">
+      <div><%= el.slot_time %></div>
+      <%if el.status=="canceled"%>
+      <div class="text-danger"><%= el.status %></div>
+      <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">VIEW</a>
+    
+     <%elsif el.status=="active"%>
+      <div class="text-info"><%= el.status %></div>
+     <div> <%= button_to "Cancel", { controller: 'patients', action: 'cancel_appointment',appointment_id:el.id},method: :put, class: "btn btn-danger m-1"%></div>
+      
+      <%else%>
+      <div class="text-success"><%= el.status %></div>
+     <div> <%= button_to "VIEW", root_path,class: "btn btn-success m-1"%></div>
+      <%end%>
+       </div>
     <% end %>
-  </ul>
