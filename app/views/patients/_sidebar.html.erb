@@ -1,4 +1,5 @@
-<%=Time.now()%>
+<%=Time.now().to_s%>
 <%= button_to "Book Appointment", { controller: 'patients', action: 'index'},method: :get, class: "btn btn-primary m-1  "%>
 <%= button_to "Appointments History",{controller: 'patients', action: 'show_appointment',id:current_user.id},method: :get ,class: "btn btn-primary m-1"%>
 <%= button_to "Medice Buy",root_path,class: "btn btn-primary m-1"%>
+  

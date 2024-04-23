@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'show_doctor_info'
       post 'book_appointment'
       get 'show_appointment'
+      post 'slot_display'
     end
   end 
   # Defines the root path route ("/")

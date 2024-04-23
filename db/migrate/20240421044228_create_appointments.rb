@@ -5,7 +5,7 @@ class CreateAppointments < ActiveRecord::Migration[7.1]
       t.references :patient, null: false, foreign_key: true
       t.string :slot_time
       t.string :status, default: 'active'
-
+      
       t.timestamps
     end
   end

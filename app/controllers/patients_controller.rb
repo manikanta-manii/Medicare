@@ -1,6 +1,8 @@
 class PatientsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_patient, only: [ :show ,:edit, :update, :destroy]
+    skip_before_action :verify_authenticity_token
+    before_action :slot_allotment ,only: %i[show_doctor_info slot_display]
   
     # GET /patients
     def index
@@ -50,51 +52,7 @@ class PatientsController < ApplicationController
     end
 
     def show_doctor_info
-        
-        puts "#######################################"
-        puts params
-        @doctor = Doctor.find_by(id:params[:id])
-        @patient=current_user.patient
-        
-        @booked_slots = @doctor.appointments.where(status:"active").pluck(:slot_time)
-        @booked_slots.each_with_index do |slot_time_str, index|
-        @booked_slots[index] = Time.parse(slot_time_str)
-        end
-
-        # @available_slots =
-        # @ex_hr=9
-      # Current time
-        current_time = Time.now
-        start_time = "08:00 AM".to_time
-
-       
-
-        # Define exclusion time range
-      
-        exclude_times = @booked_slots.map do |booked_slot|
-          exclusion_start_time = Time.new(booked_slot.year, booked_slot.month, booked_slot.day, booked_slot.hour, booked_slot.min, 0)
-          exclusion_end_time = Time.new(booked_slot.year, booked_slot.month, booked_slot.day, booked_slot.hour, booked_slot.min + 1, 0)
-          exclusion_start_time..exclusion_end_time
-        end
-
-        @slots = Slotty.get_slots(
-        for_range: Time.new(current_time.year, current_time.month, current_time.day, 8, 0, 0)..Time.new(current_time.year, current_time.month, current_time.day+1, 24, 0, 0),
-        slot_length_mins: 30,
-        interval_mins: 30,
-        exclude_times: exclude_times
-        ).pluck(:start_time)
-        
-        @slots.map{|el| el.to_time}
-        @slots.reject!{ |slot| slot < current_time}
-        @slots.reject!{ |slot| slot.strftime("%I:%M %p").to_time < start_time.strftime("%I:%M %p").to_time}
-        # @slots.each{|el| puts  el.strftime("%I:%M %p") > start_time.strftime("%I:%M %p")}
-      
-       
-        
-        puts "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=="
-       
-       
-
+      # @temp=@slots.reject!{ |slot| slot.strftime("%I:%M %p").to_time.day != @selected_day}
     end
 
 
@@ -113,9 +71,24 @@ class PatientsController < ApplicationController
     def show_appointment
       @all_appointments = current_user.patient.appointments.pluck(:slot_time)
    end
-
    def cancel_appointment
     @all_appointments = current_user.patient.appointments.pluck(:slot_time)
+ end
+
+ def  slot_display
+  @selected_day=params[:selected_day]
+  i=0
+  @count=0
+  @temp=[]
+  while i < @slots.length()
+    if @slots[i].day == @selected_day.to_i
+        @temp<<@slots[i]
+    end
+    i+=1
+  end
+  # puts "%%%%%%%%%%%%%"
+  # puts @temp.length()
+  render partial: "patients/slots_display"
  end
   
     private
@@ -127,6 +100,34 @@ class PatientsController < ApplicationController
       # Only allow a list of trusted parameters through.
       def patient_params
         params.require(:patient).permit(:name, :age, :gender, :email)
+      end
+
+      def slot_allotment
+        @doctor = Doctor.find_by(id:params[:id])
+        @patient=current_user.patient
+        
+        @booked_slots = @doctor.appointments.where(status:"active").pluck(:slot_time)
+        @booked_slots.each_with_index do |slot_time_str, index|
+        @booked_slots[index] = Time.parse(slot_time_str)
+        end
+        current_time = Time.now
+        start_time = "08:00 AM".to_time
+        exclude_times = @booked_slots.map do |booked_slot|
+          exclusion_start_time = Time.new(booked_slot.year, booked_slot.month, booked_slot.day, booked_slot.hour, booked_slot.min, 0)
+          exclusion_end_time = Time.new(booked_slot.year, booked_slot.month, booked_slot.day, booked_slot.hour, booked_slot.min + 1, 0)
+          exclusion_start_time..exclusion_end_time
+        end
+
+        @slots = Slotty.get_slots(
+        for_range: Time.new(current_time.year, current_time.month, current_time.day, 8, 0, 0)..Time.new(current_time.year, current_time.month, current_time.day+1, 24, 0, 0),
+        slot_length_mins: 30,
+        interval_mins: 30,
+        exclude_times: exclude_times
+        ).pluck(:start_time)
+        
+        @slots.map{|el| el.to_time}
+        @slots.reject!{ |slot| slot < current_time}
+        @slots.reject!{ |slot| slot.strftime("%I:%M %p").to_time < start_time.strftime("%I:%M %p").to_time}
       end
   end
   
