@@ -102,14 +102,15 @@ class PatientsController < ApplicationController
       def set_patient
         @patient = Patient.find(params[:id])
       end
-  
+
       # Only allow a list of trusted parameters through.
       def patient_params
         params.require(:patient).permit(:name, :age, :gender, :email)
       end
 
       def slot_allotment
-        @doctor = Doctor.find_by(id:params[:id])
+       
+        @doctor = Doctor.find_by(id:params[:doctor_id])
         @patient=current_user.patient
         
         @booked_slots = @doctor.appointments.where(status:"active").pluck(:slot_time)

@@ -33,7 +33,15 @@
         <div class="main-div">
          <div class="left-div"><%= render "patients/test_siidebar"%></div>
        <% end %>
-       <div class="right-div"><%= yield %></div>
+       <% if current_user && current_user.doctor? %>
+        <div class="main-div">
+         <div class="left-div"><%= render "doctors/sidebar"%></div>
+       <% end %>
+       <div class="right-div">
+        <%=Time.now()%>
+        <%= render "shared/flash_messages"%>
+        <%= yield %>
+        </div>
        </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>

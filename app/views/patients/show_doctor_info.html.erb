@@ -10,8 +10,8 @@
   <br>
   <br>
   <h2>Available Slots</h2>
-  <button id="today-btn" data-patient-id=<%= current_user.patient.id%>>Today</button>
-  <button id="tomo-btn" data-patient-id=<%= current_user.patient.id%>>Tomorrow</button>
+  <button id="today-btn" data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%>>Today</button>
+  <button id="tomo-btn" data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%> >Tomorrow</button>
   <div id="current_slots">
     <!-- IMPLEMENT METHOD FUNCTION-->
      <%i=0%>

@@ -4,13 +4,13 @@ $(document).ready(function () {
     let day = date.getDate();
 
     const p_id = $(e.target).attr("data-patient-id");
-
-    console.log("Working", day, p_id);
+    const d_id = $(e.target).attr("data-doctor-id");
+    console.log("Working", day, p_id, d_id);
 
     $.ajax({
       url: `http://localhost:3000/patients/${p_id}/slot_display`,
       method: "POST",
-      data: { selected_day: day },
+      data: { selected_day: day, doctor_id: d_id },
       dataType: "html",
       success: function (result) {
         $("#current_slots").html(result);
@@ -21,14 +21,14 @@ $(document).ready(function () {
     const date = new Date();
     let day = date.getDate() + 1;
     const p_id = $(e.target).attr("data-patient-id");
-    console.log("Working", day, p_id);
+    const d_id = $(e.target).attr("data-doctor-id");
+    console.log("Working", day, p_id, d_id);
     $.ajax({
       url: `http://localhost:3000/patients/${p_id}/slot_display`,
       method: "POST",
-      data: { selected_day: day },
+      data: { selected_day: day, doctor_id: d_id },
       dataType: "html",
       success: function (result) {
-        console.log();
         $("#current_slots").html(result);
       },
     });

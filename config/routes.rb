@@ -16,6 +16,12 @@ Rails.application.routes.draw do
       put 'cancel_appointment'
     end
   end 
+
+  resources :doctors do
+    member do
+      get 'show_appointments'
+    end
+  end
   # Defines the root path route ("/")
   root "home#index"
 end

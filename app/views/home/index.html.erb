@@ -3,14 +3,11 @@
        <% if current_user.admin? %>
          <p>User Total count <%= User.count %></p>
        <% end %>
-        <% if current_user.patient? %>
-        
+        <% if current_user.doctor? %>
+          
        <% end %>
       
      <% else %>
        <p>You are not signed in</p>
-       <p>
-         <%= link_to "Sign up", new_user_registration_path %><br>
-         <%= link_to "Login", new_user_session_path %>
-       </p>
+       
      <% end %>

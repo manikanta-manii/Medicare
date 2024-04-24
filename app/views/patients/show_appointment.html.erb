@@ -4,15 +4,17 @@
       <div><%= el.slot_time %></div>
       <%if el.status=="canceled"%>
       <div class="text-danger"><%= el.status %></div>
-      <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">VIEW</a>
+      
     
      <%elsif el.status=="active"%>
       <div class="text-info"><%= el.status %></div>
-     <div> <%= button_to "Cancel", { controller: 'patients', action: 'cancel_appointment',appointment_id:el.id},method: :put, class: "btn btn-danger m-1"%></div>
+     <div> <%= button_to "Cancel", { controller: 'patients', action: 'cancel_appointment',appointment_id:el.id},method: :put, class: "btn btn-outline-danger m-1"%></div>
+     <div> <%= button_to "Notes",  root_path,class: "btn btn-success m-1" %></div>
       
       <%else%>
       <div class="text-success"><%= el.status %></div>
-     <div> <%= button_to "VIEW", root_path,class: "btn btn-success m-1"%></div>
+     <div> <%= button_to "Feedback", root_path,class: "btn btn-success m-1"%></div>
+     <div> <%= button_to "Download Invoice", root_path,class: "btn btn-info m-1"%></div>
       <%end%>
        </div>
     <% end %>

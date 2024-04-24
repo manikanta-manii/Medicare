@@ -1,0 +1,14 @@
+<h4>Your Appointments</h4>
+    <% @all_appointments.each do |el| %>
+      <div class="d-flex">
+      <div><%= el.slot_time %></div>
+      <%if el.status=="canceled"%>
+      <div class="text-danger"><%= el.status %></div>
+     <%elsif el.status=="active"%>
+      <div class="text-info"><%= el.status %></div>
+      <div> <%= button_to "Prescribe", root_path,class: "btn btn-success m-1"%></div>
+      <%else%>
+      <div class="text-success"><%= el.status %></div>
+      <%end%>
+       </div>
+    <% end %>
