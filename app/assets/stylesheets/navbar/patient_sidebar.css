@@ -1,0 +1,24 @@
+.sidebar-header {
+    background-color: #392AB1; /* Adjust background color if needed */
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    background-color: #392AB1;
+    padding: 1rem; /* Add some padding for content */
+  }
+  
+  .nav-link {
+    color: white; /* Text color for sidebar links */
+    font-size: 1rem; /* Adjust font size if needed */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  .nav-link:hover {
+    color: #f0f0f0; /* Lighter background for hover effect */
+  }
+  
+  /* Main content styles */
+  .main-content {
+    padding: 1rem; /* Add some padding for content */
+  }
