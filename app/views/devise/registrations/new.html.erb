@@ -11,7 +11,7 @@
    
   <div class="field">
     <%= f.label :phone_number %><br />
-    <%= f.number_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
     <%= f.object.errors[:phone_number].join(', ') if f.object.errors[:phone_number].any? %>
   </div>
    

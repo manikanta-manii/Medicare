@@ -11,7 +11,8 @@
           <h4>ADMIN</h4>
         <% elsif current_user.doctor? %>
           <h4>Doctor</h4>
-        <% else %> 
+        <% else %>
+         <%= button_to "Profile", edit_user_registration_path, method: :get, class: "btn btn-outline-info mx-2" %>
           <h4>USER</h4>
         <% end %>
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger mx-2" %>

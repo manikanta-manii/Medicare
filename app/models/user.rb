@@ -1,16 +1,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
+  has_one_attached :avatar
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
-  validates :password, presence: true, length: { minimum: 8 }
-  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+\z/,
-                                 message: "must contain at least one lowercase letter, one uppercase letter, one digit, and one special character" }
-  validates :phone_number, presence: true,uniqueness: true,numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :phone_number, length: { is: 10, message: "should be exactly 10 digits" }
-
-
-
+  
+  validates :phone_number, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "must be a 10-digit number" }
+   
   has_one :patient,dependent: :destroy,inverse_of: :user
   accepts_nested_attributes_for :patient
 

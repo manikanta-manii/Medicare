@@ -1,6 +1,19 @@
+<style>
+.avatar-image {
+  width: 100px; /* Set the width to 100 pixels */
+  height: auto; /* Maintain the aspect ratio */
+}
+</style>
+
 <% if current_user %>
        <p>Hello <%= current_user&.email %></p><br>
        <p>You are Role: <%= current_user&.role %></p><br>
+       <% if current_user.avatar.attached? %>
+<%= image_tag current_user.avatar, class: 'avatar-image'%>
+<% else %>
+
+  <%= image_tag 'avatars/default_avatar.png', class: 'avatar-image'  %>
+<% end %>
        <% if current_user.admin? %>
          <p>User Total count <%= User.count %></p>
        <% end %>
