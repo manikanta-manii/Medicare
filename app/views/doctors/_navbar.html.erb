@@ -1,0 +1,16 @@
+         <li class="nav-link d-flex align-items-center">
+              <%= link_to "Profile", edit_user_registration_path, class: "nav-link text-light fw-bold"%>
+            </li>
+            <li class="nav-link d-flex align-items-center">
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light btn btn-outline-danger fw-bold"%>
+            </li>
+            <% if current_user.avatar.attached? %>
+            <li class="nav-item text-center">
+              <%= image_tag current_user.avatar, class: 'avatar-image'%>
+            </li>
+          
+           <% else %>
+          <li class="nav-item text-center">
+               <%= image_tag 'avatars/default_avatar.png', class: 'avatar-image'  %>
+            </li>
+            <%end%>
