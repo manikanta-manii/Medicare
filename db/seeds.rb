@@ -8,4 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create(name:"Admin",phone_number:"9999999999",email:"admin@gmail.com",password:"Admin@123");
+#User.create(name:"Admin",phone_number:"9999999999",email:"admin@gmail.com",password:"Admin@123");
+
+#Specialization.create(name:"Cardiologist",description:"Heart related doctor !")

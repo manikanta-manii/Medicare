@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_rating: 1
+  number_of_ratings: 1
+  rating: 1
+  years_of_experiance: 1
+  consultation_fee: 1
+  user: one
+  specialization: one
+
+two:
+  total_rating: 1
+  number_of_ratings: 1
+  rating: 1
+  years_of_experiance: 1
+  consultation_fee: 1
+  user: two
+  specialization: two

@@ -1,0 +1,3 @@
+class ManageDoctorsController < ApplicationController
+    
+end
