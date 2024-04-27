@@ -1,0 +1,65 @@
+<style>
+  .doctor-profile {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .doctor-image {
+    height: 20rem;
+    width: 20rem;
+    margin-right: 2rem;
+    border-radius: 50%;
+  }
+
+  .details {
+    flex: 1;
+  }
+
+  .details h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .details p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem; 
+  }
+
+  .details i {
+    margin-right: 0.5rem;
+    color: #333; 
+  }
+
+  .details i.fas.fa-star {
+    color: #f1c40f; 
+  }
+
+  @media (max-width: 768px) {
+    .doctor-profile {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .doctor-image {
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+
+<div class="doctor-profile">
+  <div>
+    <%= image_tag User.find(@doctor.user_id).avatar.attached? ? User.find(@doctor.user_id).avatar : 'avatars/default_avatar.png', class: "doctor-image" %>
+  </div>
+  <div class="details">
+    <h2><%= User.find(@doctor.user_id).name %></h2>
+    <p><i class="fas fa-star"></i> Rating: <%= @doctor.rating %></p>
+    <p><i class="fas fa-briefcase"></i> Specialization: <%= @doctor.specialization.name %></p>
+    <p><i class="fas fa-money-bill-alt"></i> Consultation Fee: <%= @doctor.consultation_fee %></p>
+    <p><i class="fas fa-user-clock"></i> Years of Experience: <%= @doctor.years_of_experiance %></p>
+  </div>
+</div>

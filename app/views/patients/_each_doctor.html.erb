@@ -1,0 +1,18 @@
+<div class="doctor-card">
+        <div class="avatar-container">
+          <%= image_tag User.find(doc.user_id).avatar.attached? ? User.find(doc.user_id).avatar : 'avatars/default_avatar.png', class: "doctor-image" %>
+        </div>
+        <div class="info-container">
+          <h3><%= User.find(doc.user_id).name %></h3>
+          <p><%= doc.specialization.name %></p>
+          <div class="ratings-and-fee">
+            <span class="rating">
+              <%= doc.rating %> <i class="fas fa-star"></i>
+            </span>
+            <span class="consultation-fee">
+              <i class="fas fa-rupee-sign"></i> <%= doc.consultation_fee %>
+            </span>
+          </div>
+          <%= button_to "Book Appointment",patient_path(current_user.patient.id),params:{doctor_id:doc.id},method: :get, class:"btn btn-info"%>
+        </div>
+      </div>
