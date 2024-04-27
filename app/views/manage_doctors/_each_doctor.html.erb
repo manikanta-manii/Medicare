@@ -1,0 +1,11 @@
+<tr>    
+        <td><%= image_tag User.find(doc.user_id).avatar.attached? ? User.find(doc.user_id).avatar : 'avatars/default_avatar.png', class: "avatar-image" %></td>
+        <td><%= User.find(doc.user_id).name %></td>
+        <td><%= User.find(doc.user_id).email %></td>
+        <td><%= doc.specialization.name %></td>
+        <td><%= doc.rating %></td>
+        <td><%= doc.consultation_fee %></td>
+        <td><%= doc.years_of_experiance %></td>
+        <td><%= button_to "Edit",root_path,method: :get %></td>
+        <td><%= button_to "Delete",root_path ,method: :get,class: "delete-button",data: { doc: doc }%></td>
+ </tr>
