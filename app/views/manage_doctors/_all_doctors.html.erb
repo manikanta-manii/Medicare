@@ -1,4 +1,4 @@
-<table>
+<table id="display-doctors-div">
   <thead>
     <tr>
       <th>Avatar</th>
@@ -8,13 +8,30 @@
       <th>Rating</th>
       <th>Consultation Fee</th>
       <th>Experience (Years)</th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% @doctors.each do |doc| %>
+    <div class="apple_pagination">
+    <%= page_entries_info @doctors %>
+    <div class="page_info">
+      
+      <% @doctors.each do |doc| %>
       <%= render partial:"each_doctor" , locals:{doc:doc}%>
- <%end%>  
+ <%end%> 
  </tbody>
 </table>
+<%= will_paginate @doctors ,class:"apple_pagination"%>
 
+<style>
+table, th, td {
+  border: 1px solid;
+ text-align: center;
+  border-color: #96D4D4;
+  border-collapse: collapse;
+}
+table{
+ width:100%;
+}
+</style>
 

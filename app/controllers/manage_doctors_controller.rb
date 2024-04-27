@@ -1,11 +1,11 @@
 class ManageDoctorsController < ApplicationController
     skip_before_action :verify_authenticity_token,only: %i[create destroy]
     def index
+
     end
     def new
        @specializations = Specialization.all
-       @doctors = Doctor.all
-       
+       @doctors = Doctor.all.paginate(page: params[:page], per_page: 10)  
     end
     def create
         #debugger
@@ -19,7 +19,6 @@ class ManageDoctorsController < ApplicationController
     end
 
     def destroy
-         @user = User.find(params[:id]).destroy
-         
+         @user = User.find(params[:id]).destroy      
     end
 end

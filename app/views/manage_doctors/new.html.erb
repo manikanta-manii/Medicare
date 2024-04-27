@@ -1,7 +1,6 @@
 <!-- Button trigger modal -->
-<%=Time.now()%>
 <%= javascript_include_tag "doctors_display.js" %>
-<button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Doctor</button>
+<button type="button" id="myInput" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Doctor</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -17,6 +16,6 @@
     </div>
     </div>
 </div>
-<div id="display-doctors-div">  
+<div >  
    <%= render "all_doctors" ,locals:{doctor:@doctors}%>
 </div>

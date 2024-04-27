@@ -16,19 +16,15 @@ $(document).ready(function () {
             dataType: "html",
             processData: false, 
             contentType: false,
-            success: function (result) {
-                console.log(result); 
-                const html= `<table style="background-color:blue">
-                <tbody>
-                    ${result}
-                </tbody>
-             </table>`   
-                $("#display-doctors-div").append(html);
+            success: function (result) {  
+                $("#display-doctors-div").append(result);
+                $("#doctor_register_form")[0].reset();
+               
             },
         });
+        
     });
  
-   
 $("#display-doctors-div").on("click", ".delete-button", function(event) {
     event.preventDefault();
     var deleteButton = $(this); 
@@ -53,7 +49,5 @@ $("#display-doctors-div").on("click", ".delete-button", function(event) {
         }
     });
 });
-
-      
-
+     
 });
