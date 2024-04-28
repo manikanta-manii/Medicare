@@ -63,3 +63,73 @@
     <p><i class="fas fa-user-clock"></i> Years of Experience: <%= @doctor.years_of_experiance %></p>
   </div>
 </div>
+
+<h3>Available slots </h3>
+
+<button id="today-btn" class="btn btn-outline-success" data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%>><%= @formatted_dates[0]%></button>
+<button id="tomo-btn" class="btn btn-outline-success"  data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[1]%></button>
+<button id="nextday-btn" class="btn btn-outline-success" data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[2]%></button>
+<div id="current_slots">
+      <%= render partial: "slots_display"%>
+  </div>
+
+  <script>
+$(document).ready(function () {
+   
+  $("#today-btn").on("click", function (e) {
+
+    const date = new Date();
+    let day = date.getDate();
+
+    const p_id = $(e.target).attr("data-patient-id");
+    const d_id = $(e.target).attr("data-doctor-id");
+  
+    $.ajax({
+      url: `http://localhost:3000/patients/${p_id}/slot_display`,
+      method: "POST",
+      data: { selected_day: day, doctor_id: d_id },
+      dataType: "html",
+      success: function (result) {
+      
+        $("#current_slots").html(result);
+      },
+    });
+  });
+
+  $("#tomo-btn").on("click", function (e) {
+    const date = new Date();
+    let day = date.getDate() + 1;
+    const p_id = $(e.target).attr("data-patient-id");
+    const d_id = $(e.target).attr("data-doctor-id");
+   
+    $.ajax({
+      url: `http://localhost:3000/patients/${p_id}/slot_display`,
+      method: "POST",
+      data: { selected_day: day, doctor_id: d_id },
+      dataType: "html",
+      success: function (result) {
+        $("#current_slots").html(result);
+      },
+    });
+  });
+
+  $("#nextday-btn").on("click", function (e) {
+    const date = new Date();
+    let day = date.getDate() + 2;
+    const p_id = $(e.target).attr("data-patient-id");
+    const d_id = $(e.target).attr("data-doctor-id");
+    
+    $.ajax({
+      url: `http://localhost:3000/patients/${p_id}/slot_display`,
+      method: "POST",
+      data: { selected_day: day, doctor_id: d_id },
+      dataType: "html",
+      success: function (result) {
+        $("#current_slots").html(result);
+      },
+    });
+  });
+});
+
+
+  </script>

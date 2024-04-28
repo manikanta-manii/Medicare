@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col text-center">
+    <h4 class="mb-3">Morning Slots</h4>
+    <% morning_slots = @available_slots.select { |slot| slot.hour < 12 } %>
+    <% morning_slots.each do |slot| %>
+      <%= link_to root_path, params:{slot_time: slot},method: :post, class: "btn btn-info m-1 px-3" do %>
+        <%= slot.strftime("%I:%M %p") %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col text-center">
+    <h4 class="mb-3">Afternoon Slots</h4>
+    <% afternoon_slots = @available_slots.select { |slot| slot.hour >= 12 && slot.hour < 17 } %>
+    <% afternoon_slots.each do |slot| %>
+       <%= link_to root_path, params:{slot_time: slot},method: :post, class: "btn btn-info m-1 px-3" do %>
+        <%= slot.strftime("%I:%M %p") %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col text-center">
+    <h4 class="mb-3">Evening Slots</h4>
+    <% evening_slots = @available_slots.select { |slot| slot.hour >= 17 } %>
+    <% evening_slots.each do |slot| %>
+       <%= link_to root_path, params:{slot_time: slot},method: :post, class: "btn btn-info m-1 px-3" do %>
+        <%= slot.strftime("%I:%M %p") %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -13,6 +13,7 @@ gem "mysql2", "~> 0.5"
 gem 'devise'
 gem "image_processing", "~> 1.0"
 gem 'will_paginate', '~> 4.0'
+gem 'slotty'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
