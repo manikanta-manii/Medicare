@@ -12,4 +12,12 @@ class AppointmentsController < ApplicationController
             flash[:alert] = "Booking Failed ! , You Must provide Reason for booking !"
         end
     end
+
+    def show
+        @all_appointments = current_user.patient.appointments
+    end
+
+    def details
+        @status = params[:status]
+    end
 end

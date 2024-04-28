@@ -1,0 +1,7 @@
+<h1>Complete Detail of Appointment</h1>
+<%if @status == "scheduled"%>
+<%= button_to "Cancel Appointment", root_path,method: :get,class:"btn btn-danger"%>
+<%else%>
+<%= button_to "Give Feedback", root_path,method: :get,class:"btn btn-outline-success"%>
+<%= button_to "Download Invoice", root_path,method: :get,class:"btn btn-outline-success"%>
+<%end%>

@@ -2,7 +2,7 @@
       <%= link_to "Find Doctor", patients_path,method: :get,class: "nav-link text-light" %>
     </li>
     <li class="nav-item">
-      <%= link_to "Appointments", root_path, class: "nav-link text-light" %>
+      <%= link_to "Appointments", appointment_path(current_user.patient.id), class: "nav-link text-light" %>
     </li>
     <li class="nav-item">
       <%= link_to "Buy Medicine", root_path, class: "nav-link text-light" %>

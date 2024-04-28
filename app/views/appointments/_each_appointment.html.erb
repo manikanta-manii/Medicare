@@ -1,0 +1,8 @@
+  <div class="header">
+      <div class="appointment-time"><%= formatted_string = Time.strptime(appointment.slot_time, "%Y-%m-%d %H:%M:%S %z").strftime("%A, %B %d, %Y , %H:%M %p") %></div>
+      <div class="doctor">Doctor : <%= User.find(appointment.doctor.user_id).name %></div>
+      <div class="status <%= appointment.status.downcase %>"><%= appointment.status %></div>
+      <div class="actions">
+        <%= button_to "View Details",details_appointment_path(appointment.id), method: :get, params: {status:appointment.status},class: "btn btn-info #{(appointment.status == 'canceled' ? 'disabled' : '')}" %>
+      </div>
+    </div>
