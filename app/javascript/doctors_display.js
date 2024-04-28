@@ -1,8 +1,6 @@
-console.log("linked");
+
 $(document).ready(function () {
-    console.log("$ is working");
     $("#submit-btn").on("click", function (e) {
-        console.log("SUBMIT BTN WORKING");
         e.preventDefault();
         var formData = new FormData($("#doctor_register_form")[0]); 
         var fileInput = $("#doctor_picture")[0];

@@ -1,5 +1,6 @@
 class ManageDoctorsController < ApplicationController
     skip_before_action :verify_authenticity_token,only: %i[create destroy]
+    before_action :is_admin?
     def index
 
     end
@@ -21,4 +22,14 @@ class ManageDoctorsController < ApplicationController
     def destroy
          @user = User.find(params[:id]).destroy      
     end
+
+    private
+
+    def is_admin?
+    unless current_user.admin?
+      flash[:alert] = "NOT AUTHORIZED TO ACCESS THIS PAGE"
+      redirect_to root_path
+    end
+  end
+  
 end

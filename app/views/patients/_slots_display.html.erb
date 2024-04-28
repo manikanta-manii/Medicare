@@ -3,27 +3,92 @@
     <h4 class="mb-3">Morning Slots</h4>
     <% morning_slots = @available_slots.select { |slot| slot.hour < 12 } %>
     <% morning_slots.each do |slot| %>
-      <%= link_to root_path, params:{slot_time: slot},method: :post, class: "btn btn-info m-1 px-3" do %>
+      <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
-      <% end %>
+      </button>
     <% end %>
   </div>
   <div class="col text-center">
     <h4 class="mb-3">Afternoon Slots</h4>
     <% afternoon_slots = @available_slots.select { |slot| slot.hour >= 12 && slot.hour < 17 } %>
     <% afternoon_slots.each do |slot| %>
-       <%= link_to root_path, params:{slot_time: slot},method: :post, class: "btn btn-info m-1 px-3" do %>
+      <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
-      <% end %>
+      </button>
     <% end %>
   </div>
   <div class="col text-center">
     <h4 class="mb-3">Evening Slots</h4>
     <% evening_slots = @available_slots.select { |slot| slot.hour >= 17 } %>
     <% evening_slots.each do |slot| %>
-       <%= link_to root_path, params:{slot_time: slot},method: :post, class: "btn btn-info m-1 px-3" do %>
+      <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
-      <% end %>
+      </button>
     <% end %>
   </div>
 </div>
+
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">Confirm Appointment</h5>
+        
+      </div>
+      <div class="modal-body">
+        <p>Please enter a brief reason for your appointment at <span id="selected-slot"></span>:</p>
+        <textarea id="appointmentReason" class="form-control mb-3" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+      
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary confirm-appointment" data-dismiss="modal" >Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+$(document).ready(function() {
+
+  $('.slot-button').click(function() {
+    var slotTime = $(this).data('slotTime');
+    var doctorId = $(this).data('doctorId'); 
+    $('#selected-slot').text(slotTime); 
+    $('#appointmentReason').val('');  
+
+  $('.confirm-appointment').click(function() {
+    var slotTime = $('#selected-slot').text(); 
+    var appointmentReason = $('#appointmentReason').val(); 
+
+    console.log("Appointment confirmed for slot:", slotTime);
+    console.log("Reason:", appointmentReason);
+    console.log("Slot:",slotTime);
+    console.log("Doctor Id:",doctorId);
+
+    //Here i got doctor_id reason slot_time 
+    //make ajax call to create appointment
+
+    var appointmentData = {
+      doctor_id:doctorId,
+      slot_time:slotTime,
+      reason:appointmentReason,
+    }
+    console.log(appointmentData);
+
+    $.ajax({
+            url: `http://localhost:3000/appointments`,
+            method: "POST",
+            data: appointmentData, 
+            dataType: "html", 
+            success: function (result) {  
+              window.location.reload();
+            },
+        });
+    });
+    
+  });
+});
+
+
+</script>

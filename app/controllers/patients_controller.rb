@@ -4,6 +4,9 @@ class PatientsController < ApplicationController
     before_action :slot_allotment ,only: %i[show slot_display]
     before_action :get_formated_date ,only: %i[show]
 
+    before_action :is_patient?
+
+
     def index
         @doctors = Doctor.all
         #@doctors = Doctor.all.paginate(page: params[:page], per_page: 10)  
@@ -77,5 +80,12 @@ class PatientsController < ApplicationController
             @formatted_dates << formatted_date
         end
 
+    end
+
+    def is_patient?
+        unless current_user.patient?
+          flash[:alert] = "NOT AUTHORIZED TO ACCESS THIS PAGE"
+          redirect_to root_path
+     end
     end
 end
