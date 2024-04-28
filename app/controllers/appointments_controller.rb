@@ -19,5 +19,7 @@ class AppointmentsController < ApplicationController
 
     def details
         @status = params[:status]
+        @appointment_id = params[:appointment_obj]
+        @appointment = Appointment.find(@appointment_id)
     end
 end

@@ -3,5 +3,7 @@ class Appointment < ApplicationRecord
   belongs_to :patient
   validates :slot_time, presence: true
   validates :reason, presence: true
+
+  has_one :feedback
   enum status: { scheduled: 'scheduled', completed:'completed',canceled: 'canceled'}
 end

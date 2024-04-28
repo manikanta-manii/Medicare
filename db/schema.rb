@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_28_103219) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_28_164830) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -74,6 +74,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_103219) do
     t.index ["user_id"], name: "index_doctors_on_user_id"
   end
 
+  create_table "feedbacks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "appointment_id", null: false
+    t.text "review"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_feedbacks_on_appointment_id"
+  end
+
   create_table "patients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "gender"
     t.date "dob"
@@ -112,5 +121,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_103219) do
   add_foreign_key "appointments", "patients"
   add_foreign_key "doctors", "specializations"
   add_foreign_key "doctors", "users"
+  add_foreign_key "feedbacks", "appointments"
   add_foreign_key "patients", "users"
 end
