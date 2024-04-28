@@ -45,11 +45,12 @@ class PatientsController < ApplicationController
         @patient=current_user.patient
         
         @booked_slots = @doctor.appointments.where(status:"scheduled").pluck(:slot_time)
-        @booked_slots.each_with_index do |slot_time_str, index|
-             @booked_slots[index] = Time.parse(slot_time_str)
-        end
+        @booked_slots = @booked_slots.map { |slot_time_str| Time.parse(slot_time_str) }
+
         current_time = Time.now
-        start_time = "08:00 AM".to_time
+        start_date = Time.new(current_time.year, current_time.month, current_time.day, 8, 0, 0)
+        end_date = start_date + 3.days
+
         exclude_times = @booked_slots.map do |booked_slot|
           exclusion_start_time = Time.new(booked_slot.year, booked_slot.month, booked_slot.day, booked_slot.hour, booked_slot.min, 0)
           exclusion_end_time = Time.new(booked_slot.year, booked_slot.month, booked_slot.day, booked_slot.hour, booked_slot.min + 1, 0)
@@ -57,7 +58,7 @@ class PatientsController < ApplicationController
         end
 
         @slots = Slotty.get_slots(
-        for_range: Time.new(current_time.year, current_time.month, current_time.day, 8, 0, 0)..Time.new(current_time.year, current_time.month, current_time.day+3, 24, 0, 0),
+        for_range: start_date..end_date,
         slot_length_mins: 30,
         interval_mins: 30,
         exclude_times: exclude_times
@@ -65,7 +66,8 @@ class PatientsController < ApplicationController
         
         @slots.map{|el| el.to_time}
         @slots.reject!{ |slot| slot < current_time}
-        @slots.reject!{ |slot| slot.strftime("%I:%M %p").to_time < start_time.strftime("%I:%M %p").to_time}
+        @slots.reject!{ |slot| slot.strftime("%I:%M %p").to_time < "08:00 AM".to_time}
+
     end
 
     def get_formated_date
