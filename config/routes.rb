@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :appointments do
     member do
       get 'details'
+      get 'download'
     end
   end
   resources :patients do

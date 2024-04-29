@@ -13,8 +13,9 @@
         Give Feedback
       </button>
 <%end%>
+  
 
-  <%= button_to "Download Invoice", root_path,method: :get,class:"btn btn-outline-success"%>
+  <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
 
   <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

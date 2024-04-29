@@ -14,6 +14,7 @@ gem 'devise'
 gem "image_processing", "~> 1.0"
 gem 'will_paginate', '~> 4.0'
 gem 'slotty'
+gem 'prawn'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
