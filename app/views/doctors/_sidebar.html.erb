@@ -1,5 +1,5 @@
      <li class="nav-item">
-      <%= link_to "Manage Appointments", root_path, class: "nav-link text-light" %>
+      <%= link_to "Manage Appointments",doctor_path(current_user.doctor.id),method: :get, class: "nav-link text-light" %>
     </li>
     <li class="nav-item">
       <%= link_to "Manage Slots", root_path, class: "nav-link text-light" %>

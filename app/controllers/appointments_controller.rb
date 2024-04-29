@@ -22,4 +22,17 @@ class AppointmentsController < ApplicationController
         @appointment_id = params[:appointment_obj]
         @appointment = Appointment.find(@appointment_id)
     end
+
+    def destroy
+        @appointment = Appointment.find(params[:id])
+        @appointment.update(status:"canceled")
+        flash[:notice] = "Appointment canceled Succesfully !"
+        redirect_to @appointment
+        #TRIGER MAIL !
+    
+    end
+
+    def update
+        debugger
+    end
 end

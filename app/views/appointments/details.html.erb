@@ -1,6 +1,6 @@
 <h1>Complete Detail of Appointment</h1>
 <%if @status == "scheduled"%>
-<%= button_to "Cancel Appointment", root_path,method: :get,class:"btn btn-danger"%>
+<%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :delete,class:"btn btn-danger"%>
 <%else%>
 
 <% if @appointment.feedback.present? %>
@@ -84,7 +84,6 @@ $(document).ready(function() {
             },
         });
     });
-    
   });
 });
 
