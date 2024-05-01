@@ -1,0 +1,11 @@
+      <tr>    
+         <td><%= image_tag Medicine.find(medicine.id).image.attached? ? Medicine.find(medicine.id).image : 'avatars/default_avatar.png', class: "avatar-image" %></td>
+        <td><%= medicine.name %></td>
+        <td><%= medicine.description %></td>
+        <td><%= medicine.dosage %></td>
+        <td><%= medicine.price %></td>
+        <td><%= medicine.need_prescription ? "Yes" : "No" %></td>
+        <td><%= medicine.quantity %></td>
+        <td><%= button_to "Edit", edit_medicine_path(medicine), method: :get, class: "edit-button btn btn-info" %></td>
+        <td><%= button_to "Delete", medicine_path(medicine), method: :delete, class: "delete-button btn btn-info", data: { med: medicine }%></td>
+      </tr>

@@ -1,0 +1,41 @@
+<%= form_with(url: medicines_path, method: :post, remote: true ,id:"medicine_form") do |f| %>
+
+  <div class="form-group">
+    <%= f.label :image, "Medicine Photo", class: "form-control-label" %>
+    <%= f.file_field :image, class: "form-control-file" ,id:"medicine_picture"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, "Name", class: "form-control-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, "Description", class: "form-control-label" %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, "Price", class: "form-control-label" %>
+    <%= f.text_field :price, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :dosage, "Dosage", class: "form-control-label" %>
+    <%= f.text_field :dosage, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :quantity, "Quantity", class: "form-control-label" %>
+    <%= f.text_field :quantity, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :need_prescription, "Need Prescription", class: "form-control-label" %>
+    <%= f.select :need_prescription, [['Yes', true], ['No', false]], include_blank: "Select", class: "form-control" %>
+  </div>
+   
+  <div class="form-group">
+    <%= f.submit "Submit", class: "btn btn-primary", data: { 'bs-dismiss': "modal" } ,id:"submit-btn" %>
+  </div>
+
+<% end %>

@@ -7,6 +7,7 @@ $(document).ready(function () {
         if (fileInput.files && fileInput.files[0]) {
             formData.append('doctor_picture', fileInput.files[0]);
         }
+        console.log(formData);
         $.ajax({
             url: `http://localhost:3000/manage_doctors`,
             method: "POST",

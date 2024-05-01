@@ -1,0 +1,77 @@
+<!-- Button trigger modal -->
+
+<button type="button" id="myInput" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Medicine</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Register a New Medicine</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">          
+              <%= render partial:"form"%> 
+        </div>
+    </div>
+    </div>
+</div>
+<div >  
+   <%= render partial:"all_medicines" ,locals:{medicine:@medicines}%>
+</div>
+<script>
+
+$(document).ready(function () {
+    $("#submit-btn").on("click", function (e) {
+        e.preventDefault();
+        var formData = new FormData($("#medicine_form")[0]); 
+        var fileInput = $("#medicine_picture")[0];
+        if (fileInput.files && fileInput.files[0]) {
+            formData.append('medicine_picture', fileInput.files[0]);
+        }
+        
+        $.ajax({
+            url: `http://localhost:3000/medicines`,
+            method: "POST",
+            data: formData, 
+            dataType: "html",
+            processData: false, 
+            contentType: false,
+            success: function (result) {  
+                
+               console.log(result);
+               $("#display-medicines-div").append(result);
+                $("#medicine_form")[0].reset();
+            },
+        });
+        
+    });
+ 
+$("#display-medicines-div").on("click", ".delete-button", function(event) {
+    event.preventDefault();
+    var deleteButton = $(this); 
+
+    var medObject = deleteButton.data("med");
+    const medicine_id = medObject.id;
+    console.log(medicine_id);
+
+    $.ajax({
+        url: `http://localhost:3000/medicines/${medicine_id}`,
+        method: "DELETE",
+        dataType: "html",
+        processData: false,
+        contentType: false, 
+        success: function (data) {
+            deleteButton.closest("tr").remove();
+            event.preventDefault();
+            console.log("Medicine deleted successfully!");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Error deleting doctor:", textStatus, errorThrown); 
+        }
+    });
+});
+     
+});
+
+</script>

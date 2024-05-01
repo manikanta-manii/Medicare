@@ -16,35 +16,4 @@
 # seeds.rb
 
 # Seed data for medicines
-medicines_data = [
-  {
-    name: "Paracetamol",
-    description: "Used to treat mild to moderate pain and to reduce fever.",
-    dosage: "500mg",
-    price: 5,
-    quantity: 100,
-    need_prescription: false
-  },
-  {
-    name: "Amoxicillin",
-    description: "An antibiotic used to treat a variety of bacterial infections.",
-    dosage: "250mg",
-    price: 10,
-    quantity: 50,
-    need_prescription: true
-  },
-  {
-    name: "Omeprazole",
-    description: "Used to reduce the amount of acid produced by the stomach.",
-    dosage: "20mg",
-    price: 8,
-    quantity: 80,
-    need_prescription: false
-  },
 
-]
-
-
-medicines_data.each do |medicine_params|
-  Medicine.create!(medicine_params)
-end
