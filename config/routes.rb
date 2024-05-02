@@ -7,18 +7,15 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :doctors
-
-
   resources :cart_items
   resources :medicines
-
   resources :feedbacks
   resources :appointments do
     member do
       get 'download'
     end
   end
-  
+
   # Defines the root path route ("/")
   root "home#index"
 end

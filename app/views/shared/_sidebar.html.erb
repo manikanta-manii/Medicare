@@ -1,7 +1,5 @@
 <%= stylesheet_link_tag "sidebar" %>
 <div class="sidebar  d-flex flex-column justify-content-between h-100">
-  
-
   <ul class="nav nav-pills flex-column mb-auto">
          <% if current_user && current_user.patient? %>
             <%= render partial: "patients/sidebar" %>
@@ -10,6 +8,7 @@
             <%elsif current_user && current_user.admin? %>
             <%= render partial: "admin/sidebar" %>
           <% else %>
+      
                  <li class="nav-item">
       <%= link_to "About Us", root_path, class: "nav-link text-light" %>
     </li>

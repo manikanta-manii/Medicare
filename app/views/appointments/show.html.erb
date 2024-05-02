@@ -1,6 +1,5 @@
 <% if current_user.patient?%>
-
-
+<%= javascript_include_tag "feedback.js" %>
 <h1>Complete Detail of Appointment</h1>
 <%if @status == "scheduled"%>
 <%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :delete,class:"btn btn-danger"%>
@@ -48,52 +47,10 @@
     </div>
   </div>
 <%end%>
-<script>
-
-$(document).ready(function() {
-
-  $('.feedback-button').click(function() {
-    const appointmentId = $(this).data('appointmentId');
-    $('#feedback').val('');  
-     $('#rating').val('1');
-
-    $('.confirm-feedback').click(function() {
-
-    const cur_review = $('#feedback').val(); 
-    const cur_rating = $('#rating').val(); 
-
-    console.log("Review :", cur_review);
-    console.log("Appointment:", appointmentId);
-    console.log("Rating out of 5 :",cur_rating);
-
-    const feedbackData = {
-      review:cur_review,
-      appointment_id:appointmentId,
-      rating:cur_rating,
-    }
-
-    console.log(feedbackData);
-    $.ajax({
-            url: `http://localhost:3000/feedbacks`,
-            method: "POST",
-            data: feedbackData, 
-            dataType: "html", 
-            success: function (result) {  
-              console.log(result);
-              window.location.reload();
-            },
-        });
-    });
-  });
-});
-
-</script>
-
 <%else%>
 <p class="text-success">
 write a code for : if status is scheduled -- he can prescribe the medicine , after prescribing the medicine , he can edit the prescription . and show a button to completee the appointment
 </p>
-
 <p class="text-warning">
 if the status is completed , he can see the appointment deatils and feedback </p>
 <%end%>

@@ -1,5 +1,6 @@
 <!-- Button trigger modal -->
 <% if current_user.admin?%>
+<%= javascript_include_tag "add_or_remove_medicine" %>
 <button type="button" id="myInput" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Medicine</button>
 
 <!-- Modal -->
@@ -19,60 +20,6 @@
 <div >  
    <%= render partial:"all_medicines" ,locals:{medicine:@medicines}%>
 </div>
-
-<script>
-
-$(document).ready(function () {
-    $("#submit-btn").on("click", function (e) {
-        e.preventDefault();
-        var formData = new FormData($("#medicine_form")[0]); 
-        
-        $.ajax({
-            url: `http://localhost:3000/medicines`,
-            method: "POST",
-            data: formData, 
-            dataType: "html",
-            processData: false, 
-            contentType: false,
-            success: function (result) {  
-                
-               console.log(result);
-               $("#display-medicines-div").append(result);
-                $("#medicine_form")[0].reset();
-            },
-        });
-        
-    });
- 
-$("#display-medicines-div").on("click", ".delete-button", function(event) {
-    event.preventDefault();
-    var deleteButton = $(this); 
-
-    var medObject = deleteButton.data("med");
-    const medicine_id = medObject.id;
-    console.log(medicine_id);
-
-    $.ajax({
-        url: `http://localhost:3000/medicines/${medicine_id}`,
-        method: "DELETE",
-        dataType: "html",
-        processData: false,
-        contentType: false, 
-        success: function (data) {
-            deleteButton.closest("tr").remove();
-            event.preventDefault();
-            console.log("Medicine deleted successfully!");
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error("Error deleting doctor:", textStatus, errorThrown); 
-        }
-    });
-});
-     
-});
-
-</script>
-
 <%else %>
  <%= render partial:"patients/all_medicines" ,locals:{medicine:@medicines}%>
 </div>

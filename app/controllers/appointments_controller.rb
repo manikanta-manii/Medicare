@@ -21,7 +21,8 @@ class AppointmentsController < ApplicationController
         else
             flash[:alert] = "Booking Failed ! , You Must provide Reason for booking !"
             redirect_to request.referer
-        end      
+        end  
+        #TRIGER MAIL !    
     end
 
     def show
@@ -40,11 +41,8 @@ class AppointmentsController < ApplicationController
 
     def download
         @appointment = Appointment.find(params[:id])
-
         @doctor = Doctor.find(@appointment.doctor_id)
-
         @doctor_name  =User.find(@doctor.user_id).name
-   
         appointment_pdf = Prawn::Document.new
         appointment_pdf.text @appointment.slot_time
         appointment_pdf.text @appointment.reason
