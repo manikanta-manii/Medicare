@@ -8,7 +8,7 @@ $(document).ready(function () {
     }
     console.log(formData);
     $.ajax({
-      url: `http://localhost:3000/manage_doctors`,
+      url: `http://localhost:3000/doctors`,
       method: "POST",
       data: formData,
       dataType: "html",
@@ -30,7 +30,7 @@ $(document).ready(function () {
     console.log(doctor_id);
 
     $.ajax({
-      url: `http://localhost:3000/manage_doctors/${doctor_id}`,
+      url: `http://localhost:3000/doctors/${doctor_id}`,
       method: "DELETE",
       dataType: "html",
       processData: false,
