@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-
+<% if current_user.admin?%>
 <button type="button" id="myInput" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Medicine</button>
 
 <!-- Modal -->
@@ -19,16 +19,16 @@
 <div >  
    <%= render partial:"all_medicines" ,locals:{medicine:@medicines}%>
 </div>
+<%else %>
+ <%= render partial:"patients/all_medicines" ,locals:{medicine:@medicines}%>
+</div>
+<%end%>
 <script>
 
 $(document).ready(function () {
     $("#submit-btn").on("click", function (e) {
         e.preventDefault();
         var formData = new FormData($("#medicine_form")[0]); 
-        var fileInput = $("#medicine_picture")[0];
-        if (fileInput.files && fileInput.files[0]) {
-            formData.append('medicine_picture', fileInput.files[0]);
-        }
         
         $.ajax({
             url: `http://localhost:3000/medicines`,

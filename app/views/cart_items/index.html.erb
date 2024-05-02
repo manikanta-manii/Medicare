@@ -1,0 +1,7 @@
+<p>AL CART ITEMS</p>
+    <% @all_cart_items.each do |item| %>
+           <p>MEDICINE : <%= Medicine.find(item.medicine_id).name%></p>
+            <p>PRICE : <%= Medicine.find(item.medicine_id).price%></p>
+          <p> Quantity: <%= item.quantity%></p>
+          <p> TOtAL Price :<%= item.total_price%></p><br>
+      <% end %>
