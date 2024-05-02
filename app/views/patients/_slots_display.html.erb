@@ -33,16 +33,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="confirmationModalLabel">Confirm Appointment</h5>
-        
       </div>
       <div class="modal-body">
         <p>Please enter a brief reason for your appointment at <span id="selected-slot"></span>:</p>
-        <textarea id="appointmentReason" class="form-control mb-3" rows="3"></textarea>
-      </div>
-      <div class="modal-footer">
-      
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary confirm-appointment" data-dismiss="modal" >Confirm</button>
+        <%= form_with(url: appointments_path, method: :post,id:"appointment_confirmation_form") do |f| %>
+          <div class="field">
+            <%= f.label :reason %>
+            <%= f.text_area :reason, rows: 5 ,id: "appointmentReason"%>
+          </div>
+          <!-- Add hidden fields to store slot time and doctor id -->
+          <%= f.hidden_field :slot_time, id: "slot-time-field" %>
+          <%= f.hidden_field :doctor_id, id: "doctor-id-field", value: @doctor.id %>
+          
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cancel</button>
+            <%= f.submit "Confirm", "data-bs-dismiss": "modal" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -50,46 +57,14 @@
 <script>
 
 $(document).ready(function() {
-
   $('.slot-button').click(function() {
     var slotTime = $(this).data('slotTime');
-    var doctorId = $(this).data('doctorId'); 
+    $('#slot-time-field').val(slotTime);
     $('#selected-slot').text(slotTime); 
-    $('#appointmentReason').val('');  
-
-  $('.confirm-appointment').click(function() {
-    var slotTime = $('#selected-slot').text(); 
-    var appointmentReason = $('#appointmentReason').val(); 
-
-    console.log("Appointment confirmed for slot:", slotTime);
-    console.log("Reason:", appointmentReason);
-    console.log("Slot:",slotTime);
-    console.log("Doctor Id:",doctorId);
-
-    //Here i got doctor_id reason slot_time 
-    //make ajax call to create appointment
-
-    var appointmentData = {
-      doctor_id:doctorId,
-      slot_time:slotTime,
-      reason:appointmentReason,
-    }
-    console.log(appointmentData);
-
-    $.ajax({
-            url: `http://localhost:3000/appointments`,
-            method: "POST",
-            data: appointmentData, 
-            dataType: "html", 
-            success: function (result) {  
-              window.location.reload();
-
-            },
-        });
+    $('#appointmentReason').val(''); 
+    $("#confirmationModal .close").click();
     });
-    
   });
-});
 
 
 </script>

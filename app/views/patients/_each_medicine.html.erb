@@ -1,0 +1,11 @@
+<div class="row">
+          <div class="col-md-1"><%= med.name %></div>
+          <div class="col-md-1"><%= med.description %></div>
+          <div class="col-md-1"><%= med.dosage %></div>
+          <div class="col-md-1"><%= med.price %></div>
+          <div class="col-md-1"><%= med.need_prescription%></div>
+ 
+          <div class="col-md-2">
+            <%= button_to "Add to cart", cart_items_path, method: :post, params:{medicine_id: med.id},class: "btn btn-info" %>
+          </div>
+        </div>

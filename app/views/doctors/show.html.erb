@@ -1,56 +1,144 @@
 <style>
-#display-doctors-div {
-  width: 100%; 
-  margin: 0 auto; 
-  border: 1px solid #ddd; 
-  padding: 10px;
-  font-family: Arial, sans-serif; 
-}
+  .doctor-profile {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
 
-.header {
-  display: flex; 
-  justify-content: space-between;
-  align-items: center; 
-  padding: 10px;
-  background-color: #f5f5f5; 
-  margin-bottom:10px;
-}
+  .doctor-image {
+    height: 20rem;
+    width: 20rem;
+    margin-right: 2rem;
+    border-radius: 50%;
+  }
 
-.header div {
-  flex: 1;
-  text-align: center; 
-  font-weight: bold;
-}
+  .details {
+    flex: 1;
+  }
 
-.status.scheduled {
-  color: rgb(	95	,168	,234);
-}
+  .details h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
 
-.status.canceled {
-  color: rgb(181,94,95);
-}
+  .details p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem; 
+  }
 
-.status.completed {
-  color: rgb(18	,212,162);
-}
+  .details i {
+    margin-right: 0.5rem;
+    color: #333; 
+  }
 
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
+  .details i.fas.fa-star {
+    color: #f1c40f; 
+  }
 
+  @media (max-width: 768px) {
+    .doctor-profile {
+      flex-direction: column;
+      align-items: center;
+    }
 
-
+    .doctor-image {
+      margin-bottom: 1rem;
+    }
+  }
 </style>
 
-<h1>All Appointments</h1>
-
-<div class="display-doctors-div">
-  <% @all_appointments.each do |appointment| %>
-      <%= render partial:"each_appointment" , locals: {appointment:appointment}%>
-  <% end %>
+<div class="doctor-profile">
+  <div>
+    <%= image_tag User.find(@doctor.user_id).avatar.attached? ? User.find(@doctor.user_id).avatar : 'avatars/default_avatar.png', class: "doctor-image" %>
+  </div>
+  <div class="details">
+    <h2><%= User.find(@doctor.user_id).name %></h2>
+    <p><i class="fas fa-star"></i> Rating: <%= @doctor.rating %></p>
+    <p><i class="fas fa-briefcase"></i> Specialization: <%= @doctor.specialization.name %></p>
+    <p><i class="fas fa-money-bill-alt"></i> Consultation Fee: <%= @doctor.consultation_fee %></p>
+    <p><i class="fas fa-user-clock"></i> Years of Experience: <%= @doctor.years_of_experiance %></p>
+  </div>
 </div>
+<h3>Available slots </h3>
 
+<button id="today-btn" class="btn btn-outline-success" data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%>><%= @formatted_dates[0]%></button>
+<button id="tomo-btn" class="btn btn-outline-success"  data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[1]%></button>
+<button id="nextday-btn" class="btn btn-outline-success" data-patient-id=<%= current_user.patient.id%>  data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[2]%></button>
+<div id="current_slots">
+      <%= render partial: "patients/slots_display"%>
+  </div>
+  <script>
+$(document).ready(function () {
+  const dates = getDatesForNextThreeDays();
+  $("#today-btn").on("click", function (e) {
+    let today = dates.today;
+    const p_id = $(e.target).attr("data-patient-id");
+    const d_id = $(e.target).attr("data-doctor-id");
+    $.ajax({
+      url: `http://localhost:3000/patients/${p_id}/slot_display`,
+      method: "POST",
+      data: { selected_day: today, doctor_id: d_id },
+      dataType: "html",
+      success: function (result) {
+      
+        $("#current_slots").html(result);
+      },
+    });
+  });
+  $("#tomo-btn").on("click", function (e) {
+   let tomorrow = dates.tomorrow;
+    const p_id = $(e.target).attr("data-patient-id");
+    const d_id = $(e.target).attr("data-doctor-id"); 
+    $.ajax({
+      url: `http://localhost:3000/patients/${p_id}/slot_display`,
+      method: "POST",
+      data: { selected_day: tomorrow, doctor_id: d_id },
+      dataType: "html",
+      success: function (result) {
+        $("#current_slots").html(result);
+      },
+    });
+  });
 
+  $("#nextday-btn").on("click", function (e) {
+  
+    let day_after_tomorrow = dates.dayAfterTomorrow;
+    const p_id = $(e.target).attr("data-patient-id");
+    const d_id = $(e.target).attr("data-doctor-id");
+    
+    $.ajax({
+      url: `http://localhost:3000/patients/${p_id}/slot_display`,
+      method: "POST",
+      data: { selected_day: day_after_tomorrow, doctor_id: d_id },
+      dataType: "html",
+      success: function (result) {
+        $("#current_slots").html(result);
+      },
+    });
+  });
 
+  function getDatesForNextThreeDays() {
+  const today = new Date();
+
+  const getDateWithOffset = (offset) => {
+    const newDate = new Date(today.getTime() + offset * 24 * 60 * 60 * 1000); 
+    return newDate.toLocaleDateString(); 
+  };
+
+  const todayString = getDateWithOffset(0);
+  const tomorrowString = getDateWithOffset(1);
+  const dayAfterTomorrowString = getDateWithOffset(2);
+
+  return {
+    today: todayString,
+    tomorrow: tomorrowString,
+    dayAfterTomorrow: dayAfterTomorrowString
+  };
+}
+
+});
+  </script>

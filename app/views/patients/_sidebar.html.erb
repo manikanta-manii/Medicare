@@ -1,8 +1,8 @@
      <li class="nav-item">
-      <%= link_to "Find Doctor", patients_path,method: :get,class: "nav-link text-light" %>
+      <%= link_to "Find Doctor", doctors_path,method: :get,class: "nav-link text-light" %>
     </li>
     <li class="nav-item">
-      <%= link_to "Appointments", appointment_path(current_user.patient.id), class: "nav-link text-light" %>
+      <%= link_to "Appointments", appointments_path, class: "nav-link text-light" %>
     </li>
     <li class="nav-item">
       <%= link_to "Buy Medicine", medicines_path, class: "nav-link text-light" %>

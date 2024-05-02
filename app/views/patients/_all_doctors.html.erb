@@ -84,9 +84,6 @@
 </style>
 <div class="doctor-cards-container">
     <% @doctors.each do |doc| %>
-     <%= render partial:"each_doctor" , locals:{doc:doc}%>
+     <%= render partial:"patients/each_doctor" , locals:{doc:doc}%>
     <% end %>
   </div>
-
-
-

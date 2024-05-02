@@ -15,15 +15,10 @@ Rails.application.routes.draw do
   resources :feedbacks
   resources :appointments do
     member do
-      get 'details'
       get 'download'
     end
   end
-  resources :patients do
-    member do
-      post 'slot_display'
-    end
-  end
+  
   # Defines the root path route ("/")
   root "home#index"
 end
