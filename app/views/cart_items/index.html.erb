@@ -1,7 +1,21 @@
-<p>AL CART ITEMS</p>
+<p>ALL CART ITEMS</p>
+<% if current_user.patient.cart.present? %>
+<p><%= @total_prices.reduce(0, :+)%></p>
     <% @all_cart_items.each do |item| %>
            <p>MEDICINE : <%= Medicine.find(item.medicine_id).name%></p>
             <p>PRICE : <%= Medicine.find(item.medicine_id).price%></p>
-          <p> Quantity: <%= item.quantity%></p>
-          <p> TOtAL Price :<%= item.total_price%></p><br>
+            <p> Quantity: <%= item.quantity%></p>
+            <p> Need_prescription: <%= Medicine.find(item.medicine_id).need_prescription%></p>
+          <p> TOtAL Price :<%= item.total_price%></p>
+          <p> Reduce Quantity :<%= button_to " - " ,root_path,method: :get,class:"btn btn-outline-danger"%></p>
+          <p> Remove Item :<%= button_to " REMOVE " ,cart_item_path(item.id),method: :delete,class:"btn btn-danger"%></p>
+          <br>
       <% end %>
+
+<p>TOTAL PRICE TO PAY:</p>
+<p><%= @total_prices.reduce(0, :+)%></p>
+<br><br>
+<p> Place Order :<%= button_to " Place Order " ,root_path,method: :get,class:"btn btn-success"%></p>  <br>
+<%else%>
+<%= "CART IS NOT Created! Add Items"%>
+<%end%>

@@ -19,10 +19,7 @@
 <div >  
    <%= render partial:"all_medicines" ,locals:{medicine:@medicines}%>
 </div>
-<%else %>
- <%= render partial:"patients/all_medicines" ,locals:{medicine:@medicines}%>
-</div>
-<%end%>
+
 <script>
 
 $(document).ready(function () {
@@ -75,3 +72,8 @@ $("#display-medicines-div").on("click", ".delete-button", function(event) {
 });
 
 </script>
+
+<%else %>
+ <%= render partial:"patients/all_medicines" ,locals:{medicine:@medicines}%>
+</div>
+<%end%>
