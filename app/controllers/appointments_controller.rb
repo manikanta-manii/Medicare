@@ -30,7 +30,6 @@ class AppointmentsController < ApplicationController
         @appointment = Appointment.find(params[:id])
     end
     
-
     def destroy
         @appointment = Appointment.find(params[:id])
         @appointment.update(status:"canceled")
@@ -38,7 +37,19 @@ class AppointmentsController < ApplicationController
         redirect_to appointments_path
         #TRIGER MAIL !
     end
+    def edit
+        @appointment = Appointment.find(params[:id])
+    end
+    def update
+        @appointment = Appointment.find(params[:id])
+        if @appointment.update(appointment_params)
+          redirect_to appointments_path, notice: "Reason updated successfully"
+        else
+          render :edit
+        end
 
+    end
+      
     def download
         @appointment = Appointment.find(params[:id])
         @doctor = Doctor.find(@appointment.doctor_id)
@@ -56,12 +67,11 @@ class AppointmentsController < ApplicationController
        end
     end
 
-    def update
-        debugger
-    end 
-    
-    
-    private 
+    private
+      
+    def appointment_params
+        params.require(:appointment).permit(:reason)
+    end
 
   
 end

@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-
+  
     $('.feedback-button').click(function() {
       const appointmentId = $(this).data('appointmentId');
       $('#feedback').val('');  

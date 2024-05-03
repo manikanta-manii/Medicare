@@ -1,11 +1,55 @@
 <div class="row">
-          <div class="col-md-1"><%= med.name %></div>
-          <div class="col-md-1"><%= med.description %></div>
-          <div class="col-md-1"><%= med.dosage %></div>
-          <div class="col-md-1"><%= med.price %></div>
-          <div class="col-md-1"><%= med.need_prescription%></div>
- 
-          <div class="col-md-2">
-            <%= button_to "Add to cart", cart_items_path, method: :post, params:{medicine_id: med.id},class: "btn btn-info" %>
-          </div>
+    <div class="col-md-1"><%= med.name %></div>
+    <div class="col-md-1"><%= med.description %></div>
+    <div class="col-md-1"><%= med.dosage %></div>
+    <div class="col-md-1"><%= med.price %></div>
+    <div class="col-md-1"><%= med.need_prescription%></div>
+    <div class="col-md-2">
+        <%= button_to "Add to cart", cart_items_path, method: :post, params:{medicine_id: med.id}, class: "btn btn-info", onclick: "addToCart(this)" %>
+        <div class="counter">
+            <button onclick="decrease(this)">-</button>
+            <span class="cnt" id="count_<%= med.id %>">0</span>
+            <button onclick="increase(this, <%= med.quantity %>, <%= med.id %>)">+</button>
         </div>
+        <span id="status_<%= med.id %>" class="status"></span>
+    </div>
+</div>
+
+<script>
+    function increase(btn, maxQuantity, medId) {
+        let counter = btn.parentElement.querySelector('.cnt');
+        let count = parseInt(counter.innerText);
+        if (count < maxQuantity) {
+            count++;
+            counter.innerText = count;
+            updateStatus(count, maxQuantity, medId);
+        }
+    }
+
+    function decrease(btn) {
+        let counter = btn.parentElement.querySelector('.cnt');
+        let count = parseInt(counter.innerText);
+        if (count > 0) {
+            count--;
+            counter.innerText = count;
+            updateStatus(count, maxQuantity, medId);
+        }
+    }
+
+    function updateStatus(count, maxQuantity, medId) {
+        let statusElement = document.getElementById("status_" + medId);
+        if (count == 0) {
+            statusElement.innerText = "Out of stock";
+            statusElement.style.color = "red";
+        } else if (count >= maxQuantity) {
+            statusElement.innerText = "Maximum quantity reached";
+            statusElement.style.color = "black"; // You can change color or message for this case
+        } else {
+            statusElement.innerText = "";
+        }
+    }
+
+    function addToCart(btn) {
+        // You can perform any additional actions related to adding to cart here
+    }
+</script>

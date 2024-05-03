@@ -1,10 +1,33 @@
 <% if current_user.patient?%>
-<%= javascript_include_tag "feedback.js" %>
-<h1>Complete Detail of Appointment</h1>
+<%= javascript_include_tag "patient_appointment.js" %>
+<%= render partial: "patients/appointment_details" %>
 <%if @status == "scheduled"%>
-<%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :delete,class:"btn btn-danger"%>
-<%else%>
+<!-- Button trigger modal -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-success my-1" data-toggle="modal" data-target="#editModal">
+  Edit Reason
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Reason</h5>
+      </div>
+      <div class="modal-body">
+        <%= render 'edit_form', appointment: @appointment %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :delete,class:"btn btn-outline-danger dflex"%>
+
+<%else%>
 <% if @appointment.feedback.present? %>
  <h4>Feedback Submitted</h4>
  <%=button_to "Edit Feedback",root_path,method: :get,class: "btn btn-info"%>
