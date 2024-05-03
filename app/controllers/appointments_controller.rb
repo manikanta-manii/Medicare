@@ -42,14 +42,18 @@ class AppointmentsController < ApplicationController
     end
     def update
         @appointment = Appointment.find(params[:id])
-        if @appointment.update(appointment_params)
-          redirect_to appointments_path, notice: "Reason updated successfully"
-        else
-          render :edit
+        if check_status_param
+            @appointment.update(status:params[:status])
+            redirect_to appointments_path, notice: "Appointment updated successfully"
         end
+        if @appointment.update(appointment_params)
+          redirect_to appointments_path, notice: "Appointment updated successfully"
+        else
+            redirect_to appointments_path, alert: "Appointment updation Failed"
+        end
+        redirect_to appointments_path, notice: "Appointment updated successfully"
 
     end
-      
     def download
         @appointment = Appointment.find(params[:id])
         @doctor = Doctor.find(@appointment.doctor_id)
@@ -70,8 +74,10 @@ class AppointmentsController < ApplicationController
     private
       
     def appointment_params
-        params.require(:appointment).permit(:reason)
+        params.require(:appointment).permit(:reason, :note,:status)
     end
 
-  
+    def check_status_param
+        params[:status].present?
+    end
 end

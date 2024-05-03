@@ -1,0 +1,6 @@
+<%= form_for @appointment do |f| %>
+  <%= f.label :reason %>
+  <%= f.text_area :reason, value: @appointment.reason %>
+  
+  <%= f.submit "Update" %>
+<% end %>

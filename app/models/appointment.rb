@@ -5,4 +5,6 @@ class Appointment < ApplicationRecord
   validates :reason, presence: true
   has_one :feedback , dependent: :destroy
   enum status: { scheduled: 'scheduled', completed:'completed',canceled: 'canceled'}
+
+  has_rich_text :note
 end

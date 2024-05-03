@@ -1,0 +1,7 @@
+<%= form_for @appointment do |f| %>
+  <div class="form-group">
+    <%= f.label :note %>
+    <%= f.rich_text_area :note, class: "form-control" %>
+  </div>
+<%= f.submit "Submit", class: "btn btn-info" %>
+<% end %>
