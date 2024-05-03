@@ -36,10 +36,27 @@ class DoctorsController < ApplicationController
         end
     end
 
+    def slot_display
+  
+        @selected_day=params[:selected_day]
+        i=0
+        @count=0
+        @available_slots=[]
+        while i < @slots.length()
+          if @slots[i].day == @selected_day.to_i
+              @available_slots<<@slots[i]
+          end
+          i+=1
+        end
+        render partial: "patients/slots_display"
+    end
+
+
     private 
 
     def slot_allotment
-        @doctor = Doctor.find(params[:id])
+
+        @doctor = Doctor.find_by(id:params[:id])
         @patient=current_user.patient
         
         @booked_slots = @doctor.appointments.where(status:"scheduled").pluck(:slot_time)
