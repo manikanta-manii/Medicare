@@ -28,15 +28,35 @@
 <%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :delete,class:"btn btn-outline-danger dflex"%>
 
 <%else%>
+<style>
+  .container {
+    text-align: center; /* Center-align the content */
+  }
+
+  .container img {
+    max-width: 100%; /* Ensure images don't exceed container width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Center-align the image within the container */
+    margin: 0 auto; /* Center-align the image horizontally */
+  }
+</style>
+  <h1>Appointment Details</h1>
+  <div class="container mx-auto">
+  <p> <strong>Note:</strong>
+  <%= @appointment.note %></p>
+
+  </div>
 <% if @appointment.feedback.present? %>
  <h4>Feedback Submitted</h4>
- <%=button_to "Edit Feedback",root_path,method: :get,class: "btn btn-info"%>
 <%else%>
- <button type="button" class="btn btn-info m-1 px-3 feedback-button" data-appointment-id="<%= @appointment_id %>" data-toggle="modal" data-target="#feedbackModal">
+<%= javascript_include_tag "patient_appointment" %>
+ <button type="button" class="btn btn-info m-1 px-3 feedback-button" data-appointment-id="<%= @appointment.id %>" data-toggle="modal" data-target="#feedbackModal">
         Give Feedback
-      </button>
+</button>
+
 <%end%>
   <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
+
 
   <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

@@ -26,8 +26,9 @@ class AppointmentsController < ApplicationController
     end
 
     def show
-        @status = params[:status]
+        
         @appointment = Appointment.find(params[:id])
+        @status = @appointment.status
     end
     
     def destroy
@@ -45,31 +46,61 @@ class AppointmentsController < ApplicationController
         if check_status_param
             @appointment.update(status:params[:status])
             redirect_to appointments_path, notice: "Appointment updated successfully"
-        end
-        if @appointment.update(appointment_params)
-          redirect_to appointments_path, notice: "Appointment updated successfully"
         else
+          if @appointment.update(appointment_params)
+             redirect_to appointments_path, notice: "Appointment updated successfully"
+          else
             redirect_to appointments_path, alert: "Appointment updation Failed"
+          end
         end
-        redirect_to appointments_path, notice: "Appointment updated successfully"
+        #redirect_to appointments_path, notice: "Appointment updated successfully"
 
     end
     def download
         @appointment = Appointment.find(params[:id])
         @doctor = Doctor.find(@appointment.doctor_id)
-        @doctor_name  =User.find(@doctor.user_id).name
+        @doctor_name = User.find(@doctor.user_id).name
+      
         appointment_pdf = Prawn::Document.new
-        appointment_pdf.text @appointment.slot_time
-        appointment_pdf.text @appointment.reason
-        appointment_pdf.text current_user.name
-        appointment_pdf.text @doctor_name
-
-       if params[:preview].present?
-        send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",type: "application/pdf",disposition: 'inline')
-       else
-        send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",type: "application/pdf")
-       end
-    end
+      
+        # Set font and font size
+        appointment_pdf.font "Helvetica"
+        appointment_pdf.font_size 12
+      
+        # Add content with styling
+        appointment_pdf.text "Appointment Details", style: :bold, size: 16, align: :center
+        appointment_pdf.move_down 10
+      
+        appointment_pdf.text "Slot Time: #{@appointment.slot_time}", style: :italic
+        appointment_pdf.text "Reason: #{@appointment.reason}", style: :italic
+        appointment_pdf.text "Patient Name: #{current_user.name}", style: :italic
+        appointment_pdf.text "Doctor Name: #{@doctor_name}", style: :italic
+      
+        # Extract plain text from ActionText rich text
+        appointment_pdf.move_down 10
+        appointment_pdf.text "Note:", style: :italic
+        appointment_pdf.text @appointment.note.body.to_plain_text
+      
+        # Check if there's an image attachment
+        if @appointment.note.body.attachments.any?
+          image_attachment = @appointment.note.body.attachments.first
+          if image_attachment.image?
+            # Embed the image in the PDF
+            image_data = image_attachment.download
+            appointment_pdf.move_down 10
+            appointment_pdf.image StringIO.new(image_data), fit: [200, 200], position: :center
+          end
+        end
+      
+        if params[:preview].present?
+          send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
+                    type: "application/pdf", disposition: 'inline')
+        else
+          send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
+                    type: "application/pdf")
+        end
+      end
+      
 
     private
       

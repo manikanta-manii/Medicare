@@ -3,6 +3,6 @@
       <div class="doctor">Patient : <%= User.find(appointment.patient.user_id).name %></div>
       <div class="status <%= appointment.status.downcase %>"><%= appointment.status %></div>
       <div class="actions">
-        <%= button_to "View Details",appointment_path(appointment.id), method: :get, params: {status:appointment.status },class: "btn btn-info #{(appointment.status == 'canceled' ? 'disabled' : '')}" %>
+        <%= button_to "View Details",appointment_path(appointment.id), method: :get, class: "btn btn-info #{(appointment.status == 'canceled' ? 'disabled' : '')}" %>
       </div>
   </div>
