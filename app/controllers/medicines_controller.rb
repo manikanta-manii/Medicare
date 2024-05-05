@@ -12,7 +12,7 @@ class MedicinesController < ApplicationController
   
     def create
  
-      @medicine = Medicine.create( name:params[:name] , description:params[:description], dosage:params[:dosage], price:params[:price] , need_prescription:params[:need_prescription] , quantity: params[:quantity])
+      @medicine = Medicine.create( image:params[:image],name:params[:name] , description:params[:description], dosage:params[:dosage], price:params[:price] , need_prescription:params[:need_prescription] , quantity: params[:quantity])
   
       if @medicine.save
         render partial: "medicines/each_medicine",locals:{medicine:@medicine}

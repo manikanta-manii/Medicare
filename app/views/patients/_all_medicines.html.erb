@@ -1,19 +1,6 @@
-<div id="display-medicines-div" class="table-responsive">
-  <div class="table-wrapper">
-    <div class="table-header">
-      <div class="row">
-        <div class="col-md-1">Name</div>
-        <div class="col-md-1">Description</div>
-        <div class="col-md-1">Dosage</div>
-        <div class="col-md-1">Price</div>
-        <div class="col-md-1">Need Prescription</div>
-        <div class="col-md-2">Actions</div>
-      </div>
-    </div>
-    <div class="table-body">
+ <div>
       <% @medicines.each do |medicine| %>
         <%= render partial:"patients/each_medicine", locals:{med:medicine}%>
       <% end %>
-    </div>
-  </div>
 </div>
+
