@@ -29,11 +29,11 @@ class CartItemsController < ApplicationController
     def destroy
         #debugger
         CartItem.find(params[:id]).destroy
-        redirect_to cart_items_path,notice: "Item Removed from the cart !"
-        
+        redirect_to cart_items_path,notice: "Item Removed from the cart !"    
     end
-    private
 
+    private
+    
     def set_cart
         user = current_user.patient
         @cart ||= (!user.cart.present?) ? user.create_cart! : user.cart

@@ -3,11 +3,9 @@
 <%= render partial: "patients/appointment_details" %>
 <%if @status == "scheduled"%>
 <!-- Button trigger modal -->
-<!-- Button trigger modal -->
 <button type="button" class="btn btn-outline-success my-1" data-toggle="modal" data-target="#editModal">
   Edit Reason
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -30,14 +28,14 @@
 <%else%>
 <style>
   .container {
-    text-align: center; /* Center-align the content */
+    text-align: center; 
   }
 
   .container img {
-    max-width: 100%; /* Ensure images don't exceed container width */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Center-align the image within the container */
-    margin: 0 auto; /* Center-align the image horizontally */
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
   }
 </style>
   <h1>Appointment Details</h1>
@@ -151,8 +149,6 @@
 
 
 <%end%>
-
-
 <%end%>
 <%end%>
 
