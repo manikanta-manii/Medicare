@@ -1,3 +1,3 @@
 Medicare Database
-/home/manikanta/Pictures/Screenshots/Medicare_DB.png
+![alt text](Medicare_DB-1.png)
 Pending - Order Table and linking or Address table.
