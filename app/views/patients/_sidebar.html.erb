@@ -14,5 +14,9 @@
       <%= link_to "Cart", cart_items_path, class: "nav-link text-light" %>
     </li>
        <li id="count">
-         <%= "0" %>
+       <% if @all_cart_items.present? %>
+         <%= @all_cart_items.count %>
+         <%else%>
+         0
+         <%end%>
   </li>

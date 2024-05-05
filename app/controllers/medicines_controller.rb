@@ -4,6 +4,11 @@ class MedicinesController < ApplicationController
     def index
       @medicine = Medicine.new
       @medicines = Medicine.all
+      if current_user.patient.cart.present?
+        @cart = current_user.patient.cart;
+        @all_cart_items = @cart.cart_items
+     end
+
     end
   
     def new

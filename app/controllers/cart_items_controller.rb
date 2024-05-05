@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
-    before_action :set_cart ,only: %i[create]
+    skip_before_action :verify_authenticity_token,only: %i[create]
+    before_action :set_cart ,only: %i[create increase]
 
     def index
         if current_user.patient.cart.present?
@@ -12,18 +13,17 @@ class CartItemsController < ApplicationController
 
     end
     def create
-        medicine =  Medicine.find(params[:medicine_id])
-        price = medicine.price
-        check_stock(medicine)
+         medicine =  Medicine.find(params[:medicine_id])
+         price = medicine.price
         if check_medicine(params[:medicine_id])
-            @cart_item = @cart.cart_items.find_by(medicine_id:params[:medicine_id])
-            new_quantity = @cart_item.quantity+=1
-            new_total_price = price  * new_quantity
-            @cart_item.update(quantity:new_quantity,total_price:new_total_price)
+              @cart_item = @cart.cart_items.find_by(medicine_id:params[:medicine_id])
+              new_quantity =params[:medicine_quantity].to_i
+              new_total_price = price  * new_quantity
+              @cart_item.update(quantity:new_quantity,total_price:new_total_price)
         else
-            @cart.cart_items.create(medicine_id: params[:medicine_id],quantity: 1,total_price:price)
+            @cart.cart_items.create(medicine_id: params[:medicine_id],quantity:params[:medicine_quantity].to_i ,total_price:price)
         end
-        
+        render plain:"#{@cart.cart_items.count}"
     end
 
     def destroy
@@ -41,10 +41,6 @@ class CartItemsController < ApplicationController
 
     def check_medicine(medicine)
         @cart.cart_items.find_by(medicine_id:medicine) ? true : false
-    end
-
-    def check_stock(medicine)
-        medicine.quantity 
     end
   
 end
