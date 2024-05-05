@@ -1,0 +1,7 @@
+  <%= form_for @appointment, url: appointment_path(@appointment), method: :patch do |f| %>
+          <div class="form-group">
+            <%= f.label :note %>
+            <%= f.rich_text_area :note, class: "form-control" %>
+          </div>
+          <%= f.submit "Update Prescription", class: "btn btn-primary" %>
+        <% end %>

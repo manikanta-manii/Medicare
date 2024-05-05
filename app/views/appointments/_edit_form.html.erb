@@ -1,5 +1,5 @@
 <%= form_for appointment, url: { action: "update" }, remote: true do |f| %>
   <%= f.label :reason %>
-  <%= f.text_field :reason, class: "form-control", value: appointment.reason %>
+  <%= f.text_area :reason, class: "form-control", value: appointment.reason %>
   <%= f.submit "Update", class: "btn btn-primary" %>
 <% end %>

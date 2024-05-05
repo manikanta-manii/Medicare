@@ -1,155 +1,31 @@
-<% if current_user.patient?%>
 <%= javascript_include_tag "patient_appointment.js" %>
+<%= stylesheet_link_tag "appointment_show" %>
+
+<% if current_user.patient?%>
 <%= render partial: "patients/appointment_details" %>
 <%if @status == "scheduled"%>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-success my-1" data-toggle="modal" data-target="#editModal">
-  Edit Reason
-</button>
-<!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit Reason</h5>
-      </div>
-      <div class="modal-body">
-        <%= render 'edit_form', appointment: @appointment %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%= render partial:"edit_reason_modal"%>
 <%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :delete,class:"btn btn-outline-danger dflex"%>
-
 <%else%>
-<style>
-  .container {
-    text-align: center; 
-  }
-
-  .container img {
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
-    margin: 0 auto; 
-  }
-</style>
   <h1>Appointment Details</h1>
   <div class="container mx-auto">
   <p> <strong>Note:</strong>
   <%= @appointment.note %></p>
-
   </div>
 <% if @appointment.feedback.present? %>
  <h4>Feedback Submitted</h4>
 <%else%>
-<%= javascript_include_tag "patient_appointment" %>
- <button type="button" class="btn btn-info m-1 px-3 feedback-button" data-appointment-id="<%= @appointment.id %>" data-toggle="modal" data-target="#feedbackModal">
-        Give Feedback
-</button>
-
+<%= render partial:"give_feedback_modal"%>
 <%end%>
   <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
-
-
-  <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="feedbackModalLabel">Leave Feedback</h5>
-        
-        </div>
-        <div class="modal-body">
-          <form action="<%= feedbacks_path %>" method="post">  <div class="form-group">
-              <label for="feedback">Your Review</label>
-              <textarea class="form-control" id="feedback" name="feedback" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="rating">Rating (1-5)</label>
-              <select class="form-control" id="rating" name="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-          </form>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary confirm-feedback" data-dismiss="modal" >Submit</button>
-      </div>
-        </div>
-      </div>
-    </div>
-  </div>
 <%end%>
 <%else%>
-
 <%if @status == "scheduled"%>
-
 <%if @appointment.note.present? %>
-
-<!-- Button to trigger the modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPrescriptionModal">
-  Edit Prescription
-</button>
-
-<!-- Modal for editing prescription -->
-<div class="modal fade" id="editPrescriptionModal" tabindex="-1" role="dialog" aria-labelledby="editPrescriptionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editPrescriptionModalLabel">Edit Prescription</h5>
-      </div>
-      <div class="modal-body">
-        <%= form_for @appointment, url: appointment_path(@appointment), method: :patch do |f| %>
-          <div class="form-group">
-            <%= f.label :note %>
-            <%= f.rich_text_area :note, class: "form-control" %>
-          </div>
-          <%= f.submit "Update Prescription", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%=render partial: "edit_prescription_modal"%>
 <%= button_to "complete the appointment" ,appointment_path(@appointment), method: :patch, params:{status:"completed"} , class:"btn btn-success"%>
-
 <%else%>
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#prescriptionModal">
-  Prescribe
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="prescriptionModal" tabindex="-1" role="dialog" aria-labelledby="prescriptionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="prescriptionModalLabel">Prescription Note</h5>
-      </div>
-      <div class="modal-body">
-          <%= render "prescription_form" , appointment: @appointment%>
-      </div>
-       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+<%=render partial: "prescribe_modal"%>
 <%end%>
 <%end%>
 <%end%>
-
-
