@@ -13,6 +13,8 @@ class Patient < ApplicationRecord
   has_one :cart,dependent: :destroy
   has_many :addresses ,dependent: :destroy
 
+  has_many :orders,dependent: :destroy
+
   private
 
   def dob_in_past

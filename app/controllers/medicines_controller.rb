@@ -4,7 +4,7 @@ class MedicinesController < ApplicationController
     def index
       @medicine = Medicine.new
       @medicines = Medicine.all
-      if current_user.patient.cart.present?
+      if current_user.patient && current_user.patient.cart.present?
         @cart = current_user.patient.cart;
         @all_cart_items = @cart.cart_items
       end
@@ -30,9 +30,9 @@ class MedicinesController < ApplicationController
       
       @medicine = Medicine.find(params[:id]).destroy      
      end
-  
+
     private
-  
+    
     def medicine_params
       params.require(:medicine).permit(:image,:name, :description,:dosage, :price,:need_prescription)
     end

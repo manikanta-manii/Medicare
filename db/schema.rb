@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_06_021745) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_071018) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -125,6 +125,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_021745) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "medicine_id", null: false
+    t.integer "quantity"
+    t.integer "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["medicine_id"], name: "index_order_items_on_medicine_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "patient_id", null: false
+    t.integer "delivery_address"
+    t.integer "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_orders_on_patient_id"
+  end
+
   create_table "patients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "gender"
     t.date "dob"
@@ -168,5 +188,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_021745) do
   add_foreign_key "doctors", "specializations"
   add_foreign_key "doctors", "users"
   add_foreign_key "feedbacks", "appointments"
+  add_foreign_key "order_items", "medicines"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "patients"
   add_foreign_key "patients", "users"
 end

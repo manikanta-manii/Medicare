@@ -6,7 +6,7 @@
 #
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# #   end
 
 # User.create(name:"Admin",phone_number:"9999999999",email:"admin@gmail.com",password:"Admin@123",role:0);
 # Specialization.create(name:"Cardiologist",description:"Heart related doctor !");

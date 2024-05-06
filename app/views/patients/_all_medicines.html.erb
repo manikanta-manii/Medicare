@@ -36,11 +36,11 @@
            <% if @all_cart_items.find_by(medicine_id: med.id).present? %>
 <%= @all_cart_items.find_by(medicine_id: med.id).quantity %>
 <%else%>
-0
+1
 <%end%>       
 
 <%else%>
- 0
+ 1
 <%end%>
             </span>
             <button class="increment" data-med-quantity="<%= med.quantity %>">+</button>
@@ -89,7 +89,7 @@
 
     $('.quantity-counter .decrement').click(function() {
       var currentQuantity = parseInt($(this).siblings('.quantity').text());
-      if (currentQuantity > 0) {
+      if (currentQuantity > 1) {
         $(this).siblings('.quantity').text(currentQuantity - 1);
       }
     });

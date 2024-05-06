@@ -1,6 +1,6 @@
 <p>ALL CART ITEMS</p>
 <% if current_user.patient.cart.present? %>
-
+    <%arr=[]%>
     <% @all_cart_items.each do |item| %>
            <p>MEDICINE : <%= Medicine.find(item.medicine_id).name%></p>
             <p>PRICE : <%= Medicine.find(item.medicine_id).price%></p>
@@ -8,14 +8,56 @@
             <p> Need_prescription: <%= Medicine.find(item.medicine_id).need_prescription%></p>
           <p> TOtAL Price :<%= item.total_price%></p>
           <p> Remove Item :<%= button_to " REMOVE " ,cart_item_path(item.id),method: :delete,class:"btn btn-danger"%></p>
+          <% if Medicine.find(item.medicine_id).need_prescription == true%>
+          <% arr << Medicine.find(item.medicine_id).name%>
+          <%end%>
           <br>
       <% end %>
  
 <p>TOTAL PRICE TO PAY:</p>
 <p>TAL CART PRICE :<%= @cart.total_price%></p>
 <br><br>
-<p> Place Order :<%= button_to " Place Order " ,root_path,method: :get,class:"btn btn-success"%></p>  <br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Place Order
+</button> <br>
 <%else%>
 <%= "CART IS NOT Created! Add Items"%>
 <%end%>
 
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Checkout</h5>
+       
+      </div>
+      <div class="modal-body">
+         <% if current_user.patient.addresses.present?%>
+yes
+<% current_user.patient.addresses.each do |ad| %>
+<%= ad.country%> 
+<%= ad.state%> 
+<%= ad.city%> 
+<%= ad.street%> <br>
+<%end%>
+         <%else%>
+         no
+         <%end%>
+
+         <% if arr.present?%>
+         Upload Prescription for Medicines:
+         <%= arr %> 
+         <%end%>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
