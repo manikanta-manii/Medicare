@@ -7,7 +7,7 @@ class MedicinesController < ApplicationController
       if current_user.patient.cart.present?
         @cart = current_user.patient.cart;
         @all_cart_items = @cart.cart_items
-     end
+      end
 
     end
   

@@ -32,11 +32,16 @@
           <div class="quantity-counter">
             <button class="decrement">-</button>
             <span class="quantity">
+            <% if current_user.patient.cart.present? %>
            <% if @all_cart_items.find_by(medicine_id: med.id).present? %>
 <%= @all_cart_items.find_by(medicine_id: med.id).quantity %>
 <%else%>
 0
-<%end%>          
+<%end%>       
+
+<%else%>
+ 0
+<%end%>
             </span>
             <button class="increment" data-med-quantity="<%= med.quantity %>">+</button>
           </div>

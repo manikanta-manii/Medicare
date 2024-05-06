@@ -1,6 +1,6 @@
 <p>ALL CART ITEMS</p>
 <% if current_user.patient.cart.present? %>
-<p><%= @total_prices.reduce(0, :+)%></p>
+
     <% @all_cart_items.each do |item| %>
            <p>MEDICINE : <%= Medicine.find(item.medicine_id).name%></p>
             <p>PRICE : <%= Medicine.find(item.medicine_id).price%></p>
@@ -12,38 +12,10 @@
       <% end %>
  
 <p>TOTAL PRICE TO PAY:</p>
-<p><%= @total_prices.reduce(0, :+)%></p>
+<p>TAL CART PRICE :<%= @cart.total_price%></p>
 <br><br>
 <p> Place Order :<%= button_to " Place Order " ,root_path,method: :get,class:"btn btn-success"%></p>  <br>
 <%else%>
 <%= "CART IS NOT Created! Add Items"%>
 <%end%>
-
-
-<!-- app/views/orders/new.html.erb -->
-
-<%= form_with model: @order, local: true do |form| %>
-  <!-- Address Fields -->
-  <%= form.fields_for :address do |address_form| %>
-    <%= address_form.label :country %>
-    <%= address_form.text_field :country %>
-
-    <%= address_form.label :state %>
-    <%= address_form.text_field :state %>
-
-    <%= address_form.label :city %>
-    <%= address_form.text_field :city %>
-  <% end %>
-
-  <!-- Prescription File Field (Conditional) -->
-  <% if @order.prescription_needed? %>
-    <%= form.label :prescription_file %>
-    <%= form.file_field :prescription_file %>
-  <% end %>
-
-  <!-- Other Order Fields -->
-  <!-- Add other fields here -->
-
-  <%= form.submit %>
-<% end %>
 

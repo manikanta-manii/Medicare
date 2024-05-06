@@ -21,8 +21,11 @@ class CartItemsController < ApplicationController
               new_total_price = price  * new_quantity
               @cart_item.update(quantity:new_quantity,total_price:new_total_price)
         else
-            @cart.cart_items.create(medicine_id: params[:medicine_id],quantity:params[:medicine_quantity].to_i ,total_price:price)
+            new_total_price = price * params[:medicine_quantity].to_i
+            @cart.cart_items.create(medicine_id: params[:medicine_id],quantity:params[:medicine_quantity].to_i ,total_price:new_total_price)
         end
+        new_total_price = @cart.cart_items.pluck(:total_price).reduce(0, :+)
+        @cart.update(total_price: new_total_price)
         render plain:"#{@cart.cart_items.count}"
     end
 

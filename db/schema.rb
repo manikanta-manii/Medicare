@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_175721) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_021745) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_175721) do
     t.string "street"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "patient_id", null: false
+    t.index ["patient_id"], name: "index_addresses_on_patient_id"
   end
 
   create_table "appointments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_175721) do
     t.bigint "patient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_price"
     t.index ["patient_id"], name: "index_carts_on_patient_id"
   end
 
@@ -156,6 +159,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_175721) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "patients"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
   add_foreign_key "cart_items", "carts"
