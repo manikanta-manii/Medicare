@@ -17,6 +17,13 @@ class User < ApplicationRecord
 
   after_initialize :set_default_role, if: :new_record?
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "email", "encrypted_password", "id", "id_value", "name", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["avatar_attachment", "avatar_blob", "doctor", "patient"]
+  end
+
   def set_default_role
    self.role ||= :patient
   end

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post "slots/display" , to:"doctors#slot_display"
 
   resources :doctors
+  resources :orders
+  resources :order_items
   resources :cart_items
   resources :medicines
   resources :feedbacks

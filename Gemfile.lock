@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: 489bf8f2de407efd3b427e0c8c5a519eef63ea5f
+  branch: main
+  specs:
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -290,6 +300,7 @@ DEPENDENCIES
   prawn
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
+  ransack!
   selenium-webdriver
   slotty
   sprockets-rails

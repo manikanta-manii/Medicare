@@ -14,6 +14,8 @@ gem 'devise'
 gem 'will_paginate', '~> 4.0'
 gem 'slotty'
 gem 'prawn'
+gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
+
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -69,3 +71,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+

@@ -6,7 +6,9 @@ class DoctorsController < ApplicationController
     before_action :get_formated_date ,only: %i[show]
 
     def index
-        @doctors = Doctor.all.paginate(page: params[:page], per_page: 10)
+        @q = Doctor.includes(:specialization , :user).ransack(params[:q])
+        @doctors = @q.result(distinct: true)
+        # @doctors = Doctor.all.paginate(page: params[:page], per_page: 10)
         @specializations = Specialization.all
     end
 

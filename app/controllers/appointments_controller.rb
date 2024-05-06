@@ -62,12 +62,10 @@ class AppointmentsController < ApplicationController
         @doctor_name = User.find(@doctor.user_id).name
       
         appointment_pdf = Prawn::Document.new
-      
-        # Set font and font size
+
         appointment_pdf.font "Helvetica"
         appointment_pdf.font_size 12
-      
-        # Add content with styling
+
         appointment_pdf.text "Appointment Details", style: :bold, size: 16, align: :center
         appointment_pdf.move_down 10
       
@@ -99,6 +97,7 @@ class AppointmentsController < ApplicationController
           send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
                     type: "application/pdf")
         end
+        
       end
       
 
