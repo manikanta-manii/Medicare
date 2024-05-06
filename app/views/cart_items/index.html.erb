@@ -7,7 +7,6 @@
             <p> Quantity: <%= item.quantity%></p>
             <p> Need_prescription: <%= Medicine.find(item.medicine_id).need_prescription%></p>
           <p> TOtAL Price :<%= item.total_price%></p>
-          <p> Reduce Quantity :<%= button_to " - " ,root_path,method: :get,class:"btn btn-outline-danger"%></p>
           <p> Remove Item :<%= button_to " REMOVE " ,cart_item_path(item.id),method: :delete,class:"btn btn-danger"%></p>
           <br>
       <% end %>
@@ -19,3 +18,32 @@
 <%else%>
 <%= "CART IS NOT Created! Add Items"%>
 <%end%>
+
+
+<!-- app/views/orders/new.html.erb -->
+
+<%= form_with model: @order, local: true do |form| %>
+  <!-- Address Fields -->
+  <%= form.fields_for :address do |address_form| %>
+    <%= address_form.label :country %>
+    <%= address_form.text_field :country %>
+
+    <%= address_form.label :state %>
+    <%= address_form.text_field :state %>
+
+    <%= address_form.label :city %>
+    <%= address_form.text_field :city %>
+  <% end %>
+
+  <!-- Prescription File Field (Conditional) -->
+  <% if @order.prescription_needed? %>
+    <%= form.label :prescription_file %>
+    <%= form.file_field :prescription_file %>
+  <% end %>
+
+  <!-- Other Order Fields -->
+  <!-- Add other fields here -->
+
+  <%= form.submit %>
+<% end %>
+
