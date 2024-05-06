@@ -81,15 +81,12 @@
   background-color: #28
 }
 </style>
-<%= Time.now()%>
 <%= search_form_for @q do |f| %>
   <%= f.label :user_name_or_specialization_name_cont %>
   <%= f.search_field :user_name_or_specialization_name_cont %>
   <%= f.select :specialization_id_in, @specializations.map { |specialization| [specialization.name, specialization.id] }, {}, { multiple: true } %>
   <%= f.submit %>
 <% end %>
-
-
 <%= sort_link(@q, :rating) %>
 
 <div class="doctor-cards-container">
