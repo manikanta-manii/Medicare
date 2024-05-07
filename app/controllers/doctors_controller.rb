@@ -43,28 +43,10 @@ class DoctorsController < ApplicationController
     end
 
     def get_formated_date
-        @formatted_dates = []
-        today = Date.today
-        3.times do |i|
-            date = today + i
-            month_abbr = date.strftime("%b")
-            day = date.day.to_s
-            full_day_name = date.strftime("%A")  
-            formatted_date = "#{full_day_name} #{month_abbr} #{day}, #{date.year}"
-            @formatted_dates << formatted_date
-        end
+        @formatted_dates =  Services::SlotsService.new.formatDates
     end
 
     def get_slots(selected_day)
-        i=0
-        count=0
-        available_slots=[]
-        while i < @slots.length()
-          if @slots[i].day == selected_day.to_i
-              available_slots<<@slots[i]
-          end
-          i+=1
-        end
-        available_slots  
+        Services::SlotsService.new(slots: @slots,selected_day: selected_day).availableSlots
     end
 end
