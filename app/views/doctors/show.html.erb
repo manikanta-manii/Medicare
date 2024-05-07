@@ -83,8 +83,9 @@ $(document).ready(function () {
       method: "POST",
       data: { selected_day: today, id: d_id  },
       dataType: "html",
+
       success: function (result) {
-      
+        
         $("#current_slots").html(result);
       },
     });

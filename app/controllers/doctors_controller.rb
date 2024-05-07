@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-    skip_before_action :verify_authenticity_token,only: %i[create destroy]
+    skip_before_action :verify_authenticity_token
     before_action :authenticate_user!
     before_action :slot_allotment ,only: %i[show slot_display]
     before_action :get_formated_date ,only: %i[show]
@@ -7,7 +7,6 @@ class DoctorsController < ApplicationController
     def index
         @q = Doctor.includes(:specialization , :user).ransack(params[:q])
         @doctors = @q.result(distinct: true)
-        # @doctors = Doctor.all.paginate(page: params[:page], per_page: 10)
         @specializations = Specialization.all
     end
 
@@ -26,28 +25,13 @@ class DoctorsController < ApplicationController
     end
     
     def show
-        #@all_appointments = current_user.doctor.appointments
-        i=0
-        @available_slots=[]
-        while i < @slots.length() 
-            if @slots[i].day == Time.now().day.to_i 
-                @available_slots << @slots[i]
-            end 
-            i+=1
-        end
+        selected_day=Time.now().day.to_i 
+        @available_slots = get_slots(selected_day)
     end
 
     def slot_display
-        @selected_day=params[:selected_day]
-        i=0
-        @count=0
-        @available_slots=[]
-        while i < @slots.length()
-          if @slots[i].day == @selected_day.to_i
-              @available_slots<<@slots[i]
-          end
-          i+=1
-        end
+        @selected_day = params[:selected_day]
+        @available_slots = get_slots(@selected_day)
         render partial: "patients/slots_display"
     end
 
@@ -97,4 +81,16 @@ class DoctorsController < ApplicationController
         end
     end
 
+    def get_slots(selected_day)
+        i=0
+        count=0
+        available_slots=[]
+        while i < @slots.length()
+          if @slots[i].day == selected_day.to_i
+              available_slots<<@slots[i]
+          end
+          i+=1
+        end
+        available_slots   
+    end
 end

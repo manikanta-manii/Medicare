@@ -5,6 +5,7 @@ module Services
                 @appointment=appointment
             end
             def call
+
                 @doctor = Doctor.find(@appointment.doctor_id)
                 @doctor_name = User.find(@doctor.user_id).name
                 @patient = User.find(@appointment.patient_id)

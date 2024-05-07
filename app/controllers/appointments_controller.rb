@@ -35,6 +35,7 @@ class AppointmentsController < ApplicationController
     end
 
     def update
+        debugger
         if check_status_param
             @appointment.update(status:params[:status])
             redirect_to appointments_path, notice: "Appointment updated successfully"
@@ -45,9 +46,8 @@ class AppointmentsController < ApplicationController
             redirect_to appointments_path, alert: "Appointment updation Failed"
           end
         end
-        #redirect_to appointments_path, notice: "Appointment updated successfully"
     end
-    
+
     def download
         appointment_pdf = Services::AppointmentsService.new(@appointment).download
         if params[:preview].present?
