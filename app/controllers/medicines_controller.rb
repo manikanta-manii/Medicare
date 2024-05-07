@@ -16,9 +16,7 @@ class MedicinesController < ApplicationController
     end
   
     def create
- 
       @medicine = Medicine.create( image:params[:image],name:params[:name] , description:params[:description], dosage:params[:dosage], price:params[:price] , need_prescription:params[:need_prescription] , quantity: params[:quantity])
-  
       if @medicine.save
         render partial: "medicines/each_medicine",locals:{medicine:@medicine}
       else
@@ -27,7 +25,6 @@ class MedicinesController < ApplicationController
       
     end
     def destroy
-      
       @medicine = Medicine.find(params[:id]).destroy      
      end
 

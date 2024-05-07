@@ -2,12 +2,7 @@ class AppointmentsController < ApplicationController
     skip_before_action :verify_authenticity_token,only: %i[create]
 
     def index
-        if current_user.patient?
-           @all_appointments = current_user.patient.appointments
-        end
-        if current_user.doctor?
-            @all_appointments = current_user.doctor.appointments
-        end
+        @all_appointments = current_user.patient? ? current_user.patient.appointments : current_user.doctor.appointments if current_user.patient? || current_user.doctor?
     end
 
     def new 
@@ -26,7 +21,6 @@ class AppointmentsController < ApplicationController
     end
 
     def show
-        
         @appointment = Appointment.find(params[:id])
         @status = @appointment.status
     end
@@ -34,8 +28,7 @@ class AppointmentsController < ApplicationController
     def destroy
         @appointment = Appointment.find(params[:id])
         @appointment.update(status:"canceled")
-        flash[:notice] = "Appointment canceled Succesfully !"
-        redirect_to appointments_path
+        redirect_to appointments_path,notice: "Appointment canceled Succesfully !"
         #TRIGER MAIL !
     end
     def edit

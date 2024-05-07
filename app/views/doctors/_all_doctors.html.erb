@@ -12,16 +12,13 @@
     </tr>
   </thead>
   <tbody>
-    <div class="apple_pagination">
-    <%= page_entries_info @doctors %>
-    <div class="page_info">
+
       
       <% @doctors.each do |doc| %>
       <%= render partial:"each_doctor" , locals:{doc:doc}%>
  <%end%> 
  </tbody>
 </table>
-<%= will_paginate @doctors ,class:"apple_pagination"%>
 
 <style>
 table, th, td {

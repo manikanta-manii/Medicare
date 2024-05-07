@@ -30,7 +30,6 @@ class CartItemsController < ApplicationController
     end
 
     def destroy
-        #debugger
         CartItem.find(params[:id]).destroy
         redirect_to cart_items_path,notice: "Item Removed from the cart !"    
     end
