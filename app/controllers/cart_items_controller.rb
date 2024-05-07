@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
     skip_before_action :verify_authenticity_token,only: %i[create]
-    before_action :set_cart ,only: %i[create increase]
+    before_action :set_cart ,only: %i[create]
 
     def index
         if current_user.patient.cart.present?
@@ -13,7 +13,7 @@ class CartItemsController < ApplicationController
     def new
 
     end
-    
+
     def create
          medicine =  Medicine.find(params[:medicine_id])
          price = medicine.price

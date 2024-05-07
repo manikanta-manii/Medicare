@@ -12,7 +12,7 @@ class DoctorsController < ApplicationController
     end
 
     def create
-        @user = User.create(avatar:params[:avatar],name:params[:name],email:params[:email],password:"Doctor@123",phone_number:params[:phone_number],role:1)
+        @user = User.new(avatar:params[:avatar],name:params[:name],email:params[:email],password:"Doctor@123",phone_number:params[:phone_number],role:1)
         if @user.save
              @doctor = @user.create_doctor(years_of_experiance:params[:years_of_experience],consultation_fee:params[:consultation_fee],specialization_id:params[:specialization])
              render partial: "doctors/each_doctor",locals:{doc:@doctor}
@@ -22,7 +22,7 @@ class DoctorsController < ApplicationController
     end
 
     def destroy
-         @user = User.find(params[:id]).destroy      
+        User.find(params[:id]).destroy      
     end
     
     def show
@@ -38,7 +38,6 @@ class DoctorsController < ApplicationController
     end
 
     def slot_display
-  
         @selected_day=params[:selected_day]
         i=0
         @count=0
@@ -51,7 +50,6 @@ class DoctorsController < ApplicationController
         end
         render partial: "patients/slots_display"
     end
-
 
     private 
 
@@ -97,7 +95,6 @@ class DoctorsController < ApplicationController
             formatted_date = "#{full_day_name} #{month_abbr} #{day}, #{date.year}"
             @formatted_dates << formatted_date
         end
-
     end
 
 end

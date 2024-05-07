@@ -17,8 +17,7 @@ class AppointmentsController < ApplicationController
         else
             flash[:alert] = "Booking Failed"
             redirect_to request.referer
-        end  
-        #TRIGER MAIL !    
+        end     
     end
 
     def show
@@ -34,7 +33,7 @@ class AppointmentsController < ApplicationController
     def edit
  
     end
-    
+
     def update
         if check_status_param
             @appointment.update(status:params[:status])
@@ -48,45 +47,17 @@ class AppointmentsController < ApplicationController
         end
         #redirect_to appointments_path, notice: "Appointment updated successfully"
     end
+    
     def download
-        @doctor = Doctor.find(@appointment.doctor_id)
-        @doctor_name = User.find(@doctor.user_id).name
-        appointment_pdf = Prawn::Document.new
-
-        appointment_pdf.font "Helvetica"
-        appointment_pdf.font_size 12
-
-        appointment_pdf.text "Appointment Details", style: :bold, size: 16, align: :center
-        appointment_pdf.move_down 10
-      
-        appointment_pdf.text "Slot Time: #{@appointment.slot_time}", style: :italic
-        appointment_pdf.text "Reason: #{@appointment.reason}", style: :italic
-        appointment_pdf.text "Patient Name: #{current_user.name}", style: :italic
-        appointment_pdf.text "Doctor Name: #{@doctor_name}", style: :italic
-
-        appointment_pdf.move_down 10
-        appointment_pdf.text "Note:", style: :italic
-        appointment_pdf.text @appointment.note.body.to_plain_text
-
-        if @appointment.note.body.attachments.any?
-          image_attachment = @appointment.note.body.attachments.first
-          if image_attachment.image?
-            image_data = image_attachment.download
-            appointment_pdf.move_down 10
-            appointment_pdf.image StringIO.new(image_data), fit: [200, 200], position: :center
-          end
-        end
-      
+        appointment_pdf = Services::AppointmentsService.new(@appointment).download
         if params[:preview].present?
           send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
                     type: "application/pdf", disposition: 'inline')
         else
           send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
                     type: "application/pdf")
-        end
-        
-      end
-      
+        end       
+    end
 
     private
       

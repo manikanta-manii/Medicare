@@ -5,7 +5,7 @@ class MedicinesController < ApplicationController
       @medicine = Medicine.new
       @medicines = Medicine.all
       if current_user.patient && current_user.patient.cart.present?
-        @cart = current_user.patient.cart;
+        @cart = current_user.patient.cart
         @all_cart_items = @cart.cart_items
       end
 
@@ -14,16 +14,15 @@ class MedicinesController < ApplicationController
     def new
       @medicine = Medicine.new
     end
-  
     def create
-      @medicine = Medicine.create( image:params[:image],name:params[:name] , description:params[:description], dosage:params[:dosage], price:params[:price] , need_prescription:params[:need_prescription] , quantity: params[:quantity])
+      @medicine = Medicine.new( image:params[:image],name:params[:name] , description:params[:description], dosage:params[:dosage], price:params[:price] , need_prescription:params[:need_prescription] , quantity: params[:quantity])
       if @medicine.save
         render partial: "medicines/each_medicine",locals:{medicine:@medicine}
       else
         render partial: "manage_doctors/errors",locals:{user:@medicine}
-      end
-      
+      end 
     end
+
     def destroy
       @medicine = Medicine.find(params[:id]).destroy      
      end
