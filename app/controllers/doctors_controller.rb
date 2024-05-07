@@ -1,7 +1,6 @@
 class DoctorsController < ApplicationController
     skip_before_action :verify_authenticity_token,only: %i[create destroy]
     before_action :authenticate_user!
-    skip_before_action :verify_authenticity_token
     before_action :slot_allotment ,only: %i[show slot_display]
     before_action :get_formated_date ,only: %i[show]
 

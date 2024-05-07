@@ -9,9 +9,11 @@ class CartItemsController < ApplicationController
             @total_prices = @cart.cart_items.pluck(:total_price)
         end
     end
+
     def new
 
     end
+    
     def create
          medicine =  Medicine.find(params[:medicine_id])
          price = medicine.price
