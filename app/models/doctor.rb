@@ -1,9 +1,12 @@
 class Doctor < ApplicationRecord
   belongs_to :specialization
   belongs_to :user,inverse_of: :doctor
-  
   has_many :appointments, dependent: :destroy
   has_many :patients, through: :appointments
+
+  validates :consultation_fee, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
+  validates :years_of_experience, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 70 }
+  
 
   def self.ransackable_associations(auth_object = nil)
     ["appointments", "patients", "specialization", "user"]

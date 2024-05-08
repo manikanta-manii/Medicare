@@ -1,5 +1,4 @@
 <%= form_with(url: doctors_path, method: :post, remote: true ,id:"doctor_register_form") do |f| %>
-
   <div class="form-group">
     <%= f.label :avatar, "Doctor Photo", class: "form-control-label" %>
     <%= f.file_field :avatar, class: "form-control-file" ,id:"doctor_picture"%>
@@ -7,37 +6,37 @@
 
   <div class="form-group">
     <%= f.label :name, "Name", class: "form-control-label" %>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control",required: true %>
   </div>
   <div class="form-group">
     <%= f.label :email, "Email", class: "form-control-label" %>
-    <%= f.email_field :email, class: "form-control" %>
+    <%= f.email_field :email, class: "form-control",required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :phone_number, "Phone Number", class: "form-control-label" %>
-    <%= f.text_field :phone_number, class: "form-control" %>
+    <%= f.text_field :phone_number, class: "form-control",required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.label :year_of_experience_consultation_fee, "Year of experience & Consultation Fee", class: "form-control-label" %>
+    <%= f.label :year_of_experiance_consultation_fee, "Year of experience & Consultation Fee", class: "form-control-label" %>
     <div class="row">
       <div class="col-md-6">
-        <%= f.text_field :years_of_experience, class: "form-control", placeholder: "Year of Experience" %>
+        <%= f.text_field :years_of_experiance, class: "form-control", placeholder: "Year of Experience",required: true %>
       </div>
       <div class="col-md-6">
-        <%= f.text_field :consultation_fee, class: "form-control", placeholder: "Consultation Fee" %>
+        <%= f.text_field :consultation_fee, class: "form-control", placeholder: "Consultation Fee",required: true %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :specialization, "Specialization", class: "form-control-label" %>
-    <%= f.select :specialization, @specializations.map { |s| [s.name, s.id] }, include_blank: "Select Specialization", class: "form-control" %>
+    <%= f.label :specialization_id, "Specialization", class: "form-control-label" %>
+    <%= f.select :specialization_id, @specializations.map { |s| [s.name, s.id] }, include_blank: "Select Specialization", class: "form-control",required: true %>
   </div>
    
   <div class="form-group">
-    <%= f.submit "Submit", class: "btn btn-primary", data: { 'bs-dismiss': "modal" } ,id:"submit-btn" %>
+    <%= f.submit "Submit", class: "btn btn-primary" ,id:"submit-btn" %>
   </div>
 
 <% end %>

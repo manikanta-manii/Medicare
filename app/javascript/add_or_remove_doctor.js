@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#submit-btn").on("click", function (e) {
+  $("#doctor_register_form").on("submit", function (e) {
     e.preventDefault();
     var formData = new FormData($("#doctor_register_form")[0]);
     var fileInput = $("#doctor_picture")[0];
@@ -15,6 +15,7 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (result) {
+        $("#exampleModal").modal("hide");
         $("#display-doctors-div").append(result);
         $("#doctor_register_form")[0].reset();
       },
@@ -24,7 +25,6 @@ $(document).ready(function () {
   $("#display-doctors-div").on("click", ".delete-button", function (event) {
     event.preventDefault();
     var deleteButton = $(this);
-
     var docObject = deleteButton.data("doc");
     const doctor_id = docObject.user_id;
     console.log(doctor_id);

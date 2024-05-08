@@ -24,7 +24,7 @@ class MedicinesController < ApplicationController
     end
 
     def destroy
-      @medicine = Medicine.find(params[:id]).destroy      
+      Medicine.find(params[:id]).destroy      
      end
 
     private

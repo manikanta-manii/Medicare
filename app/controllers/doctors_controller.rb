@@ -11,12 +11,16 @@ class DoctorsController < ApplicationController
     end
 
     def create
-        @user = User.new(avatar:params[:avatar],name:params[:name],email:params[:email],password:"Doctor@123",phone_number:params[:phone_number],role:1)
+        @user = User.new(user_params)
         if @user.save
-             @doctor = @user.create_doctor(years_of_experiance:params[:years_of_experience],consultation_fee:params[:consultation_fee],specialization_id:params[:specialization])
-             render partial: "doctors/each_doctor",locals:{doc:@doctor}
+             @doctor = @user.create_doctor(doctor_params)  
+             if @doctor.save
+                render partial: "doctors/each_doctor",locals: {doc:@doctor}
+             else
+                render_errors(@doctor)             
+             end
         else
-             render partial: "doctors/errors",locals:{user:@user}
+            render_errors(@user)       
         end
     end
 
@@ -49,4 +53,20 @@ class DoctorsController < ApplicationController
     def get_slots(selected_day)
         Services::SlotsService.new(slots: @slots,selected_day: selected_day).availableSlots
     end
+    
+    def user_params
+        params.permit(:avatar, :name, :email, :phone_number).merge(password: "Doctor@123", role: 1)
+    end
+       
+    def doctor_params
+        permitted_params = params.permit(:years_of_experiance, :consultation_fee, :specialization_id)
+        permitted_params[:years_of_experiance] = permitted_params[:years_of_experiance].to_i if permitted_params[:years_of_experiance]
+        permitted_params[:consultation_fee] = permitted_params[:consultation_fee].to_i if permitted_params[:consultation_fee]
+        permitted_params
+    end
+
+    def render_errors(record)
+        render partial: "doctors/errors", locals: { record: record }
+    end
+       
 end
