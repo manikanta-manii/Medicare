@@ -1,36 +1,32 @@
 class MedicinesController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:create ,:destroy]
-  
-    def index
-      @medicine = Medicine.new
-      @medicines = Medicine.all
-      if current_user.patient && current_user.patient.cart.present?
-        @cart = current_user.patient.cart
-        @all_cart_items = @cart.cart_items
-      end
+    before_action :set_medicine, only: [:destroy]
 
+    def index
+      @medicines = Medicine.all
     end
-  
-    def new
-      @medicine = Medicine.new
-    end
+
     def create
-      @medicine = Medicine.new( image:params[:image],name:params[:name] , description:params[:description], dosage:params[:dosage], price:params[:price] , need_prescription:params[:need_prescription] , quantity: params[:quantity])
+      @medicine = Medicine.new(medicine_params)
       if @medicine.save
         render partial: "medicines/each_medicine",locals:{medicine:@medicine}
       else
-        render partial: "manage_doctors/errors",locals:{user:@medicine}
+        render partial: "shared/errors",locals:{record:@medicine}
       end 
     end
 
     def destroy
-      Medicine.find(params[:id]).destroy      
-     end
+      @medicine.destroy      
+    end
 
     private
     
+    def set_medicine
+      @medicine = Medicine.find(params[:id])
+    end
+
     def medicine_params
-      params.require(:medicine).permit(:image,:name, :description,:dosage, :price,:need_prescription)
+      params.permit(:image,:name, :description,:dosage, :price,:need_prescription,:quantity)
     end
   end
   

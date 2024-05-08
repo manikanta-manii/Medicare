@@ -1,7 +1,8 @@
 class Medicine < ApplicationRecord
     
-    validates :name, :description, :dosage, :price,  presence: true
-    validates :price, numericality: { greater_than: 0 }
+
+    validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
+    validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
     has_many  :order_items,dependent: :destroy
     has_many :orders , through: :order_items

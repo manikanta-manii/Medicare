@@ -1,7 +1,15 @@
-<li class="nav-link d-flex align-items-center">
-  <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light btn btn-outline-danger fw-bold"%>
-</li>
+      <li class="nav-link d-flex align-items-center">
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light btn btn-outline-danger fw-bold"%>
+      </li>
 
-<li class="nav-item text-center">
-  <%= image_tag current_user.avatar.attached? ? current_user.avatar : 'avatars/default_avatar.png', class: 'avatar-image' %>
-</li>
+      <% render_profile_pic_if_attached(active_user) do %>
+           <li class="nav-item text-center">
+               <%= image_tag active_user.avatar, class: 'avatar-image'%>
+           </li>
+      <%end%>
+
+     <% render_default_pic_if_profile_pic_not_attached(active_user) do %>
+          <li class="nav-item text-center">
+               <%= image_tag 'avatars/default_avatar.png', class: 'avatar-image'  %>
+            </li>
+      <%end%>
