@@ -6,7 +6,6 @@ $(document).ready(function () {
     if (fileInput.files && fileInput.files[0]) {
       formData.append("doctor_picture", fileInput.files[0]);
     }
-    console.log(formData);
     $.ajax({
       url: `http://localhost:3000/doctors`,
       method: "POST",
@@ -19,6 +18,9 @@ $(document).ready(function () {
         $("#display-doctors-div").append(result);
         $("#doctor_register_form")[0].reset();
       },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.error("Error deleting doctor:", textStatus, errorThrown);
+      },
     });
   });
 
@@ -27,8 +29,6 @@ $(document).ready(function () {
     var deleteButton = $(this);
     var docObject = deleteButton.data("doc");
     const doctor_id = docObject.user_id;
-    console.log(doctor_id);
-
     $.ajax({
       url: `http://localhost:3000/doctors/${doctor_id}`,
       method: "DELETE",
@@ -38,7 +38,6 @@ $(document).ready(function () {
       success: function (data) {
         deleteButton.closest("tr").remove();
         event.preventDefault();
-        console.log("Doctor deleted successfully!");
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error("Error deleting doctor:", textStatus, errorThrown);

@@ -4,8 +4,8 @@ class Doctor < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_many :patients, through: :appointments
 
-  validates :consultation_fee, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 1000 }
-  validates :years_of_experience, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 70 }
+  validates :consultation_fee, numericality: { greater_than_or_equal_to: 100 }
+  validates :years_of_experiance, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 70 }
   
 
   def self.ransackable_associations(auth_object = nil)

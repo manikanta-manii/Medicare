@@ -1,31 +1,8 @@
-<% if current_user.admin?%>
-
-<!-- Button trigger modal -->
-<%= javascript_include_tag "add_or_remove_doctor.js" %>
-<button type="button" id="myInput" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Create Doctor</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Register a New Doctor</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">          
-              <%= render partial:"form"%> 
-        </div>
-    </div>
-    </div>
-</div>
-<div >  
-   <%= render "all_doctors" ,locals:{doctor:@doctors}%>
-</div>
+<% check_if_current_user_is_admin do %>
+   <%= render partial: "admin/doctor_handler/create_modal"%>
+   <%= render partial: "all_doctors" ,locals:{doctor:@doctors}%>
 <%end%>
-<% if current_user.patient? %>
 
-<div >  
+<% check_if_current_user_is_patient do %>
    <%= render "patients/all_doctors" ,locals:{doctor:@doctors}%>
-</div>
-
 <%end%>
