@@ -25,7 +25,7 @@ class DoctorsController < ApplicationController
     end
     
     def show
-        selected_day=Time.now().day.to_i
+        selected_day=Time.now.day.to_i
         @available_slots = get_slots(selected_day)
     end
 

@@ -1,7 +1,7 @@
 module Services
     module Slots
-        class Formater
-
+        class DatesFormater
+            
             def initialize(params=nil)
                 @params=params
             end

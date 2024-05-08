@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_06_071018) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_08_060516) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -68,33 +68,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_071018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "reason"
+    t.text "feedback"
+    t.integer "rating"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end
 
-  create_table "cart_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "medicine_id", null: false
-    t.bigint "cart_id", null: false
-    t.integer "quantity"
-    t.integer "total_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
-    t.index ["medicine_id"], name: "index_cart_items_on_medicine_id"
-  end
-
-  create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "patient_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "total_price"
-    t.index ["patient_id"], name: "index_carts_on_patient_id"
-  end
-
   create_table "doctors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "total_rating", default: 0
-    t.integer "number_of_ratings", default: 0
-    t.integer "rating", default: 0
+    t.float "rating", default: 0.0
     t.integer "years_of_experiance"
     t.integer "consultation_fee"
     t.bigint "user_id", null: false
@@ -103,15 +84,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_071018) do
     t.datetime "updated_at", null: false
     t.index ["specialization_id"], name: "index_doctors_on_specialization_id"
     t.index ["user_id"], name: "index_doctors_on_user_id"
-  end
-
-  create_table "feedbacks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "appointment_id", null: false
-    t.text "review"
-    t.integer "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["appointment_id"], name: "index_feedbacks_on_appointment_id"
   end
 
   create_table "medicines", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -129,7 +101,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_071018) do
     t.bigint "order_id", null: false
     t.bigint "medicine_id", null: false
     t.integer "quantity"
-    t.integer "total_price"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["medicine_id"], name: "index_order_items_on_medicine_id"
@@ -138,10 +110,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_071018) do
 
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "patient_id", null: false
-    t.integer "delivery_address"
+    t.integer "address_id"
     t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ordered", default: false
     t.index ["patient_id"], name: "index_orders_on_patient_id"
   end
 
@@ -182,12 +155,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_071018) do
   add_foreign_key "addresses", "patients"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
-  add_foreign_key "cart_items", "carts"
-  add_foreign_key "cart_items", "medicines"
-  add_foreign_key "carts", "patients"
   add_foreign_key "doctors", "specializations"
   add_foreign_key "doctors", "users"
-  add_foreign_key "feedbacks", "appointments"
   add_foreign_key "order_items", "medicines"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "patients"

@@ -1,10 +1,8 @@
 module Services
     class SlotsService
         def initialize(params=nil)
-             @params = params
-      
+             @params = params   
         end
-        
         def display
             Services::Slots::Displayer.new(@params).call
         end
@@ -14,7 +12,7 @@ module Services
         end
 
         def formatDates
-            Services::Slots::Formater.call
+            Services::Slots::DatesFormater.call
         end
 
     end

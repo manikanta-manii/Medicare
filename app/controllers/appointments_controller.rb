@@ -31,7 +31,6 @@ class AppointmentsController < ApplicationController
     end
 
     def edit
- 
     end
 
     def update
@@ -56,7 +55,7 @@ class AppointmentsController < ApplicationController
         else
           send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
                     type: "application/pdf")
-        end       
+        end     
     end
 
     private
