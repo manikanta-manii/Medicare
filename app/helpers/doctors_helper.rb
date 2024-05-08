@@ -10,4 +10,15 @@ module DoctorsHelper
             yield
         end
     end
+    def render_profile_pic_if_attached(user)
+        if user.avatar.attached?
+            yield
+        end
+    end
+
+    def render_default_pic_if_profile_pic_not_attached(user)
+        unless user.avatar.attached?
+            yield
+        end
+    end
 end

@@ -1,5 +1,5 @@
 <% check_if_current_user_is_admin do %>
-   <%= render partial: "admin/doctor_handler/create_modal"%>
+   <%= render partial: "admin/manage_doctors/create_modal"%>
    <%= render partial: "all_doctors" ,locals:{doctor:@doctors}%>
 <%end%>
 

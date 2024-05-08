@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "all_doctors" %>
 <table id="display-doctors-div">
   <thead>
     <tr>
@@ -13,19 +14,7 @@
   </thead>
   <tbody>
       <% @doctors.each do |doc| %>
-      <%= render partial:"each_doctor" , locals:{doc:doc}%>
- <%end%> 
+          <%= render partial:"each_doctor" , locals:{doc:doc}%>
+      <%end%> 
  </tbody>
 </table>
-
-<style>
-table, th, td {
-  border: 1px solid;
- text-align: center;
-  border-color: #96D4D4;
-  border-collapse: collapse;
-}
-table{
- width:100%;
-}
-</style>

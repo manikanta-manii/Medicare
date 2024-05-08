@@ -1,7 +1,7 @@
 <tr>    
-        <td><%= image_tag User.find(doc.user_id).avatar.attached? ? User.find(doc.user_id).avatar : 'avatars/default_avatar.png', class: "avatar-image" %></td>
-        <td><%= User.find(doc.user_id).name %></td>
-        <td><%= User.find(doc.user_id).email %></td>
+        <td><%= image_tag doc.user.avatar.attached? ? doc.user.avatar : 'avatars/default_avatar.png', class: "avatar-image" %></td>
+        <td><%= doc.user.name %></td>
+        <td><%= doc.user.email %></td>
         <td><%= doc.specialization.name %></td>
         <td><%= doc.rating %></td>
         <td><%= doc.consultation_fee %></td>
