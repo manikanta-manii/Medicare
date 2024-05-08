@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
     before_action :set_appointment, only: %i[show edit update destroy download]
 
     def index
-        @all_appointments = current_user.patient? ? current_user.patient.appointments : current_user.doctor.appointments
+        @all_appointments = active_user.patient? ? active_user.patient.appointments : active_user.doctor.appointments
     end
 
     def new
@@ -55,7 +55,7 @@ class AppointmentsController < ApplicationController
         else
           send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
                     type: "application/pdf")
-        end     
+        end 
     end
 
     private

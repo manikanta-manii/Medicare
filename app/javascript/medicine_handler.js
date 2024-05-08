@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     $("#medicine_form").on("submit", function (e) {
         e.preventDefault();
@@ -36,8 +35,8 @@ $("#display-medicines-div").on("click", ".delete-button", function(event) {
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error("Error deleting doctor:", textStatus, errorThrown); 
-        }
-    });
-});
+          }
+      });
+   });
      
 });
