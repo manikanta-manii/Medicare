@@ -6,17 +6,13 @@ class AppointmentsController < ApplicationController
         @all_appointments = active_user.patient? ? active_user.patient.appointments : active_user.doctor.appointments
     end
 
-    def new
-    end
-
-    def create 
-        @appointment = Appointment.new(patient_id:current_user.patient.id , doctor_id:params[:doctor_id] , slot_time:params[:slot_time] , reason:params[:reason] )
-        if @appointment.save
-            flash[:notice] = "Appointment Booked Successfully"    
-            redirect_to appointments_path
+    def create
+        # debugger
+        @appointment = Appointment.new(appointment_params.merge(patient_id:active_user.patient.id))
+        if @appointment.save  
+            redirect_to appointments_path,notice: "Appointment Booked Successfully"
         else
-            flash[:alert] = "Booking Failed"
-            redirect_to request.referer
+            redirect_to request.referer, alert: "Booking failed"
         end     
     end
 
@@ -24,27 +20,13 @@ class AppointmentsController < ApplicationController
         @status = @appointment.status
     end
     
-    def destroy
-        @appointment.update(status:"canceled")
-        redirect_to appointments_path,notice: "Appointment canceled Succesfully !"
-        #TRIGER MAIL !
-    end
-
-    def edit
-    end
-
     def update
-        debugger
-        if check_status_param
-            @appointment.update(status:params[:status])
-            redirect_to appointments_path, notice: "Appointment updated successfully"
-        else
+       #debugger
           if @appointment.update(appointment_params)
-             redirect_to appointments_path, notice: "Appointment updated successfully"
+            redirect_to request.referer, notice: "Appointment updated successfully"
           else
             redirect_to appointments_path, alert: "Appointment updation Failed"
           end
-        end
     end
 
     def download
@@ -61,7 +43,7 @@ class AppointmentsController < ApplicationController
     private
       
     def appointment_params
-        params.require(:appointment).permit(:reason, :note,:status)
+        params.permit(:reason, :note,:status , :doctor_id ,:slot_time )
     end
 
     def check_status_param

@@ -10,7 +10,7 @@
         <h5 class="modal-title" id="editPrescriptionModalLabel">Edit Prescription</h5>
       </div>
       <div class="modal-body">
-      <%= render partial:"edit_prescription"%>
+      <%= render partial:"edit_prescription", appointment: @appointment%>
       </div>
          <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -3,27 +3,36 @@
 
 <% if current_user.patient?%>
 <%= render partial: "patients/appointment_details" %>
+
 <%if @status == "scheduled"%>
 <%= render partial:"edit_reason_modal"%>
-<%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :delete,class:"btn btn-outline-danger dflex"%>
-<%else%>
+<%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"canceled"},class:"btn btn-outline-danger dflex"%>
+<%elsif @status == "completed"%>
   <h1>Appointment Details</h1>
   <div class="container mx-auto">
   <p> <strong>Note:</strong>
   <%= @appointment.note %></p>
   </div>
+
 <% if @appointment.feedback.present? %>
  <h4>Feedback Submitted</h4>
+
 <%else%>
 <%= render partial:"give_feedback_modal"%>
+
 <%end%>
   <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
-<%end%>
 <%else%>
+<h4>Appointment canceled</h4>
+<%end%>
+
+
+<%else%>
+
 <%if @status == "scheduled"%>
 <%if @appointment.note.present? %>
 <%=render partial: "edit_prescription_modal"%>
-<%= button_to "complete the appointment" ,appointment_path(@appointment), method: :patch, params:{status:"completed"} , class:"btn btn-success"%>
+<%= button_to "Complete Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"completed"},class:"btn btn-outline-success dflex"%>
 <%else%>
 <%=render partial: "prescribe_modal"%>
 <%end%>
