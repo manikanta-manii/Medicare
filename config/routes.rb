@@ -12,9 +12,7 @@ Rails.application.routes.draw do
   resources :doctors
   resources :orders
   resources :order_items
-  resources :cart_items
   resources :medicines
-  resources :feedbacks
   resources :appointments do
     member do
       get 'download'

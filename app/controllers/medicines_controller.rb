@@ -22,7 +22,7 @@ class MedicinesController < ApplicationController
     private
     
     def set_medicine
-      @medicine = Medicine.find(params[:id])
+      @medicine = Medicine.find_by(id:params[:id])
     end
 
     def medicine_params
