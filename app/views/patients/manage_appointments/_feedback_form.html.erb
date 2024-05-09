@@ -1,0 +1,9 @@
+ <%= form_with(url: appointment_path, method: :patch, remote: true) do |f| %>
+  <%= f.label :feedback %>
+  <%= f.text_area :feedback, class: "form-control",required: true %>
+
+  <%= f.label :rating %>
+  <%= f.select :rating, (1..5).map { |i| [i, i] }, {}, class: "form-control" ,required: true%>
+
+  <%= f.submit "Update", class: "btn btn-primary" %>
+<% end %>

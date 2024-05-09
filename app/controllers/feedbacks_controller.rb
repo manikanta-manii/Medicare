@@ -11,7 +11,7 @@ class FeedbacksController < ApplicationController
     end
 
     private 
-
+    
     def feedback_params
       params.permit(:appointment_id, :rating, :review)
     end

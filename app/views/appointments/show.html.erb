@@ -21,7 +21,7 @@
             <%end%>
 
           <%check_if_feedback_is_not_present(@appointment) do%>
-              <%= render partial:"give_feedback_modal"%>
+              <%= render partial:"patients/manage_appointments/give_feedback_modal"%>
               <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
           <%end%>
       <%end%>

@@ -1,0 +1,19 @@
+ <button type="button" class="btn btn-info m-1 px-3 feedback-button" data-appointment-id="<%= @appointment.id %>" data-toggle="modal" data-target="#feedbackModal">
+        Give Feedback
+</button>
+
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="feedbackModalLabel">Leave Feedback</h5>
+        </div>
+        <div class="modal-body">
+          <%= render partial:"patients/manage_appointments/feedback_form"%>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>

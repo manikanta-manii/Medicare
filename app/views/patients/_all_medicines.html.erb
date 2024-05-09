@@ -5,6 +5,7 @@
   }
 </style>
 
+<%= javascript_include_tag "quantity_selector" %>
 
 <table>
   <thead>
@@ -31,17 +32,7 @@
         <td>
           <div class="quantity-counter">
             <button class="decrement">-</button>
-            <span class="quantity">
-            <% if current_user.patient.cart.present? %>
-           <% if @all_cart_items.find_by(medicine_id: med.id).present? %>
-<%= @all_cart_items.find_by(medicine_id: med.id).quantity %>
-<%else%>
-1
-<%end%>       
-
-<%else%>
- 1
-<%end%>
+            <span class="quantity">1
             </span>
             <button class="increment" data-med-quantity="<%= med.quantity %>">+</button>
           </div>
@@ -51,47 +42,3 @@
     <% end %>
   </tbody>
 </table>
-<script>
-  $(document).ready(function() {
-    $('.add-button').click(function(event) {
-      event.preventDefault();
-      const medId = $(this).data('med');
-      const quantity = $(this).closest('tr').find('.quantity').text();
-      
-      medicineData = {
-        medicine_id: medId,
-        medicine_quantity:quantity,
-      }
-      console.log(medicineData);
-
-      $.ajax({
-            url: `http://localhost:3000/cart_items`,
-            method: "POST",
-            data: medicineData, 
-            dataType: "html",
-            success: function (result) { 
-              console.log(result) 
-               $("#count").html(result)
-            },
-        });
-      
-    });
-
-     $('.quantity-counter .increment').click(function() {
-           var currentQuantity = parseInt($(this).siblings('.quantity').text());
-           var maxQuantity = parseInt($(this).data('med-quantity')); 
-           if (currentQuantity < maxQuantity) {
-           $(this).siblings('.quantity').text(currentQuantity + 1);
-           }
-    });
-
-
-
-    $('.quantity-counter .decrement').click(function() {
-      var currentQuantity = parseInt($(this).siblings('.quantity').text());
-      if (currentQuantity > 1) {
-        $(this).siblings('.quantity').text(currentQuantity - 1);
-      }
-    });
-  });
-</script>
