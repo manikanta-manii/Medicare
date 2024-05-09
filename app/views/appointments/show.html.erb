@@ -1,40 +1,44 @@
 <%= javascript_include_tag "patient_appointment.js" %>
 <%= stylesheet_link_tag "appointment_show" %>
 
-<% if current_user.patient?%>
-<%= render partial: "patients/appointment_details" %>
+<% check_if_current_user_is_patient do%>
+      <%= render partial: "patients/manage_appointments/appointment_details" %>
 
-<%if @status == "scheduled"%>
-<%= render partial:"edit_reason_modal"%>
-<%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"canceled"},class:"btn btn-outline-danger dflex"%>
-<%elsif @status == "completed"%>
-  <h1>Appointment Details</h1>
-  <div class="container mx-auto">
-  <p> <strong>Note:</strong>
-  <%= @appointment.note %></p>
-  </div>
+      <% check_if_status_is_scheduled(@appointment) do %>
+            <%= render partial:"patients/manage_appointments/edit_reason_modal"%>
+            <%= button_to "Cancel Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"canceled"},class:"btn btn-outline-danger dflex"%>
+      <%end%>
 
-<% if @appointment.feedback.present? %>
- <h4>Feedback Submitted</h4>
+      <% check_if_status_is_completed(@appointment) do %>
+            <h1>Appointment Details</h1>
+            <div class="container mx-auto">
+            <p> <strong>Note:</strong>
+            <%= @appointment.note %></p>
+            </div>
 
-<%else%>
-<%= render partial:"give_feedback_modal"%>
+           <% check_if_feedback_is_present(@appointment) do %>
+                  <h4>Feedback Submitted</h4>
+            <%end%>
 
+          <%check_if_feedback_is_not_present(@appointment) do%>
+              <%= render partial:"give_feedback_modal"%>
+              <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
+          <%end%>
+      <%end%>
+
+        <%check_if_status_is_canceled(@appointment) do%>
+            <h4>Appointment canceled</h4>
+        <%end%>
 <%end%>
-  <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
-<%else%>
-<h4>Appointment canceled</h4>
-<%end%>
 
-
-<%else%>
-
-<%if @status == "scheduled"%>
-<%if @appointment.note.present? %>
-<%=render partial: "edit_prescription_modal"%>
-<%= button_to "Complete Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"completed"},class:"btn btn-outline-success dflex"%>
-<%else%>
-<%=render partial: "prescribe_modal"%>
-<%end%>
-<%end%>
+<% check_if_current_user_is_doctor do%>
+        <% check_if_status_is_scheduled(@appointment) do %>
+                  <%check_if_note_is_present(@appointment) do %>
+                        <%=render partial: "doctors/manage_appointments/edit_prescription_modal"%>
+                        <%= button_to "Complete Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"completed"},class:"btn btn-outline-success dflex"%>
+                  <%end%>
+                  <%check_if_note_is_not_present(@appointment) do %>
+                        <%=render partial: "doctors/manage_appointments/prescribe_modal"%>
+                  <%end%>
+        <%end%>
 <%end%>

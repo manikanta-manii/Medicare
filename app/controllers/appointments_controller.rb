@@ -45,11 +45,7 @@ class AppointmentsController < ApplicationController
     def appointment_params
         params.permit(:reason, :note,:status , :doctor_id ,:slot_time )
     end
-
-    def check_status_param
-        params[:status].present?
-    end
-
+    
     def set_appointment
         @appointment = Appointment.find(params[:id])
     end

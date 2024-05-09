@@ -5,11 +5,8 @@ module Services
                 @appointment=appointment
             end
             def call
-
-                @doctor = Doctor.find(@appointment.doctor_id)
-                @doctor_name = User.find(@doctor.user_id).name
-                @patient = User.find(@appointment.patient_id)
-                @patient_name = User.find(@doctor.user_id).name
+                @doctor_name = @appointment.doctor.user.name
+                @patient_name = @appointment.patient.user.name
                 appointment_pdf = Prawn::Document.new
                 appointment_pdf.font "Helvetica"
                 appointment_pdf.font_size 12     

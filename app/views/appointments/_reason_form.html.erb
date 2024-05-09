@@ -1,7 +1,0 @@
-<%= form_with(url: appointments_path, method: :post, remote: true ,id:"appointment_confirmation_form") do |f| %>
-  <div class="field">
-    <%= f.label :reason %>
-    <%= f.text_area :reason, rows: 5 %> 
-  </div>
-  <%= f.submit "Submit", class: "btn btn-primary", data: { 'bs-dismiss': "modal" } ,id:"submit-btn" %>
-<% end %>

@@ -15,6 +15,11 @@ module ApplicationHelper
             yield
         end
     end
+    def check_if_current_user_is_doctor
+        if active_user.doctor?
+            yield
+        end
+    end
 
     def render_profile_pic_if_attached(user)
         if user.avatar.attached?
