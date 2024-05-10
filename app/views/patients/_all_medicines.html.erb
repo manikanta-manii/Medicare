@@ -29,15 +29,11 @@
         <td><%= med.dosage %></td>
         <td><%= med.price %></td>
         <td><%= med.need_prescription %></td>
-        <td>
-          <div class="quantity-counter">
-            <button class="decrement">-</button>
-            <span class="quantity">1
-            </span>
-            <button class="increment" data-med-quantity="<%= med.quantity %>">+</button>
-          </div>
-        </td>
-        <td><%= button_to "ADD", root_path, method: :get, class: "add-button btn btn-info", data: { med: med.id }%></td>
+        <% if %>
+        
+        <% end %>
+        <td><button class="btn btn-success disabled"> Added to cart </button></td>
+        <td><%= button_to "ADD TO CART ", order_items_path, method: :post, class: "add-button btn btn-info", params: { medicine_id: med.id , price: med.price}%></td>
       </tr>
     <% end %>
   </tbody>
