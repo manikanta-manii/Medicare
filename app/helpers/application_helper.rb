@@ -32,5 +32,18 @@ module ApplicationHelper
             yield
         end
     end
-    
+
+    def get_cart_total(order_items)
+        order_items.pluck(:price).sum
+    end
+
+    def get_cart_items_count
+        # debugger
+        @order = Order.find_by(id:session[:order_id])
+        if @order
+           return @order.order_items.count
+        else
+            return 0
+        end
+    end
 end

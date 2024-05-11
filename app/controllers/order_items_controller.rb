@@ -1,31 +1,64 @@
 class OrderItemsController < ApplicationController
+
+   include OrderItemsHelper
    before_action :set_order , only: [:create]
+
+   def index
+      @order = Order.find_by(id:session[:order_id])
+      if @order
+         @order_items = @order.order_items
+      end
+   end
 
    def create
       # debugger
-      # @order_item = @order.order_items.new(medicine_id: params[:medicine_id],price: params[:price],quantity:1)
-      # if @order_item.save
-      #   redirect_to request.referer, notice: "Item Added To Cart"
-      # else
-      #   redirect_to request.referer, alert: "Failed to Add"
-      # end
+      @order_item = @order.order_items.new(medicine_id: params[:medicine_id],price: params[:price],quantity:1)
+      if @order_item.save
+        redirect_to request.referer, notice: "Item Added To Cart"
+      else
+        redirect_to request.referer, alert: "Failed to Add"
+      end
    end
 
    def update
-      debugger
+      #  debugger
+      @order_item = OrderItem.find_by(id: params[:id])
+      @order = Order.find_by(id: @order_item.order_id)
+
+      if params[:quantity] == "increment"
+         increment_quantity(@order_item)
+      else
+         decrement_quantity(@order_item)
+      end
+      total_price = @order.order_items.pluck(:price).sum
+      render plain:total_price
    end
 
    def destroy
-    
+     @order_item = OrderItem.find_by(id: params[:id])
+      @order = Order.find_by(id: @order_item.order_id)
+     @order_item.destroy
+     total_price = @order.order_items.pluck(:price).sum
+      render plain:total_price
    end
+  
+   private
 
    def set_order
-      if active_user.patient.orders.where(:ordered == "false").count == 0
-         @order = active_user.patient.orders.new
-         @order.save
-         @order
+      if session[:order_id]
+         @order = Order.find_by(id: session[:order_id])
       else
-         @order = active_user.patient.orders.last
+         @order = current_order
       end
+   end
+
+   def increment_quantity(order_item)
+      new_price = (order_item.medicine.price * (order_item.quantity+1))
+      order_item.update(price: new_price , quantity: (order_item.quantity+1))   
+   end
+
+   def decrement_quantity(order_item)
+      new_price = (order_item.medicine.price * (order_item.quantity-1))
+      order_item.update(price: new_price , quantity: (order_item.quantity-1)) 
    end
 end
