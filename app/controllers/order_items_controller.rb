@@ -4,8 +4,8 @@ class OrderItemsController < ApplicationController
    before_action :set_order , only: [:create]
 
    def index
-      @order = Order.find_by(id:session[:order_id])
-      if @order
+      if order_exists
+         @order = get_last_order
          @order_items = @order.order_items
       end
    end
@@ -45,11 +45,7 @@ class OrderItemsController < ApplicationController
    private
 
    def set_order
-      if session[:order_id]
-         @order = Order.find_by(id: session[:order_id])
-      else
-         @order = current_order
-      end
+      @order = current_order
    end
 
    def increment_quantity(order_item)

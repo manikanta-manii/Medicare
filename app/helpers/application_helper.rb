@@ -38,12 +38,11 @@ module ApplicationHelper
     end
 
     def get_cart_items_count
-        # debugger
-        @order = Order.find_by(id:session[:order_id])
-        if @order
-           return @order.order_items.count
-        else
-            return 0
-        end
+        @order =get_last_order
+       if @order 
+         return @order.order_items.count
+       else
+         return 0
+       end
     end
 end

@@ -8,8 +8,6 @@ module OrderItemsHelper
          else
             order = active_user.patient.orders.last
          end
-        session[:order_id] = order.id
-        order = Order.find_by(id: session[:order_id])
     end
 
     def if_medicine_exist(med_id)
@@ -21,5 +19,15 @@ module OrderItemsHelper
                 return true
             end
         end
+    end
+
+    def order_exists
+        unless active_user.patient.orders.where(:ordered == "false").count == 0
+            order = active_user.patient.orders.last
+        end
+    end
+
+    def get_last_order
+        order = active_user.patient.orders.last
     end
 end
