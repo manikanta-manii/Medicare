@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "all_doctors" %>
-<table id="display-medicines-div">
+<table id="display-medicines-div" style="background-color:blue">
   <thead>
     <tr>
       <th>Medicine</th>
@@ -18,4 +18,73 @@
       <% end %>
     </tbody>
 </table>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="editMedicineModal" tabindex="-1" role="dialog" aria-labelledby="editMedicineModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editMedicineModalLabel">Edit Medicine</h5>
+      </div>
+      <div class="modal-body">
+          <%= render partial:"admin/manage_medicines/edit_form"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+
+
+ $("#display-medicines-div").on("click", ".edit-button", function(event) {
+      event.preventDefault();
+       var editButton = $(this);
+      var medicineId = $(this).data('medicine-id');
+      var medicineName = $(this).data('medicine-name');
+      var medicineDesc = $(this).data('medicine-description');
+      var medicinePrice = $(this).data('medicine-price');
+      var medicineDosage = $(this).data('medicine-dosage');
+      var medicineQuantity = $(this).data('medicine-quantity');
+      //var medicinePrescription = $(this).data('medicine-need-prescription');
+
+      console.log(medicineName);
+      //$('#medicine_image').val(medicineImage);
+      $('#medicine_name').val(medicineName);
+      $('#medicine_description').val(medicineDesc);
+      $('#medicine_dosage').val(medicineDosage);
+      $('#medicine_price').val(medicinePrice);
+      $('#medicine_quantity').val(medicineQuantity);
+      //$('#medicine_need_prescription"').val(medicinePrescription);
+
+      $('#editMedicineModal').modal('show');
+       
+       $("#edit_form").on("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData($("#edit_form")[0]);      
+        $.ajax({
+            url: `http://localhost:3000/medicines/${medicineId}`,
+            method: "PATCH",
+            data: formData, 
+            dataType: "html",
+            processData: false, 
+            contentType: false,
+            success: function (result) {
+                console.log(result);
+
+               editButton.closest("tr").html(result);
+
+
+              
+               $("#editMedicineModal").modal("hide");
+               
+               
+            },
+        });
+        });     
+
+      
+    });
+  });
+</script>
 

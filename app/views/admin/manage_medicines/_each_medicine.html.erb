@@ -1,5 +1,4 @@
- <tr>
-        <td><%= image_tag medicine.image.attached? ? medicine.image : 'avatars/default_avatar.png', class: "avatar-image" %></td>
+       <td><%= image_tag medicine.image.attached? ? medicine.image : 'avatars/default_avatar.png', class: "avatar-image" %></td>
         <td><%= medicine.name %></td>
         <td><%= medicine.description %></td>
         <td><%= medicine.dosage %></td>
@@ -10,4 +9,3 @@
   <button type="button" class="edit-button btn btn-info" data-medicine-quantity="<%= medicine.quantity %>" data-medicine-id="<%= medicine.id %>" data-medicine-price="<%= medicine.price %>" data-medicine-name="<%= medicine.name %>" data-medicine-description="<%= medicine.description %>" data-medicine-dosage="<%= medicine.dosage %>" >Edit</button>
 </td>
         <td><%= button_to "Delete", medicine_path(medicine), method: :delete, class: "delete-button btn btn-info", data: { med: medicine }%></td>
-<tr>
