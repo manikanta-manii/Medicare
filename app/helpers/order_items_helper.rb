@@ -30,4 +30,21 @@ module OrderItemsHelper
     def get_last_order
         order = active_user.patient.orders.last
     end
+
+    def check_need_prescription
+        medicines = []
+        order = get_last_order
+        order_items = order.order_items
+        order_items.each do |item|
+            if item.medicine.need_prescription
+                medicines<<item.medicine.name
+            end
+        end
+        medicines
+    end
+
+    def get_total_price
+        order = get_last_order
+        total_price = order.order_items.pluck(:price).sum
+    end
 end

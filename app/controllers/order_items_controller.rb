@@ -39,7 +39,7 @@ class OrderItemsController < ApplicationController
       @order = Order.find_by(id: @order_item.order_id)
      @order_item.destroy
      total_price = @order.order_items.pluck(:price).sum
-      render plain:total_price
+      render partial:"order_items/place_order"
    end
   
    private

@@ -32,74 +32,21 @@
   </tbody>
 </table>
 <br><br>
-<hr>
 
-   TOTAL PRICE = <span id="total_price"><%= get_cart_total(@order_items) %></span>
-   <%= button_to "Place Order" ,root_path , method: :get ,class:"btn btn-info"%>
    <%else%>
    CART IS EMPTY
    <%end%>
 
 <hr>
-
-<!-- Button to trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal">
-  Place Order
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addressModalLabel">Delivery Address</h5>
-     
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="deliveryAddress">Select or Enter Delivery Address:</label>
-            <select class="form-control" id="deliveryAddress">
-              <option value="existing">Existing Address 1</option>
-              <option value="existing">Existing Address 2</option>
-              <option value="existing">Existing Address 3</option>
-              <option value="new">Enter New Address</option>
-            </select>
-          </div>
-          <div id="newAddressFields" style="display: none;">
-            <div class="form-group">
-              <label for="country">Country:</label>
-              <input type="text" class="form-control" id="country" required>
-            </div>
-            <div class="form-group">
-              <label for="state">State:</label>
-              <input type="text" class="form-control" id="state" required>
-            </div>
-            <div class="form-group">
-              <label for="city">City:</label>
-              <input type="text" class="form-control" id="city" required>
-            </div>
-            <div class="form-group">
-              <label for="street">Street:</label>
-              <input type="text" class="form-control" id="street" required>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Place Order</button>
-      </div>
-    </div>
-  </div>
+<div id = "checkout">
+<%= render partial: "place_order" %>
 </div>
-
 <script>
 
 $(document).ready(function () {
 
 
-  $('#deliveryAddress').on('change', function() {
+  $('#deliveryAddress').on('click', function() {
     if (this.value === 'new') {
       $('#newAddressFields').show();
     } else {
@@ -235,7 +182,7 @@ $.ajax({
     },
   success: function (result) {
     console.log("CART ITEM REMOVED");
-    $("#total_price").html(result);
+    $("#checkout").html(result);
     var count = parseInt($("#count").text());
     ($("#count").text(count-1));
     deleteButton.closest("tr").remove();
