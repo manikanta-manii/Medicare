@@ -1,0 +1,26 @@
+<!-- orders/show.html.erb -->
+
+<h1>Order Details</h1>
+
+<p><strong>Order ID:</strong> <%= @order.id %></p>
+<p><strong>Order Status:</strong> <%= @order.ordered ? 'Ordered' : 'Not Ordered' %></p>
+
+<h2>Order Items</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Medicine Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.medicine.name %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= order_item.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

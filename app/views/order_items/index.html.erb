@@ -1,4 +1,6 @@
-
+  <span id="display-div"></span>
+  <div id="order-item-div">
+   <% if @order_items %>
 <table>
   <thead>
     <tr>
@@ -9,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-   <% if @order_items %>
+
     <% @order_items.each do |item| %>
       <tr>
         <td><%= item.medicine.name %></td>
@@ -36,16 +38,18 @@
    <%else%>
    CART IS EMPTY
    <%end%>
-
+<% if order_exists %>
 <hr>
 <div id = "checkout">
 <%= render partial: "place_order" %>
+</div>
+<%end%>
 </div>
 <script>
 
 $(document).ready(function () {
 
-
+   
   $('#deliveryAddress').on('click', function() {
     if (this.value === 'new') {
       $('#newAddressFields').show();
@@ -96,7 +100,7 @@ $.ajax({
   success: function (result) {
     console.log(result);
     $("#total_price").html(result);
-
+  
   },
   error: function (xhr, status, error) {
     console.error(xhr.responseText); 
@@ -193,6 +197,83 @@ $.ajax({
 });
 
 });
+
+    $('#submitButton').click(function(event) {
+         event.preventDefault(); // Prevent default form submission behavior
+     var orderId = $('#submitButton').data('order-id');
+      const deliveryAddressSelect = $('#deliveryAddress');
+      const newAddressFields = $('#newAddressFields');
+      const prescriptionInput = $('#prescription');
+
+      let selectedValue = null;
+      let newAddress = null;
+      let prescriptionFile = null;
+
+      if (deliveryAddressSelect.length) {
+        selectedValue = deliveryAddressSelect.val();
+      }
+
+      if (newAddressFields.css('display') !== 'none') {
+        const countryInput = $('#country').val();
+        const stateInput = $('#state').val();
+        const cityInput = $('#city').val();
+        const streetInput = $('#street').val();
+
+        newAddress = {
+          country: countryInput,
+          state: stateInput,
+          city: cityInput,
+          street: streetInput,
+        };
+      }
+
+      if (prescriptionInput.length) {
+        prescriptionFile = prescriptionInput[0].files[0];
+      }
+
+      // You can now use the collected data (selectedValue, newAddress, prescriptionFile)
+      // for further processing, for example, sending it to the server with AJAX.
+
+      console.log("Selected Address:", selectedValue);
+      console.log("New Address:", newAddress);
+      console.log("Prescription File:", prescriptionFile);
+      
+      const formData = new FormData();
+      formData.append('prescription', prescriptionFile);
+      formData.append('old',selectedValue);
+      for (const key in newAddress) {
+  if (newAddress.hasOwnProperty(key)) { // Optional check for own properties
+    formData.append(`new[${key}]`, newAddress[key]);
+  }
+}
+
+      
+        $.ajax({
+  url: `http://localhost:3000/orders/${orderId}`,
+  method: "PATCH",
+  data: formData,
+  contentType: false,
+  processData: false, 
+  beforeSend: function (xhr) {
+      xhr.setRequestHeader(
+        "X-CSRF-Token",
+        $('meta[name="csrf-token"]').attr("content")
+      );
+    },
+  success: function (result) {
+    console.log(result);
+    document.getElementById("close-btn").click();
+
+    $("#display-div").html(result);
+      $("#order-item-div").html("CART IS EMPTY");
+  },
+  error: function (xhr, status, error) {
+    console.error(xhr.responseText); 
+  }
+});
+    
+  
+    });
 
 });
 

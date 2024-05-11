@@ -1,0 +1,18 @@
+<style>
+  .prescription{
+    height:300px;
+    width:300px;
+  }
+</style>
+<h1>Your orders</h1>
+<%@orders.each do |order|%>
+<%= order.id %>
+<% if order.prescription.attached? %>
+<%= image_tag order.prescription ,class:"prescription"%>
+<%else%>
+<p>no prescription</p>
+<%end%>
+<%= button_to "view", order_path(order),method: :get %><br>
+<hr>
+
+<%end%>

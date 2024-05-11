@@ -1,7 +1,7 @@
 <!-- Button to trigger modal -->
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addressModal">
-  Place Order
+  checkout
 </button>
 
 <!-- Modal -->
@@ -13,55 +13,11 @@
      
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="deliveryAddress">Select or Enter Delivery Address:</label>
-            <select class="form-control" id="deliveryAddress">
-             <% if active_user.patient.addresses%>
-               <% active_user.patient.addresses.each do |address| %>
-               <option value="<%= address.id %>">
-      Country: <%= address.country %> - City: <%= address.city %> - Street: <%= address.street %>
-    </option>
-             <%end%>
-            <%end%>
-              <option value="new">Enter New Address</option>
-            </select>
-          </div>
-          <div id="newAddressFields" style="display: none;">
-            <div class="form-group">
-              <label for="country">Country:</label>
-              <input type="text" class="form-control" id="country" required>
-            </div>
-            <div class="form-group">
-              <label for="state">State:</label>
-              <input type="text" class="form-control" id="state" required>
-            </div>
-            <div class="form-group">
-              <label for="city">City:</label>
-              <input type="text" class="form-control" id="city" required>
-            </div>
-            <div class="form-group">
-              <label for="street">Street:</label>
-              <input type="text" class="form-control" id="street" required>
-            </div>
-          </div>
-       TOTAL PRICE = <span id="total_price"><%= get_total_price %></span>
-        <% medicines  = check_need_prescription %>
-        <% if medicines.count!=0 %>
-        <%= "Need Prescription for = " %>
-        <% medicines.each do |medicine|%>
-        <%= medicine%>
-        <%end %>
-         <div class="form-group">
-              <label for="prescription">Prescription:</label>
-              <input type="file" class="form-control" id="prescription" required>
-        </div>
-        <%end%>
-     </form>
+     <%= render partial:"form"%>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Place Order</button>
+        TOTAL PRICE = <span id="total_price"><%= get_total_price %></span>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-btn">Close</button>
       </div>
     </div>
   </div>

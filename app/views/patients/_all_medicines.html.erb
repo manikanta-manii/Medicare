@@ -29,11 +29,15 @@
         <td><%= med.dosage %></td>
         <td><%= med.price %></td>
         <td><%= med.need_prescription %></td>
+        <% if (med.quantity<1) %>
+           <td><button class="btn btn-warning disabled"> out of stock </button></td>
+        <%else%>
         <% if if_medicine_exist(med.id) %>
                 <td><button class="btn btn-success disabled"> Added to cart </button></td>
         <% else %>
         <td><%= button_to "ADD TO CART ", order_items_path, method: :post, class: "add-button btn btn-info", params: { medicine_id: med.id , price: med.price}%></td>
         <% end %>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
