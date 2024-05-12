@@ -1,8 +1,17 @@
+body {
+  height: 100vh;
+  margin: 0;
+  background-color:#DFF5FF;
+}
 table, th, td {
   border: 1px solid;
- text-align: center;
-  border-color: #96D4D4;
+  text-align: center;
+  border-color:#40A2E3;
   border-collapse: collapse;
+}
+th {
+  background-color: #40A2E3;
+  color: #fff;
 }
 table{
  width:100%;

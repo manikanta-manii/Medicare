@@ -9,12 +9,12 @@
             <%= render partial: "admin/sidebar" %>
           <% else %>
       
-                 <li class="nav-item">
-      <%= link_to "About Us", root_path, class: "nav-link text-light" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Contact", root_path, class: "nav-link text-light" %>
-    </li>
+ <li class="nav-item">
+  <%= link_to "About Us", "#about", class: "nav-link text-light", "data-scroll": "true" %>
+</li>
+<li class="nav-item">
+  <%= link_to "Contact", "#contact", class: "nav-link text-light", "data-scroll": "true" %>
+</li>
           <% end %>
   </ul>
 </div>

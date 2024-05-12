@@ -74,3 +74,4 @@ group :test do
 end
 
 
+gem 'will_paginate-bootstrap4'

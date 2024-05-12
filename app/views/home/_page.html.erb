@@ -1,20 +1,24 @@
- <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      margin: 0;
-      background-color:#DFF5FF;
-    }
-    .card-title{
+   <style>
+    .image-container {
+            width: 100%;
+            height: 33rem;
+            display:flex;
+        }
+        
+        img {
+            height: 100%;
+            width:50%;
+            border-radius: 1rem;
+            margin:2px;
+        }
+ .card-title{
         color: #00215E; 
     }
     .head{
+        
         color:#00215E;
-        text-align:center;
         font-size:2rem;
+        margin-left:1rem;
     }
 
     .card-container {
@@ -52,13 +56,26 @@
       background-color: #f5f5f5;
       text-align: center;
     }
-  </style>
-  <h4 class="head">Admin Dashboard</h4>
-<div class="card">
+    #services-div{
+       
+        display:flex;
+     
+       
+    }
+
+    </style>
+
+ <div class="image-container">
+        <img src="https://www.quickobook.com/uploads/media/1722-2022-06-02.png" alt="Description of the image">
+        <img src="https://chandanpharmacy.com/Content/img/medicine-online.jpg" alt="second image">
+ </div>
+  <span class="head">Our Services</span>
+<div id="services-div">
+  <div class="card">
   <img class="card-img" src="https://static.vecteezy.com/system/resources/previews/001/890/904/non_2x/female-and-male-nurse-and-doctors-with-uniforms-and-masks-design-free-vector.jpg" alt="Card Image">
   <div class="card-body">
     <h5 class="card-title" >Doctors</h5>
-    <p class="card-text">Manage Doctors<br>You can [ Add , Edit , Remove ] a Doctor</p>
+    <p class="card-text">Book an appointment with our doctors</p>
   </div>
   <div class="card-footer">
       <%= button_to "View", doctors_path,method: :get ,class: "btn btnn btn-outline-success" %>
@@ -69,20 +86,34 @@
   <img class="card-img" src="https://english-blog.s3.amazonaws.com/uploads/2020/02/Order-medicines-for-treating-chronic-diseases-online-with-GoMedii.jpg" alt="Card Image">
   <div class="card-body">
     <h5 class="card-title">Medicines</h5>
-       <p class="card-text">Manage Medicines<br>You can [ Add , Edit , Remove ] a Medicine</p>
+       <p class="card-text">Buy medicines from our page </p>
   </div>
   <div class="card-footer">
     <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success" %>
   </div>
-</div>
+</div> 
+
+<div class="card">
+  <img class="card-img" src="https://www.aimprosoft.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/07/How-to-Develop-a-Doctor-Appointment-Booking-App-to-Stop-Losing-Opportunities-With-No-Shows__Cover-scaled.jpg.webp" alt="Card Image">
+  <div class="card-body">
+    <h5 class="card-title">Track Appointments</h5>
+       <p class="card-text">See the Appointment history </p>
+  </div>
+  <div class="card-footer">
+    <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success" %>
+  </div>
+</div> 
 
 <div class="card">
   <img class="card-img" src="https://staranddaisy.in/wp-content/uploads/2022/06/order_track_5227-1.jpg" alt="Card Image">
   <div class="card-body">
-    <h5 class="card-title">View Orders</h5>
-    <p class="card-text">As a Admin You can See<br>Customers Orders - [Medicine]</p>
+    <h5 class="card-title">Track Orders</h5>
+       <p class="card-text">see order details and keep track.</p>
   </div>
   <div class="card-footer">
-    <%= button_to "View", orders_path,method: :get ,class: "btn btnn btn-outline-success" %>
+    <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success" %>
   </div>
+</div> 
+
+
 </div>

@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
     after_action :update_doctor_rating, only: [:update]
 
     def index
-        @all_appointments = active_user.patient? ? active_user.patient.appointments : active_user.doctor.appointments
+        @all_appointments = active_user.patient? ? active_user.patient.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10) : active_user.doctor.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10)
     end
 
     def create

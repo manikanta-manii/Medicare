@@ -4,8 +4,10 @@ include OrderItemsHelper
     before_action :set_address ,only: [:update]
 
     def index
-       @orders = active_user.patient.orders
+        @all_orders = Order.paginate(page: params[:page], per_page: 10)
+        @orders = active_user.patient.orders if active_user.patient?
     end
+
     def show
         @order = Order.find(params[:id])
         @order_items = @order.order_items.includes(:medicine)

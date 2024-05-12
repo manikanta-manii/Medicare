@@ -1,8 +1,14 @@
+
+
 <% check_if_current_user_is_admin do %>
-   <%= render partial: "admin/manage_doctors/create_modal"%>
-   <%= render partial: "all_doctors" ,locals:{doctor:@doctors}%>
-<%end%>
+  <div class="admin-section">
+    <%= render partial: "admin/manage_doctors/create_modal" %>
+    <%= render partial: "all_doctors", locals: { doctor: @doctors } %>
+  </div>
+<% end %>
 
 <% check_if_current_user_is_patient do %>
-   <%= render "patients/all_doctors" ,locals:{doctor:@doctors}%>
-<%end%>
+  <div class="patient-section">
+    <%= render "patients/all_doctors", locals: { doctor: @doctors } %>
+  </div>
+<% end %>

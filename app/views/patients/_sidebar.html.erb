@@ -1,18 +1,52 @@
-     <li class="nav-item">
-      <%= link_to "Find Doctor", doctors_path,method: :get,class: "nav-link text-light" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Appointments", appointments_path, class: "nav-link text-light" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Buy Medicine", medicines_path, class: "nav-link text-light" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Order", orders_path, class: "nav-link text-light" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Cart", order_items_path, class: "nav-link text-light" %>
-    </li>
-       <li id="count">
-           <%= get_cart_items_count %>
-      </li> 
+<style>
+ .fass {
+    font-size: 2rem;
+    margin-right: 5px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap:30px;
+    font-size: 18px; 
+    margin:0.5rem;
+  }
+
+  .nav-link i {
+    margin-right: 5px; 
+  }
+</style>
+
+<li class="nav-item">
+  <%= link_to doctors_path, method: :get, class: "nav-link text-light" do %>
+    <i class="fass fas fa-user-md"></i> <span>Find Doctor</span>
+  <% end %>
+</li>
+
+<li class="nav-item">
+  <%= link_to appointments_path, class: "nav-link text-light" do %>
+    <i class="fass fas fa-calendar-alt"></i> <span>Appointments</span>
+  <% end %>
+</li>
+
+<li class="nav-item">
+  <%= link_to medicines_path, class: "nav-link text-light" do %>
+    <i class="fass fas fa-pills"></i> <span>Buy Medicine</span>
+  <% end %>
+</li>
+
+<li class="nav-item">
+  <%= link_to orders_path, class: "nav-link text-light" do %>
+    <i class="fass fas fa-clock-rotate-left"></i> <span>Order</span>
+  <% end %>
+</li>
+
+<li class="nav-item">
+  <%= link_to order_items_path, class: "nav-link text-light position-relative" do %>
+    <i class="fass fas fa-shopping-cart"></i> <span>Cart</span>
+    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+      <%= get_cart_items_count %>
+    </span>
+  <% end %>
+</li>

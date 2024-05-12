@@ -22,8 +22,8 @@
 
           <%check_if_feedback_is_not_present(@appointment) do%>
               <%= render partial:"patients/manage_appointments/give_feedback_modal"%>
-              <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
           <%end%>
+           <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
       <%end%>
 
         <%check_if_status_is_canceled(@appointment) do%>
@@ -32,13 +32,26 @@
 <%end%>
 
 <% check_if_current_user_is_doctor do%>
+ <%= render partial: "doctors/manage_appointments/appointment_details" %>
         <% check_if_status_is_scheduled(@appointment) do %>
                   <%check_if_note_is_present(@appointment) do %>
                         <%=render partial: "doctors/manage_appointments/edit_prescription_modal"%>
-                        <%= button_to "Complete Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"completed"},class:"btn btn-outline-success dflex"%>
+                        <%= button_to "Complete Appointment", appointment_path(@appointment.id),method: :patch,params:{status:"completed"},class:"btn btn-outline-success dflex my-1"%>
                   <%end%>
                   <%check_if_note_is_not_present(@appointment) do %>
                         <%=render partial: "doctors/manage_appointments/prescribe_modal"%>
                   <%end%>
         <%end%>
+        <%check_if_status_is_canceled(@appointment) do%>
+            <h4>Appointment canceled</h4>
+        <%end%>
+        <% check_if_status_is_completed(@appointment) do %>
+
+            <% check_if_feedback_is_present(@appointment) do %>
+                  <h4>Feedback Given By Patient : </h4><br>
+              Review: <%= @appointment.feedback %> <br>
+              Rating: <%= @appointment.rating%> starts
+            <%end%>
+
+      <%end%>
 <%end%>

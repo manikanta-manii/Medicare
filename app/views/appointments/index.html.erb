@@ -4,4 +4,5 @@
   <% @all_appointments.each do |appointment| %>
       <%= render partial: active_user.patient? ? "each_appointment" : "doctors/each_appointment", locals: {appointment: appointment} %>
   <% end %>
+   <%= will_paginate @all_appointments , renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>

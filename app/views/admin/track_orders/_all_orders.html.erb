@@ -1,0 +1,49 @@
+<style>
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: #DFF5FF;
+    font-family: Arial, sans-serif;
+  }
+  table {
+    width: 100%;
+     text-align: center;
+    border-collapse: collapse;
+    border: 1px solid #40A2E3;
+  }
+  th, td {
+     text-align: center;
+    border: 1px solid #40A2E3;
+    padding: 8px;
+  }
+  th {
+    background-color: #40A2E3;
+    color: #fff;
+  }
+  td {
+    background-color: #fff;
+  }
+  
+
+</style>
+<table>
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Customer Name</th>
+      <th>Total Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @all_orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.patient.user.name %></td>
+        <td><%= order.total_price %>. Rs</td>
+        <td><%= button_to "View Order Details",order_path(order.id) ,method: :get,class: "btn btnn btn-info",data: { order: order }%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @all_orders , renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>

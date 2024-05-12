@@ -4,6 +4,10 @@
     width:300px;
   }
 </style>
+
+<% if active_user.admin?  %>
+    <%= render partial:"admin/track_orders/all_orders"%>
+<%else%>
 <h1>Your orders</h1>
 <%@orders.each do |order|%>
 <%= order.id %>
@@ -14,5 +18,6 @@
 <%end%>
 <%= button_to "view", order_path(order),method: :get %><br>
 <hr>
+<%end%>
 
 <%end%>
