@@ -24,6 +24,15 @@ class DoctorsController < ApplicationController
         end
     end
 
+    def update
+        #debugger
+        @doctor = Doctor.find_by(id: params[:id])
+        @user = User.find_by(id: @doctor.user_id)
+        @user.update(user_params)
+        @doctor.update(doctor_params)
+        render partial: "admin/manage_doctors/each_doctor",locals:{doc:@doctor}
+    end
+
     def destroy
         User.find(params[:id]).destroy      
     end

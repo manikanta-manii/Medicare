@@ -29,10 +29,7 @@
     <%= f.text_field :quantity, class: "form-control",  id: "medicine_quantity" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :need_prescription, "Need Prescription", class: "form-control-label" %>
-    <%= f.select :need_prescription, [['Yes', true], ['No', false]], include_blank: "Select", class: "form-control", id: "medicine_need_prescription" %>
-  </div>
+ 
    
   <div class="form-group">
     <%= f.submit "Submit", class: "btn btn-primary", id: "submit-btn" %>

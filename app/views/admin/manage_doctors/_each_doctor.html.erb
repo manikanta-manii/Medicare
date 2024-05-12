@@ -1,4 +1,4 @@
-<tr>    
+
         <td><%= image_tag doc.user.avatar.attached? ? doc.user.avatar : 'avatars/default_avatar.png', class: "avatar-image" %></td>
         <td><%= doc.user.name %></td>
         <td><%= doc.user.email %></td>
@@ -7,7 +7,6 @@
         <td><%= doc.consultation_fee %></td>
         <td><%= doc.years_of_experiance %></td>
         <td>
-  <button type="button" class="edit-button btn btn-info" data-doctor-id="<%= doc.id %>"  data-doctor-name="<%= doc.user.name %>" data-doctor-phone="<%= doc.user.phone_number %>" data-doctor-email="<%= doc.user.email %>"  data-doctor-consultation-fee="<%= doc.consultation_fee%>" data-doctor-experience="<%= doc.years_of_experiance %>" >Edit</button>
+  <button type="button" class="edit-button btn btn-info" data-doctor-id="<%= doc.id %>"  data-doctor-name="<%= doc.user.name %>" data-doctor-phone="<%= doc.user.phone_number %>" data-doctor-email="<%= doc.user.email %>" data-doctor-specialization="<%=doc.specialization.id%>"  data-doctor-consultation-fee="<%= doc.consultation_fee%>" data-doctor-experience="<%= doc.years_of_experiance %>" >Edit</button>
 </td>
         <td><%= button_to "Delete",root_path ,method: :get,class: "delete-button btn btn-info",data: { doc: doc }%></td>
-</tr>

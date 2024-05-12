@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "all_doctors" %>
-<table id="display-medicines-div" style="background-color:blue">
+<table id="display-medicines-div">
   <thead>
     <tr>
       <th>Medicine</th>
@@ -46,7 +46,7 @@
       var medicinePrice = $(this).data('medicine-price');
       var medicineDosage = $(this).data('medicine-dosage');
       var medicineQuantity = $(this).data('medicine-quantity');
-      //var medicinePrescription = $(this).data('medicine-need-prescription');
+
 
       console.log(medicineName);
       //$('#medicine_image').val(medicineImage);
@@ -55,7 +55,7 @@
       $('#medicine_dosage').val(medicineDosage);
       $('#medicine_price').val(medicinePrice);
       $('#medicine_quantity').val(medicineQuantity);
-      //$('#medicine_need_prescription"').val(medicinePrescription);
+
 
       $('#editMedicineModal').modal('show');
        
@@ -70,15 +70,8 @@
             processData: false, 
             contentType: false,
             success: function (result) {
-                console.log(result);
-
-               editButton.closest("tr").html(result);
-
-
-              
-               $("#editMedicineModal").modal("hide");
-               
-               
+               editButton.closest("tr").html(result);      
+               $("#editMedicineModal").modal("hide");        
             },
         });
         });     

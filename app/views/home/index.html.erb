@@ -6,7 +6,7 @@
      <%= "Doctor Home Page"%>
    <%end%>
    <%if current_user.admin?   %>
-     <%= "Admin Home Page"%>
+    <%= render partial: "admin/dashboard" %>
    <%end%>
 <%else%>
   <h4>DO SIGN IN</h4>

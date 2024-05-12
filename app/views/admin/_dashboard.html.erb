@@ -1,0 +1,88 @@
+ <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background-color:#DFF5FF;
+    }
+    .card-title{
+        color: #00215E; 
+    }
+    .head{
+        color:#00215E;
+        text-align:center;
+        font-size:2rem;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 10px;
+      width: 400px;
+      display: inline-block;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+    .btnn{
+        font-size:1.5rem;
+        color:#00215E;
+       width:15rem;
+    }
+
+    .card-footer {
+      padding: 10px 20px;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+  </style>
+  <h4 class="head">Admin Dashboard</h4>
+<div class="card">
+  <img class="card-img" src="https://static.vecteezy.com/system/resources/previews/001/890/904/non_2x/female-and-male-nurse-and-doctors-with-uniforms-and-masks-design-free-vector.jpg" alt="Card Image">
+  <div class="card-body">
+    <h5 class="card-title" >Doctors</h5>
+    <p class="card-text">Manage Doctors<br>You can [ Add , Edit , Remove ] a Doctor</p>
+  </div>
+  <div class="card-footer">
+      <%= button_to "View", doctors_path,method: :get ,class: "btn btnn btn-outline-success" %>
+  </div>
+</div>
+
+<div class="card">
+  <img class="card-img" src="https://english-blog.s3.amazonaws.com/uploads/2020/02/Order-medicines-for-treating-chronic-diseases-online-with-GoMedii.jpg" alt="Card Image">
+  <div class="card-body">
+    <h5 class="card-title">Medicines</h5>
+       <p class="card-text">Manage Medicines<br>You can [ Add , Edit , Remove ] a Medicine</p>
+  </div>
+  <div class="card-footer">
+    <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success" %>
+  </div>
+</div>
+
+<div class="card">
+  <img class="card-img" src="https://staranddaisy.in/wp-content/uploads/2022/06/order_track_5227-1.jpg" alt="Card Image">
+  <div class="card-body">
+    <h5 class="card-title">View Orders</h5>
+    <p class="card-text">As a Admin You can See<br>Customers Orders - [Medicine]</p>
+  </div>
+  <div class="card-footer">
+    <%= button_to "View", doctors_path,method: :get ,class: "btn btnn btn-outline-success" %>
+  </div>
+</div>
