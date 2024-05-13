@@ -1,15 +1,3 @@
 class DropCartItems < ActiveRecord::Migration[7.1]
-  def up
-     drop_table :cart_items
-  end
  
-  def down
-     create_table :cart_items do |t|
-       t.references :cart, null: false, foreign_key: true
-       t.references :item, null: false, foreign_key: true
-       t.integer :quantity
- 
-       t.timestamps
-     end
-  end
  end

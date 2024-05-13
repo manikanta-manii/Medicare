@@ -70,6 +70,7 @@
             processData: false, 
             contentType: false,
             success: function (result) {
+              console.log(result);
                editButton.closest("tr").html(result);
                 $("#editDoctorModal").modal("hide");
                

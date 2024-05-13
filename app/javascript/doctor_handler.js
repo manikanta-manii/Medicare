@@ -28,7 +28,7 @@ $(document).ready(function () {
     event.preventDefault();
     var deleteButton = $(this);
     var docObject = deleteButton.data("doc");
-    const doctor_id = docObject.user_id;
+    const doctor_id = docObject.id;
     $.ajax({
       url: `http://localhost:3000/doctors/${doctor_id}`,
       method: "DELETE",

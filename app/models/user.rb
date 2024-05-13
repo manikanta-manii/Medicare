@@ -2,13 +2,15 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one_attached :avatar
+
   has_one :patient,dependent: :destroy,inverse_of: :user
   has_one :doctor,dependent: :destroy,inverse_of: :user
 
-  validates :name, presence: true, length: { minimum: 2, maximum: 20 , message: "Phone number must be a 10-digit number"}
-  validates :phone_number, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }
-   
+  validates :name, presence: true
+  validates :phone_number, presence: true,numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }
+  
   accepts_nested_attributes_for :patient
+
   devise :database_authenticatable, :registerable,:recoverable, :rememberable, :validatable
   enum role: [:admin, :doctor, :patient]
 

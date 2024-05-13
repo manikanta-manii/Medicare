@@ -3,6 +3,7 @@ class DoctorsController < ApplicationController
     before_action :authenticate_user!
     before_action :slot_allotment ,only: %i[show slot_display]
     before_action :get_formated_date ,only: %i[show]
+    before_action :set_user ,only: %i[update destroy] 
 
     def index
         @q = Doctor.includes(:specialization , :user).ransack(params[:q])
@@ -13,28 +14,31 @@ class DoctorsController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-             @doctor = @user.create_doctor(doctor_params)  
+            @doctor = @user.create_doctor(doctor_params)  
              if @doctor.save
                 render partial: "doctors/each_doctor",locals: {doc:@doctor}
              else
                 render_errors(@doctor)             
              end
         else
-            render_errors(@user)       
+            render_errors(@user)
         end
     end
 
     def update
-        #debugger
-        @doctor = Doctor.find_by(id: params[:id])
-        @user = User.find_by(id: @doctor.user_id)
-        @user.update(user_params)
-        @doctor.update(doctor_params)
-        render partial: "admin/manage_doctors/each_doctor",locals:{doc:@doctor}
+        if @user.update(user_params)
+            if @doctor.update(doctor_params)
+                render partial: "admin/manage_doctors/each_doctor",locals:{doc:@doctor}
+            else
+                render_errors(@doctor)
+            end
+        else
+        render_errors(@user)
+        end   
     end
 
     def destroy
-        User.find(params[:id]).destroy      
+        @user.destroy
     end
     
     def show
@@ -76,6 +80,11 @@ class DoctorsController < ApplicationController
 
     def render_errors(record)
         render partial: "doctors/errors", locals: { record: record }
+    end
+
+    def set_user
+        @doctor = Doctor.find_by(id: params[:id])
+        @user = User.find_by(id: @doctor.user_id)
     end
        
 end

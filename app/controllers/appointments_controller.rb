@@ -21,7 +21,6 @@ class AppointmentsController < ApplicationController
     end
     
     def update
-        #debugger
           if @appointment.update(appointment_params)
             redirect_to request.referer, notice: "Appointment updated successfully"
           else

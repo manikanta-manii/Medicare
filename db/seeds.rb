@@ -9,9 +9,9 @@
 # #   end
 
 User.create(name:"Admin",phone_number:"9999999999",email:"admin@gmail.com",password:"Admin@123",role:0);
-# Specialization.create(name:"Cardiologist",description:"Heart related doctor !");
-# Specialization.create(name:"Neurologist",description:"A neurologist treats conditions of the nerves, spine, and brain");
-# Specialization.create(name:"General Physician",description:" a primary care doctor who specializes in family medicine and can treat a wide range of physical and mental problems for patients of all ages and genders.");
-# Specialization.create(name:"Gynecologist",description:"A gynecologist diagnoses and treats issues with female reproductive organs. ");
+Specialization.create(name:"Cardiologist",description:"Heart related doctor !");
+Specialization.create(name:"Neurologist",description:"A neurologist treats conditions of the nerves, spine, and brain");
+Specialization.create(name:"General Physician",description:" a primary care doctor who specializes in family medicine and can treat a wide range of physical and mental problems for patients of all ages and genders.");
+Specialization.create(name:"Gynecologist",description:"A gynecologist diagnoses and treats issues with female reproductive organs. ");
 
 

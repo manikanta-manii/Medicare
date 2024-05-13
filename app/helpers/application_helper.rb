@@ -38,7 +38,7 @@ module ApplicationHelper
     end
 
     def get_cart_items_count
-        if active_user.patient.orders.count!=0
+        if active_user.patient && active_user.patient.orders.count!=0
             unless active_user.patient.orders.last.ordered
                 @order =get_last_order
                 return @order.order_items.count
