@@ -4,8 +4,8 @@ include OrderItemsHelper
     before_action :set_address ,only: [:update]
 
     def index
-        @all_orders = Order.paginate(page: params[:page], per_page: 10)
-        @orders = active_user.patient.orders if active_user.patient?
+        @all_orders = Order.paginate(page: params[:page], per_page: 10).where(ordered: true)
+        @orders = active_user.patient.orders.where(ordered: true) if active_user.patient?
     end
 
     def show

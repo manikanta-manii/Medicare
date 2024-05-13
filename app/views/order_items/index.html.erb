@@ -1,15 +1,19 @@
+  <style>
+    tr{
+      width:100px;
+    }
+    .increment{
+        
+    }
+    .decrement{
+
+    }
+  </style>
   <span id="display-div"></span>
   <div id="order-item-div">
    <% if @order_items %>
 <table>
-  <thead>
-    <tr>
-      <th>Medicine</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+ 
   <tbody>
 
     <% @order_items.each do |item| %>

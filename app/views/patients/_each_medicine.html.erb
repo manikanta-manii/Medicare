@@ -1,19 +1,26 @@
-<style>
-
-.img-custom{
-    height:200px;
-    width:200px;
-}
-
-</style>
-<tr>
-        <td><%= image_tag med.image.attached? ? med.image : 'avatars/default_avatar.png', class:"img-custom" %></td>
-        <td><%= med.name %></td>
-        <td><%= med.description %></td>
-        <td><%= med.dosage %></td>
-        <td><%= med.price %></td>
-        <td><%= med.need_prescription %></td>
-        <td>
-          <button data-medicine-id="<%= med.id %>" class="btn btn-success add-to-cart-btn">Add to cart</button>
-        </td>
-</tr>
+<div class="doctor-card">
+        <div class="avatar-container">
+          <%= image_tag medicine.image.attached? ? medicine.image : 'avatars/default_avatar.png', class: "doctor-image" %>
+        </div>
+        <div class="info-container">
+          <h3><%= medicine.name %></h3>
+          <p><%= medicine.description %></p>
+          <div class="ratings-and-fee">
+            <span class="dosage">
+              <%= medicine.dosage %> mg
+            </span>
+            <span class="consultation-fee">
+              <i class="fas fa-rupee-sign"></i> <%= medicine.price %>
+            </span>
+          </div>
+          <% if medicine.quantity < 1 %>
+            <button class="btn btn-warning btn-block disabled">Out of stock</button>
+          <% else %>
+            <% if if_medicine_exist(medicine.id) %>
+              <button class="btn btn-success btn-block disabled">Added to cart</button>
+            <% else %>
+              <%= button_to "Add to Cart", order_items_path, method: :post, class: "add-button btn btn-info btn-block", params: { medicine_id: medicine.id, price: medicine.price } %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
