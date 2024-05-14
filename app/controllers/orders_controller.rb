@@ -28,7 +28,7 @@ include OrderItemsHelper
                 flash[:notice] = "Order succesfully placed"
                 render partial:"shared/flash_messages"
                 update_medicine_quantities(@order)
-            end           
+            end 
        else
             @order.update(address_id:@address_id , total_price: get_total_price, ordered: true);
             flash[:notice] = "Order succesfully placed"

@@ -271,8 +271,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    shoulda-matchers (6.2.0)
-      activesupport (>= 5.2.0)
     slotty (1.0.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -339,7 +337,6 @@ DEPENDENCIES
   ransack!
   rspec-rails
   selenium-webdriver
-  shoulda-matchers (~> 6.0)
   slotty
   sprockets-rails
   stimulus-rails
@@ -350,7 +347,7 @@ DEPENDENCIES
   will_paginate-bootstrap4
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.0.2p107
 
 BUNDLED WITH
    2.5.7

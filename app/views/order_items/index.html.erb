@@ -11,7 +11,7 @@
   </style>
   <span id="display-div"></span>
   <div id="order-item-div">
-   <% if @order_items %>
+   <%if  @order_items.count>0 %>
 <table>
  
   <tbody>
@@ -39,16 +39,16 @@
 </table>
 <br><br>
 
-   <%else%>
-   CART IS EMPTY
-   <%end%>
-<% if order_exists %>
 <hr>
 <div id = "checkout">
 <%= render partial: "place_order" %>
 </div>
-<%end%>
+   <%else%>
+   CART IS EMPTY
+   <%end%>
 </div>
+
+
 <script>
 
 $(document).ready(function () {
@@ -194,6 +194,7 @@ $.ajax({
     var count = parseInt($("#count").text());
     ($("#count").text(count-1));
     deleteButton.closest("tr").remove();
+    window.location.reload();
   },
   error: function (xhr, status, error) {
     console.error(xhr.responseText); 
@@ -203,7 +204,7 @@ $.ajax({
 });
 
     $('#submitButton').click(function(event) {
-         event.preventDefault(); // Prevent default form submission behavior
+         event.preventDefault(); 
      var orderId = $('#submitButton').data('order-id');
       const deliveryAddressSelect = $('#deliveryAddress');
       const newAddressFields = $('#newAddressFields');
@@ -268,8 +269,8 @@ $.ajax({
     console.log(result);
     document.getElementById("close-btn").click();
 
-    $("#display-div").html(result);
-      $("#order-item-div").html("CART IS EMPTY");
+      $("#display-div").html(result);
+      window.location.reload();
   },
   error: function (xhr, status, error) {
     console.error(xhr.responseText); 

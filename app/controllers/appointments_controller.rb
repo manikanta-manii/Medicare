@@ -2,7 +2,8 @@ class AppointmentsController < ApplicationController
     skip_before_action :verify_authenticity_token,only: %i[create]
     before_action :set_appointment, only: %i[show edit update destroy download]
     after_action :update_doctor_rating, only: [:update]
-
+    before_action :authenticate_user!
+    
     def index
         @all_appointments = active_user.patient? ? active_user.patient.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10) : active_user.doctor.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10)
     end

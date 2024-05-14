@@ -1,6 +1,7 @@
 class MedicinesController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:create ,:destroy ,:update]
     before_action :set_medicine, only: [:destroy , :update]
+    before_action :authenticate_user!
 
     def index
       @medicines = Medicine.all
@@ -16,12 +17,19 @@ class MedicinesController < ApplicationController
     end
 
     def update
-      @medicine.update(medicine_params)
-      render partial: "admin/manage_medicines/each_medicine",locals:{medicine:@medicine}
+      if @medicine.update(medicine_params)
+        render partial: "admin/manage_medicines/each_medicine",locals:{medicine:@medicine}
+      else
+        render partial: "shared/errors",locals:{record:@medicine}
+      end
     end
 
     def destroy
-      @medicine.destroy      
+      if @medicine.destroy  
+        render plain: "medicine deleted"
+      else
+        render plain: "medicine deletion failed"
+      end    
     end
 
     private

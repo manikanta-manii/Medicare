@@ -38,7 +38,11 @@ class DoctorsController < ApplicationController
     end
 
     def destroy
-        @user.destroy
+        if @user.destroy
+            render plain:"deleted"
+        else
+            render plain:"deletion failed"
+        end
     end
     
     def show

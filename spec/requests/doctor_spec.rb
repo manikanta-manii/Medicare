@@ -7,7 +7,7 @@ RSpec.describe "Doctors", type: :request do
 
     before(:each) do
       sign_in user
-    end 
+    end
 
     it "is successful request" do 
       get doctors_path
@@ -120,10 +120,10 @@ RSpec.describe "Doctors", type: :request do
     end
 
     describe "GET /show" do
-      let
-      let(:doctor) { FactoryBot.build(:doctor,) }
+      let(:user) { FactoryBot.create(:user) }
+      let(:doctor) { FactoryBot.create(:doctor) }
       before(:each) do
-        sign_in(doctor)
+        sign_in(user)
       end
   
       it "is successful request" do
@@ -131,6 +131,25 @@ RSpec.describe "Doctors", type: :request do
         expect(response).to have_http_status(:success)
       end
     end
+
+    describe "POST /slots/display" do
+      let(:user) { FactoryBot.create(:user) }
+      let(:doctor) { FactoryBot.create(:doctor) }
+      before(:each) do
+        sign_in(user)
+      end
+  
+      it "is successful request" do
+        post slots_display_path(
+          {
+            selected_day: Time.now().day,
+            id: doctor.id
+          }
+        )
+         expect(response).to have_http_status(:success)
+      end
+    end
+
      
   end
 end

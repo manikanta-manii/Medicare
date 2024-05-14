@@ -21,7 +21,7 @@ class OrderItemsController < ApplicationController
    end
 
    def update
-      
+      debugger
       @order_item = OrderItem.find_by(id: params[:id])
       @order = Order.find_by(id: @order_item.order_id)
 
