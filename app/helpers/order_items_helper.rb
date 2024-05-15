@@ -1,7 +1,7 @@
 module OrderItemsHelper
 
     def current_order
-        if active_user.patient.orders.count!=0
+        if active_user.patient && active_user.patient.orders.count!=0
             if active_user.patient.orders.last.ordered
                 order = active_user.patient.orders.new
                 order.save
@@ -18,7 +18,7 @@ module OrderItemsHelper
 
     def if_medicine_exist(med_id)
         if order_exists
-            if active_user.patient.orders.last.order_items.where(medicine_id: med_id).count == 0
+            if active_user.patient && active_user.patient.orders.last.order_items.where(medicine_id: med_id).count == 0
                 return false
             else
                 return true
@@ -29,7 +29,7 @@ module OrderItemsHelper
     end
 
     def order_exists
-        if active_user.patient.orders.count!=0
+        if active_user.patient && active_user.patient.orders.count!=0
             unless active_user.patient.orders.last.ordered
                  order = active_user.patient.orders.last
             end

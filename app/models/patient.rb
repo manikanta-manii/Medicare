@@ -14,11 +14,5 @@ class Patient < ApplicationRecord
   
   has_many :orders,dependent: :destroy
 
-  private
-
-  def dob_in_past
-    if dob.present? && dob.future?
-      errors.add(:dob, "can't be in the future")
-    end
-  end
+ 
 end

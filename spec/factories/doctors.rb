@@ -1,9 +1,9 @@
 FactoryBot.define do
     factory :doctor do
-        rating { 0.0 }
-        years_of_experiance { 2 } 
-        consultation_fee {150}
-        specialization_id {create(:specialization).id}
-        user_id {create(:user).id}
-    end
+        rating { Faker::Number.decimal(l_digits: 1) }
+        years_of_experiance { Faker::Number.between(from: 1, to: 50) }
+        consultation_fee { Faker::Number.between(from: 101, to: 1500) }
+        association :user
+        association :specialization
+      end
 end

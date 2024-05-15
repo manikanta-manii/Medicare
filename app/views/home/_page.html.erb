@@ -1,71 +1,5 @@
-   <style>
-    .image-container {
-            width: 100%;
-            height: 33rem;
-            display:flex;
-        }
-        
-        img {
-            height: 100%;
-            width:50%;
-            border-radius: 1rem;
-            margin:2px;
-        }
- .card-title{
-        color: #00215E; 
-    }
-    .head{
-        
-        color:#00215E;
-        font-size:2rem;
-        margin-left:1rem;
-    }
-
-    .card-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      overflow: hidden;
-      margin: 10px;
-      width: 400px;
-      display: inline-block;
-    }
-
-    .card-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 20px;
-    }
-    .btnn{
-        font-size:1.5rem;
-        color:#00215E;
-       width:15rem;
-    }
-
-    .card-footer {
-      padding: 10px 20px;
-      background-color: #f5f5f5;
-      text-align: center;
-    }
-    #services-div{
-       
-        display:flex;
-     
-       
-    }
-
-    </style>
-
- <div class="image-container">
+<%= stylesheet_link_tag "doctor_page" %>
+<div class="image-container">
         <img src="https://www.quickobook.com/uploads/media/1722-2022-06-02.png" alt="Description of the image">
         <img src="https://chandanpharmacy.com/Content/img/medicine-online.jpg" alt="second image">
  </div>
@@ -100,7 +34,7 @@
        <p class="card-text">See the Appointment history </p>
   </div>
   <div class="card-footer">
-    <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success" %>
+    <%= button_to "View", appointments_path,method: :get ,class: "btn btnn btn-outline-success" %>
   </div>
 </div> 
 
@@ -111,9 +45,8 @@
        <p class="card-text">see order details and keep track.</p>
   </div>
   <div class="card-footer">
-    <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success" %>
+    <%= button_to "View", orders_path,method: :get ,class: "btn btnn btn-outline-success" %>
   </div>
 </div> 
-
 
 </div>

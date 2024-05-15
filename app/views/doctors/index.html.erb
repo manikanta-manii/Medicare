@@ -1,3 +1,4 @@
+<%= javascript_include_tag "doctor_handler.js" %>
 <% check_if_current_user_is_admin do %>
   <div class="admin-section">
     <%= render partial: "admin/manage_doctors/create_modal" %>
@@ -5,7 +6,7 @@
   </div>
 <% end %>
 
-<% check_if_current_user_is_patient do %>
+<% check_if_current_user_is_patient_or_none do %>
   <div class="patient-section">
     <%= render "patients/all_doctors", locals: { doctor: @doctors } %>
   </div>

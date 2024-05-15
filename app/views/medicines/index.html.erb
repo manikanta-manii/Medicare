@@ -1,8 +1,9 @@
+<%= javascript_include_tag "medicine_handler" %>
 <% check_if_current_user_is_admin do %>
     <%= render partial:"admin/manage_medicines/create_modal"%> 
     <%= render partial:"all_medicines" ,locals:{medicine:@medicines}%>
 <%end%>
 
-<% check_if_current_user_is_patient do %>
+<% check_if_current_user_is_patient_or_none do %>
     <%= render partial:"patients/all_medicines" ,locals:{medicine:@medicines}%>
 <%end%>

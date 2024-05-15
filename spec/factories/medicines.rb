@@ -1,10 +1,10 @@
 FactoryBot.define do
     factory :medicine do
-        name { "medicine" } 
-        description { Faker::Lorem.sentence(word_count: 3) }   
-        dosage {2}
-        price {20}
-        quantity {10}
-        need_prescription {false}   
-    end
+        name { Faker::Lorem.word }
+        description { Faker::Lorem.paragraph }
+        dosage { Faker::Lorem.word }
+        price { Faker::Number.between(from: 1, to: 100) }
+        quantity { Faker::Number.between(from: 10, to: 1000) }
+        need_prescription { Faker::Boolean.boolean }
+      end
 end

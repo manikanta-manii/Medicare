@@ -1,285 +1,46 @@
-  <style>
-    tr{
-      width:100px;
-    }
-    .increment{
-        
-    }
-    .decrement{
-
-    }
-  </style>
+  <%= javascript_include_tag "quantity_selector" %>
+<%= stylesheet_link_tag "order_page" %>
+  <div id="whole-page">
   <span id="display-div"></span>
   <div id="order-item-div">
-   <%if  @order_items.count>0 %>
-<table>
- 
-  <tbody>
-
-    <% @order_items.each do |item| %>
-      <tr>
-        <td><%= item.medicine.name %></td>
-        <td class="item-quantity"><%= item.quantity %></td>
-        <td class="item-price"><%= item.price %></td>
-                <td>
-          <div class="quantity-counter">
-            <button class="decrement" data-order-item-id="<%= item.id %>" data-med-price="<%= item.medicine.price %>" >-</button>
-            <span class="quantity">
-                <%= item.quantity%>
-            </span>
-            <button class="increment" data-med-quantity="<%= item.medicine.quantity %>" data-med-price="<%= item.medicine.price %>" data-order-item-id="<%= item.id %>" >+</button>
-          </div>
-        </td>
-         <td>
-        <button class="delete btn btn-danger" data-order-item-id="<%= item.id %>" >Remove</button>
-        </td>
-      </tr>
+    <% if @order_items && @order_items.count > 0 %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |item| %>
+            <tr>
+              <td><%= item.medicine.name %></td>
+              <td class="item-quantity"><%= item.quantity %></td>
+              <td class="item-price"><%= item.price %>.Rs</td>
+              <td>
+                <div class="quantity-counter">
+                  <button class="btn btn-secondary decrement" data-order-item-id="<%= item.id %>" data-med-price="<%= item.medicine.price %>">-</button>
+                  <span class="quantity"><%= item.quantity %></span>
+                  <button class="btn btn-secondary increment" data-med-quantity="<%= item.medicine.quantity %>" data-med-price="<%= item.medicine.price %>" data-order-item-id="<%= item.id %>">+</button>
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-danger delete" data-order-item-id="<%= item.id %>">Remove</button>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div id="checkout">
+        <%= render partial: "place_order" %>
+      </div>
+    <% else %>
+          <div>
+            <h3>Cart is Empty</h3>
+            <img src="https://cdni.iconscout.com/illustration/free/thumb/free-empty-cart-4085814-3385483.png?f=webp",alt="cart is empty">
+         </div>
     <% end %>
-  </tbody>
-</table>
-<br><br>
-
-<hr>
-<div id = "checkout">
-<%= render partial: "place_order" %>
-</div>
-   <%else%>
-   CART IS EMPTY
-   <%end%>
-</div>
-
-
-<script>
-
-$(document).ready(function () {
-
-   
-  $('#deliveryAddress').on('click', function() {
-    if (this.value === 'new') {
-      $('#newAddressFields').show();
-    } else {
-      $('#newAddressFields').hide();
-    }
-  }); 
-
-
-  $(".quantity-counter .increment").click(function () {
-    var currentQuantity = parseInt($(this).siblings(".quantity").text());
-    var maxQuantity = parseInt($(this).data("med-quantity"));
-    var orderItemId = parseInt($(this).data("order-item-id"));
-    var medPrice = parseInt($(this).data("med-price"));
-    console.log(`Price - ${medPrice}`);
-    console.log(`Increment - ${orderItemId}`);
-
-    if (currentQuantity < maxQuantity) {
-      $(this)
-        .siblings(".quantity")
-        .text(currentQuantity + 1);
-
-        $(this)
-          .closest("tr")
-          .find(".item-quantity")
-          .text(currentQuantity + 1);
-
-          newPrice = parseInt($(this).siblings(".quantity").text()) * medPrice;
-          console.log(`NEW PRICE AFTER INCREMNET ${newPrice}`);
-
-          $(this)
-          .closest("tr")
-          .find(".item-price")
-          .text(newPrice);
-
-
-$.ajax({
-  url: `http://localhost:3000/order_items/${orderItemId}`,
-  method: "PATCH",
-  data: { quantity: "increment"},
-  dataType: "html",
-  beforeSend: function (xhr) {
-      xhr.setRequestHeader(
-        "X-CSRF-Token",
-        $('meta[name="csrf-token"]').attr("content")
-      );
-    },
-  success: function (result) {
-    console.log(result);
-    $("#total_price").html(result);
-  
-  },
-  error: function (xhr, status, error) {
-    console.error(xhr.responseText); 
-  }
-});
-
-
-      }
-});
-
-
-  $(".quantity-counter .decrement").click(function () {
-    var currentQuantity = parseInt($(this).siblings(".quantity").text());
-     var orderItemId = parseInt($(this).data("order-item-id"));
-     var medPrice = parseInt($(this).data("med-price"));
-     console.log(`Price - ${medPrice}`);
-     console.log(`DECREMENT - ${orderItemId}`);
-
-     updateData = {
-          action: "decrement",
-     }
-
-    if (currentQuantity > 1) {
-      $(this)
-        .siblings(".quantity")
-        .text(currentQuantity - 1);
-
-         $(this)
-          .closest("tr")
-          .find(".item-quantity")
-          .text(currentQuantity - 1);
-        newPrice = parseInt($(this).siblings(".quantity").text()) * medPrice;
-        console.log(`NEW PRICE AFTER INCREMNET ${newPrice}`);
-
-        $(this)
-          .closest("tr")
-          .find(".item-price")
-          .text(newPrice);
-
-        //ajax call
-
-        $.ajax({
-  url: `http://localhost:3000/order_items/${orderItemId}`,
-  method: "PATCH",
-  data: { quantity: "decrement"},
-  dataType: "html",
-  beforeSend: function (xhr) {
-      xhr.setRequestHeader(
-        "X-CSRF-Token",
-        $('meta[name="csrf-token"]').attr("content")
-      );
-    },
-  success: function (result) {
-    console.log(result);
-  $("#total_price").html(result);
-  },
-  error: function (xhr, status, error) {
-    console.error(xhr.responseText); 
-  }
-});
-    }
-    
-  });
-
-
-
-  $("button.delete").click(function () {
-
-    var orderItemId = parseInt($(this).data("order-item-id"));
-    console.log(orderItemId);
-    var deleteButton = $(this);
-
-
-$.ajax({
-  url: `http://localhost:3000/order_items/${orderItemId}`,
-  method: "DELETE",
-  dataType: "html",
-  beforeSend: function (xhr) {
-      xhr.setRequestHeader(
-        "X-CSRF-Token",
-        $('meta[name="csrf-token"]').attr("content")
-      );
-    },
-  success: function (result) {
-    console.log("CART ITEM REMOVED");
-    $("#checkout").html(result);
-    var count = parseInt($("#count").text());
-    ($("#count").text(count-1));
-    deleteButton.closest("tr").remove();
-    window.location.reload();
-  },
-  error: function (xhr, status, error) {
-    console.error(xhr.responseText); 
-  }
-});
-
-});
-
-    $('#submitButton').click(function(event) {
-         event.preventDefault(); 
-     var orderId = $('#submitButton').data('order-id');
-      const deliveryAddressSelect = $('#deliveryAddress');
-      const newAddressFields = $('#newAddressFields');
-      const prescriptionInput = $('#prescription');
-
-      let selectedValue = null;
-      let newAddress = null;
-      let prescriptionFile = null;
-
-      if (deliveryAddressSelect.length) {
-        selectedValue = deliveryAddressSelect.val();
-      }
-
-      if (newAddressFields.css('display') !== 'none') {
-        const countryInput = $('#country').val();
-        const stateInput = $('#state').val();
-        const cityInput = $('#city').val();
-        const streetInput = $('#street').val();
-
-        newAddress = {
-          country: countryInput,
-          state: stateInput,
-          city: cityInput,
-          street: streetInput,
-        };
-      }
-
-      if (prescriptionInput.length) {
-        prescriptionFile = prescriptionInput[0].files[0];
-      }
-
-      // You can now use the collected data (selectedValue, newAddress, prescriptionFile)
-      // for further processing, for example, sending it to the server with AJAX.
-
-      console.log("Selected Address:", selectedValue);
-      console.log("New Address:", newAddress);
-      console.log("Prescription File:", prescriptionFile);
-      
-      const formData = new FormData();
-      formData.append('prescription', prescriptionFile);
-      formData.append('old',selectedValue);
-      for (const key in newAddress) {
-  if (newAddress.hasOwnProperty(key)) { // Optional check for own properties
-    formData.append(`new[${key}]`, newAddress[key]);
-  }
-}
-
-      
-        $.ajax({
-  url: `http://localhost:3000/orders/${orderId}`,
-  method: "PATCH",
-  data: formData,
-  contentType: false,
-  processData: false, 
-  beforeSend: function (xhr) {
-      xhr.setRequestHeader(
-        "X-CSRF-Token",
-        $('meta[name="csrf-token"]').attr("content")
-      );
-    },
-  success: function (result) {
-    console.log(result);
-    document.getElementById("close-btn").click();
-
-      $("#display-div").html(result);
-      window.location.reload();
-  },
-  error: function (xhr, status, error) {
-    console.error(xhr.responseText); 
-  }
-});
-    
-  
-    });
-
-});
-
-</script>
+  </div>
+  </div>

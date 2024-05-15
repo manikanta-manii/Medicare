@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Medicines", type: :request do
 
   describe "GET /index" do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { FactoryBot.create(:user,role: "patient") }
 
     before(:each) do
       sign_in user

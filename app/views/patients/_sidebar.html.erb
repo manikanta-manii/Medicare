@@ -45,7 +45,7 @@
 <li class="nav-item">
   <%= link_to order_items_path, class: "nav-link text-light position-relative" do %>
     <i class="fass fas fa-shopping-cart"></i> <span>Cart</span>
-    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle" id="cart-count">
       <%= get_cart_items_count %>
     </span>
   <% end %>

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col text-center">
-    <h4 class="mb-3">Morning Slots</h4>
     <% morning_slots = @available_slots.select { |slot| slot.hour < 12 } %>
+    <h4 class="mb-3">Morning Slots: <%= morning_slots.count%></h4>
     <% morning_slots.each do |slot| %>
       <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
@@ -9,8 +9,8 @@
     <% end %>
   </div>
   <div class="col text-center">
-    <h4 class="mb-3">Afternoon Slots</h4>
-    <% afternoon_slots = @available_slots.select { |slot| slot.hour >= 12 && slot.hour < 17 } %>
+    <% afternoon_slots = @available_slots.select { |slot| slot.hour >= 12 && slot.hour < 17 } %>  
+    <h4 class="mb-3">Afternoon Slots: <%= afternoon_slots.count%></h4>
     <% afternoon_slots.each do |slot| %>
       <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
@@ -18,8 +18,8 @@
     <% end %>
   </div>
   <div class="col text-center">
-    <h4 class="mb-3">Evening Slots</h4>
     <% evening_slots = @available_slots.select { |slot| slot.hour >= 17 } %>
+    <h4 class="mb-3">Evening Slots: <%= evening_slots.count%></h4>
     <% evening_slots.each do |slot| %>
       <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>

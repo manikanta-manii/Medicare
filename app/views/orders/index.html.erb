@@ -1,23 +1,36 @@
 <style>
-  .prescription{
-    height:300px;
-    width:300px;
+  .prescription-image {
+    max-width: 100px; 
+    max-height: 100px; 
   }
 </style>
-
-<% if active_user.admin?  %>
-    <%= render partial:"admin/track_orders/all_orders"%>
-<%else%>
-<h1>Your orders</h1>
-<%@orders.each do |order|%>
-<%= order.id %>
-<% if order.prescription.attached? %>
-<%= image_tag order.prescription ,class:"prescription"%>
-<%else%>
-<p>no prescription</p>
-<%end%>
-<%= button_to "view", order_path(order),method: :get %><br>
-<hr>
-<%end%>
-
-<%end%>
+<% if active_user.admin? %>
+  <%= render partial: "admin/track_orders/all_orders" %>
+<% else %>
+  <div class="container">
+    <h1>Your orders</h1>
+    <table class="table">
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td>
+              Order ID: <%= order.id %>
+            </td>
+            <td>
+              <% if order.prescription.attached? %>
+                <%= image_tag order.prescription, class: "img-fluid prescription-image", alt: "Prescription" %>
+              <% else %>
+                <p>No prescription</p>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to "View", order_path(order), class: "btn btn-primary", method: :get %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+     <%= will_paginate @orders , renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+ 
+<% end %>

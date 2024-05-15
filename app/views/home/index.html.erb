@@ -1,14 +1,15 @@
-<%if current_user%>
-   <%if current_user.patient? %>
+<%check_user_signed_in do %>
+   <% check_if_current_user_is_patient do%>
       <%= render partial:"home/page"%>
    <%end%>
-   <%if current_user.doctor? %>
+   <%check_if_current_user_is_doctor do%>
       <%= render partial: "doctors/dashboard" %>
    <%end%>
-   <%if current_user.admin?   %>
+   <%check_if_current_user_is_admin do %>
     <%= render partial: "admin/dashboard" %>
    <%end%>
-<%else%>
+<%end%>
+<%check_user_not_signed_in do %>
   <%= render partial:"home/page"%>
 <%end%>
 

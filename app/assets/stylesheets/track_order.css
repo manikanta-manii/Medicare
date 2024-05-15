@@ -1,0 +1,64 @@
+
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: #DFF5FF;
+    font-family: Arial, sans-serif;
+  }
+  table {
+    width: 100%;
+     text-align: center;
+    border-collapse: collapse;
+    border: 1px solid #40A2E3;
+  }
+  th, td {
+     text-align: center;
+    border: 1px solid #40A2E3;
+    padding: 8px;
+  }
+  th {
+    background-color: #40A2E3;
+    color: #fff;
+  }
+  td {
+    background-color: #fff;
+  }
+  
+ .order-items-container {
+   display: flex;
+   flex-wrap: wrap;
+ }
+ 
+ 
+ .order-item-card {
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   padding: 16px;
+   margin: 8px;
+   width: 30rem;
+   height:10rem;
+ }
+ 
+ .order-item-card h3 {
+   margin-top: 0;
+ }
+ 
+ .order-item-card p {
+   margin: 8px 0;
+ }
+ h3{
+     color:#00215E;
+ }
+ .prescription-image {
+   height: 300px;
+   width: 300px;
+ }
+ 
+ .ps-div{
+     display:flex;
+     color:#00215E;
+    
+     font-size:2rem;
+     flex-direction:column;
+ }
+ 

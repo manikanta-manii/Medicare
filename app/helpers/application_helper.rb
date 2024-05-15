@@ -3,18 +3,40 @@ module ApplicationHelper
     def active_user
         @current_user ||= user_signed_in? ? current_user : nil
     end
+    
+    def check_user_signed_in 
+        if user_signed_in?
+            yield
+        end
+    end
+    
+    def check_user_not_signed_in 
+        unless user_signed_in?
+            yield
+        end
+    end
 
     def check_if_current_user_is_admin
-        if active_user.admin?
+        if user_signed_in? && active_user.admin?
             yield
         end
     end
 
     def check_if_current_user_is_patient
-        if active_user.patient?
+        if user_signed_in? && active_user.patient?
             yield
         end
     end
+    
+    def check_if_current_user_is_patient_or_none
+        unless user_signed_in?
+            yield
+        end
+        if user_signed_in? && active_user.patient?
+            yield
+        end    
+    end
+
     def check_if_current_user_is_doctor
         if active_user.doctor?
             yield

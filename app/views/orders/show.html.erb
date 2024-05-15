@@ -1,29 +1,33 @@
-<!-- orders/show.html.erb -->
-<% if active_user.admin?%>
+<% if active_user.admin? %>
   <%= render partial: "admin/track_orders/each_order_details" %>
-<%else%>
-<h1>Order Details</h1>
+<% else %>
+  <div class="container">
+    <h1>Order Details</h1>
 
-<p><strong>Order ID:</strong> <%= @order.id %></p>
-<p><strong>Order Status:</strong> <%= @order.ordered ? 'Ordered' : 'Not Ordered' %></p>
+    <p><strong>Order ID:</strong> <%= @order.id %></p>
+    <p><strong>Order Status:</strong> <%= @order.ordered ? 'Ordered' : 'Not Ordered' %></p>
+    <p><strong>Address:</strong> <%= "#{@address.country} , #{@address.state}, #{@address.city}, #{@address.street}"%></p>
 
-<h2>Order Items</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Medicine Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order_items.each do |order_item| %>
-      <tr>
-        <td><%= order_item.medicine.name %></td>
-        <td><%= order_item.quantity %></td>
-        <td><%= order_item.price %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%end%>
+    <div class="table-responsive">
+      <h2>Order Items</h2>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Medicine Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.medicine.name %></td>
+              <td><%= order_item.quantity %></td>
+              <td><%= order_item.price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

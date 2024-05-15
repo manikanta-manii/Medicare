@@ -44,4 +44,48 @@ $(document).ready(function () {
       },
     });
   });
+
+    $("#display-doctors-div").on("click", ".edit-button", function(event) {
+         event.preventDefault();
+         var editButton = $(this);
+         var doctorId = $(this).data('doctor-id');
+         var doctorName = $(this).data('doctor-name');
+         var doctorPhone = $(this).data('doctor-phone');
+         var doctorEmail = $(this).data('doctor-email');
+      
+         var doctorConsultationFee = $(this).data('doctor-consultation-fee');
+         var doctorYearsOfExperience = $(this).data('doctor-experience');
+   
+         $('#doctor_name').val(doctorName);
+         $('#doctor_email').val(doctorEmail);
+         $('#doctor_phone_number').val(doctorPhone);
+      
+         $('#doctor_consultation_fee').val(doctorConsultationFee);
+         $('#doctor_years_of_experience').val(doctorYearsOfExperience);
+         $('#editDoctorModal').modal('show');
+          
+          $("#edit_form").on("submit", function (e) {
+           e.preventDefault();
+           var formData = new FormData($("#edit_form")[0]);  
+           console.log(formData);
+             
+           $.ajax({
+               url: `http://localhost:3000/doctors/${doctorId}`,
+               method: "PATCH",
+               data: formData, 
+               dataType: "html",
+               processData: false, 
+               contentType: false,
+               success: function (result) {
+                 console.log(result);
+                  editButton.closest("tr").html(result);
+                   $("#editDoctorModal").modal("hide");
+                  
+               },
+           });
+           });     
+   
+         
+       });
+
 });

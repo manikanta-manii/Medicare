@@ -72,5 +72,16 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Raise error when a before_action's only/except options reference missing actions
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 =>  587,
+  :domain               => 'baci.lindsaar.net',
+  :user_name            => 'karna8722@gmail.com',
+  :password             => 'hboqodpfxujkaoil',
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  }
 
 end

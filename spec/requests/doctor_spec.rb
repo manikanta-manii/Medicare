@@ -47,7 +47,7 @@ RSpec.describe "Doctors", type: :request do
         name: user.name,
         email: nil,
       })
-      expect(response).to render_template("doctors/_errors")
+      expect(response).to render_template("shared/_errors")
     end
 
     it "render doctors/errors, when doctor creation failed" do
@@ -61,7 +61,7 @@ RSpec.describe "Doctors", type: :request do
         specialization_id: specialization.id
 
       })
-      expect(response).to render_template("doctors/_errors")
+      expect(response).to render_template("shared/_errors")
     end
 
   end
@@ -102,7 +102,7 @@ RSpec.describe "Doctors", type: :request do
           consultation_fee: "150",
           specialization_id: specialization.id
       })
-      expect(response).to render_template("doctors/_errors")
+      expect(response).to render_template("shared/_errors")
     end
 
     it "doctor updation fail" do 
@@ -116,7 +116,7 @@ RSpec.describe "Doctors", type: :request do
           consultation_fee: "1",
           specialization_id: specialization.id
       })
-      expect(response).to render_template("doctors/_errors")
+      expect(response).to render_template("shared/_errors")
     end
 
     describe "GET /show" do
