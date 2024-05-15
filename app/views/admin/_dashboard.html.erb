@@ -7,7 +7,7 @@
     <p class="card-text">Manage Doctors<br>You can [ Add , Edit , Remove ] a Doctor</p>
   </div>
   <div class="card-footer">
-      <%= button_to "View", doctors_path,method: :get ,class: "btn btnn btn-outline-success" %>
+      <%= button_to "View", doctors_path,method: :get ,class: "btn btnn btn-outline-success" ,id:"doctor-view-btn" %>
   </div>
 </div>
 
@@ -19,7 +19,7 @@
        <p class="card-text">Manage Medicines<br>You can [ Add , Edit , Remove ] a Medicine</p>
   </div>
   <div class="card-footer">
-    <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success" %>
+    <%= button_to "View", medicines_path,method: :get ,class: "btn btnn btn-outline-success",id:"medicine-view-btn" %>
   </div>
 </div>
 
@@ -31,6 +31,6 @@
     <p class="card-text">As a Admin You can See<br>Customers Orders - [Medicine]</p>
   </div>
   <div class="card-footer">
-    <%= button_to "View", orders_path,method: :get ,class: "btn btnn btn-outline-success" %>
+    <%= button_to "View", orders_path,method: :get ,class: "btn btnn btn-outline-success",id:"order-view-btn" %>
   </div>
 </div>
