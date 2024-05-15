@@ -1,22 +1,4 @@
-<style>
- .fass {
-    font-size: 2rem;
-    margin-right: 5px;
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap:30px;
-    font-size: 18px; 
-    margin:0.5rem;
-  }
-
-  .nav-link i {
-    margin-right: 5px; 
-  }
-</style>
+<%= stylesheet_link_tag "patient_page" %>
 
 <li class="nav-item">
   <%= link_to doctors_path, method: :get, class: "nav-link text-light" do %>
