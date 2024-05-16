@@ -1,22 +1,24 @@
 class AppointmentsController < ApplicationController 
-    skip_before_action :verify_authenticity_token,only: :create
-    before_action :set_appointment, only: [:show, :edit ,:update, :destroy, :download]
-    after_action :update_doctor_rating, only: :update
     before_action :authenticate_user!
+    before_action :set_appointment, expect: [:create , :index]
+    after_action :update_doctor_rating, only: :update
+    skip_before_action :verify_authenticity_token,only: :create
     
     # displaying all appointments - based on active_user
     def index
+        # debugger
         @all_appointments = active_user.patient? ? active_user.patient.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10) : active_user.doctor.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10)
     end
     
     #creating a new appointment
     def create
+        #debugger
         @appointment = Appointment.new(appointment_params.merge(patient_id:active_user.patient.id))
-        if @appointment.save 
+        if @appointment.save
             AppointmentConfirmationMailer.appointment_confirmation_email(@appointment).deliver_later
             redirect_to appointments_path,notice: "Appointment Booked Successfully"
         else
-            redirect_to request.referer, alert: "Booking failed"
+            redirect_to doctor_path(params[:doctor_id]), alert: "Booking failed"
         end 
     end
     
@@ -27,8 +29,9 @@ class AppointmentsController < ApplicationController
     
     #updating the appointment - [REASON ,PRESCRIPTION]
     def update
+        # debugger
           if @appointment.update(appointment_params)
-            redirect_to request.referer, notice: "Appointment updated successfully"
+            redirect_to appointment_path, notice: "Appointment updated successfully"
           else
             redirect_to appointments_path, alert: "Appointment updation Failed"
           end
@@ -36,6 +39,7 @@ class AppointmentsController < ApplicationController
 
     #download the appointment details
     def download
+        debugger
         appointment_pdf = Services::AppointmentsService.new(@appointment).download
         if params[:preview].present?
           send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
@@ -46,8 +50,7 @@ class AppointmentsController < ApplicationController
         end 
     end
 
-    private
-      
+    private  
     #permiting the appointment params and converting rating to integer
     def appointment_params
         permitted_params = params.permit(:reason, :note , :status , :doctor_id ,:slot_time ,:feedback ,:rating)
@@ -57,7 +60,7 @@ class AppointmentsController < ApplicationController
     
     #finding the appointment by id
     def set_appointment
-        @appointment = Appointment.find_by(id:params[:id])
+        @appointment = Appointment.find_by(id: params[:id])
     end
 
     #updating the doctor rating

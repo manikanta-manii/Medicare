@@ -1,9 +1,9 @@
 FactoryBot.define do
    
   factory :patient do
-    gender { ['Male', 'Female'].sample }
+    gender { ['male', 'female'].sample }
     dob { Faker::Date.birthday }
-    blood_type { Faker::Blood.type }
+    blood_type { ['A+', 'A-'].sample }
     association :user
   end
 end

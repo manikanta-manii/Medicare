@@ -2,35 +2,33 @@ class OrderItemsController < ApplicationController
    include OrderItemsHelper
    before_action :authenticate_user!
    before_action :set_order, only: [:create, :update, :destroy]
-   
-   #displaying all order_items , if order exists
-   def index
-     return unless order_exists
-     @order = get_last_order
-     @order_items = @order.order_items
+   before_action :find_order_item , only: [:update,:destroy]
 
+   def index
+     if order_exists
+         @order = get_last_order
+         @order_items = @order.order_items
+     end
    end
  
    #creating the new order
    def create
      @order_item = @order.order_items.new(order_item_params)
      if @order_item.save
-       redirect_to request.referer, notice: "Item Added To Cart"
+       redirect_to medicines_path, notice: "Item Added To Cart"
      else
-      redirect_to request.referer, alert: "Failed to Add"
+      redirect_to root_path, alert: "Failed to Add"
      end
    end
   
    #quantity selector - INCREASE / DECREASE BY AJAX
    def update
-     @order_item = find_order_item
      adjust_quantity(params[:quantity])
      render_total_price
    end
  
    #removing the order_item by AJAX
    def destroy
-     @order_item = find_order_item
      @order_item.destroy
      render_destroy_response
    end
@@ -49,7 +47,7 @@ class OrderItemsController < ApplicationController
  
    #finding the order item
    def find_order_item
-     OrderItem.find_by(id: params[:id])
+     @order_item = OrderItem.find_by(id: params[:id])
    end
  
    #calling the different functions based on params
@@ -65,6 +63,7 @@ class OrderItemsController < ApplicationController
    def increment_quantity(order_item)
      new_price = order_item.medicine.price * (order_item.quantity + 1)
      order_item.update(price: new_price, quantity: order_item.quantity + 1)
+    #  debugger
    end
  
    #decreasing the quanity - AJAX CALL
@@ -82,6 +81,7 @@ class OrderItemsController < ApplicationController
    #AJAX SENDING RESPONSE
    def render_destroy_response
      total_price = @order.order_items.sum(:price)
+     debugger
      total_price == 0 ? (render plain: "no items") : (render partial: "order_items/place_order")
    end
 

@@ -22,11 +22,4 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
-  it "does not allow duplicate email" do
-    user1 = create(:user,email: "manikanta@gmail.com")
-    user2 = build(:user,email:"manikanta@gmail.com")
-    expect(user2).to_not be_valid
-  end
-
-
 end

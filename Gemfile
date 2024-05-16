@@ -71,6 +71,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "rspec-rails"
+  gem 'simplecov', require: false
 
 end
 
@@ -78,3 +79,4 @@ end
 gem 'will_paginate-bootstrap4'
 gem "faker", "~> 3.3"
 gem 'rails-controller-testing'
+
