@@ -39,7 +39,7 @@ class AppointmentsController < ApplicationController
 
     #download the appointment details
     def download
-        debugger
+        #debugger
         appointment_pdf = Services::AppointmentsService.new(@appointment).download
         if params[:preview].present?
           send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",

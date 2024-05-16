@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :doctor do
-        rating { Faker::Number.decimal(l_digits: 1) }
+        rating { }
         years_of_experiance { Faker::Number.between(from: 1, to: 50) }
         consultation_fee { Faker::Number.between(from: 101, to: 1500) }
         association :user

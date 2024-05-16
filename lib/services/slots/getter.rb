@@ -6,14 +6,14 @@ module Services
                 @params=params
             end
 
-            def self.call(slots,selected_day)
+            def call
               #debugger
                 i=0
                 count=0
                 available_slots=[]
-                while i < slots.length()
-                    if slots[i].day == selected_day.to_i
-                        available_slots<<slots[i]
+                while i < @params[:slots].length()
+                    if @params[:slots][i].day == @params[:selected_day].to_i
+                        available_slots<<@params[:slots][i]
                     end
                 i+=1
                 end

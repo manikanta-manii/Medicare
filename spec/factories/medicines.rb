@@ -1,5 +1,6 @@
 FactoryBot.define do
     factory :medicine do
+        
         name { Faker::Lorem.word }
         description { Faker::Lorem.paragraph }
         dosage { Faker::Lorem.word }

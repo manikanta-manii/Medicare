@@ -1,5 +1,5 @@
  <tr>
-        <td><%= image_tag medicine.image.attached? ? medicine.image : 'avatars/default_avatar.png', class: "avatar-image" %></td>
+        <td><%= image_tag medicine.medicine_picture.attached? ? medicine.medicine_picture : 'avatars/default_avatar.png', class: "avatar-image" %></td>
         <td><%= medicine.name %></td>
         <td><%= medicine.description %></td>
         <td><%= medicine.dosage %></td>

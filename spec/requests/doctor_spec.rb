@@ -3,11 +3,7 @@ require 'rails_helper'
 RSpec.describe "Doctors", type: :request do
 
   describe "GET /index" do
-    let(:user) { FactoryBot.create(:user) }
-
-    before(:each) do
-      sign_in user
-    end
+    
 
     it "is successful request" do 
       get doctors_path
@@ -119,6 +115,8 @@ RSpec.describe "Doctors", type: :request do
       expect(response).to render_template("shared/_errors")
     end
 
+    
+
     describe "GET /show" do
       let(:user) { FactoryBot.create(:user) }
       let(:doctor) { FactoryBot.create(:doctor) }
@@ -133,14 +131,16 @@ RSpec.describe "Doctors", type: :request do
     end
 
     describe "POST /slots/display" do
-      let(:user) { FactoryBot.create(:user) }
-      let(:doctor) { FactoryBot.create(:doctor) }
+      let(:user_p) {FactoryBot.create(:user, role: 2)}
+      let(:patient) {FactoryBot.create(:patient, user: user_p)}
+      let(:user_d) { FactoryBot.create(:user,role: 1) }
+      let(:doctor) { FactoryBot.create(:doctor,user: user_d) }
+      let!(:appointment) { FactoryBot.create(:appointment,doctor: doctor,patient: patient)}
       before(:each) do
-        sign_in(user)
+        sign_in(patient.user)
       end
-  
       it "is successful request" do
-        post slots_display_path(
+        post slots_display_path(doctor,
           {
             selected_day: Time.now().day,
             id: doctor.id
@@ -152,5 +152,34 @@ RSpec.describe "Doctors", type: :request do
 
      
   end
+
+  describe "DELETE /destroy" do
+    let(:admin) { FactoryBot.build(:user, role: 0)}
+    let(:user_d) { FactoryBot.create(:user,role: 1) }
+    let(:doctor) { FactoryBot.create(:doctor, user: user_d)}
+    before(:each) do
+      sign_in admin
+    end 
+    
+    it "medicine deletion on success" do
+      delete doctor_path(
+        doctor
+        )
+        expect(response).to have_http_status(200)
+        expect(response.body).to eq("deleted")
+    end
+
+    it "does not destroy the medicine if deletion fails" do
+      doctor
+      allow_any_instance_of(Doctor).to receive(:destroy).and_return(false)
+      expect {
+        delete doctor_path(doctor)
+      }.to_not change(Doctor, :count)
+
+      expect(response).to have_http_status(200)
+      expect(response.body).to eq("deletion failed")
+    end
+  end
+
 end
 

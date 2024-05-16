@@ -2,7 +2,7 @@ FactoryBot.define do
 
   factory :appointment do
     status { 'scheduled' }
-    slot_time { Faker::Time.forward(days: 5) }
+    slot_time { Time.now().to_s }
     reason { Faker::Lorem.sentence }
     feedback { nil }
     rating { nil }

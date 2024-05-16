@@ -6,7 +6,7 @@ module Services
                 @params=params
             end
 
-            def self.call
+            def call
                 formatted_dates = []
                 today = Date.today
                 3.times do |i|

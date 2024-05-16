@@ -66,6 +66,7 @@ class DoctorsController < ApplicationController
     
 
     def slot_allotment
+        # debugger
         @doctor = Doctor.find_by(id:params[:id])
         @slots = Services::SlotsService.new(params).display
     end

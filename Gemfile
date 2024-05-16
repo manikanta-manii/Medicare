@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.2.2"
+ruby "3.0.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -75,6 +75,7 @@ group :test do
 
 end
 
+gem 'activestorage', '~> 7.1.3'
 
 gem 'will_paginate-bootstrap4'
 gem "faker", "~> 3.3"

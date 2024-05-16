@@ -6,15 +6,16 @@ module Services
         end
 
         def display
+            # debugger
             Services::Slots::Displayer.new(@params).call
         end
         
         def availableSlots
-            Services::Slots::Getter.call(@params[:slots],@params[:selected_day])
+            Services::Slots::Getter.new(@params).call
         end
 
         def formatDates
-            Services::Slots::DatesFormater.call
+            Services::Slots::DatesFormater.new.call
         end
 
     end

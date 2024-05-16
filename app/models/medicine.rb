@@ -6,5 +6,5 @@ class Medicine < ApplicationRecord
 
     has_many  :order_items,dependent: :destroy
     has_many :orders , through: :order_items
-    has_one_attached :image
+    has_one_attached :medicine_picture
 end

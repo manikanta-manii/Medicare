@@ -1,7 +1,7 @@
 <%= form_with(url: medicines_path, method: :post, remote: true ,id:"medicine_form") do |f| %>
   <div class="form-group">
-    <%= f.label :image, "Medicine Image", class: "form-control-label" %>
-    <%= f.file_field :image, class: "form-control" ,required: true%>
+    <%= f.label :medicine_picture, "Medicine Image", class: "form-control-label" %>
+    <%= f.file_field :medicine_picture, class: "form-control" ,required: true%>
   </div>
 
   <div class="form-group">

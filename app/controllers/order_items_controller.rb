@@ -81,7 +81,6 @@ class OrderItemsController < ApplicationController
    #AJAX SENDING RESPONSE
    def render_destroy_response
      total_price = @order.order_items.sum(:price)
-     debugger
      total_price == 0 ? (render plain: "no items") : (render partial: "order_items/place_order")
    end
 

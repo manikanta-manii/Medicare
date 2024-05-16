@@ -105,6 +105,21 @@ RSpec.describe "Appointments", type: :request do
       expect(response).to redirect_to(appointment_path)
     end
 
+    it "updation of doctor rating" do 
+      patch appointment_path(
+        appointment,
+        {
+          doctor_id: doctor.id,
+          reason: "I have fever",
+          status: "completed",
+          slot_time: Time.now().to_s,
+          feedback: "Good",
+          rating: 5
+      })
+      # expect(response).to have_http_status(:success)
+      expect(response).to redirect_to(appointment_path)
+    end
+
     it "updation failure" do 
       patch appointment_path(
         appointment,
@@ -126,8 +141,8 @@ describe "GET /download" do
   let(:user_d) {FactoryBot.create(:user, role: 1)}
   let(:patient) {FactoryBot.create(:patient, user: user_p)}
   let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
-  let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor,status: "completed",note:"DOLO 650 <br> /Users/mparameswarappa/Downloads/dolo.jpg")}
- 
+  let!(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor,status: "completed",note:double(body: double(attachments: File.open('/home/manikanta/Desktop/Refactor/Medicare/app/assets/images/avatars/default_avatar.png', 'r'))))}
+  
   before(:each) do
     sign_in patient.user
   end 
@@ -150,5 +165,6 @@ describe "GET /download" do
     expect(response.content_type).to eq('application/pdf')
     response.headers['Content-Disposition'].split(";")[0] == "attachment"
 end
+
 end
 end

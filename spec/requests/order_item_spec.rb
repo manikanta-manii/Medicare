@@ -2,12 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "OrderItems", type: :request do
   describe "GET /index" do
-    let(:user_p) {FactoryBot.create(:user, role: 2)}
-    let(:patient) {FactoryBot.create(:patient, user: user_p)}
+    let!(:user_p) {FactoryBot.create(:user, role: 2)}
+    let!(:patient) {FactoryBot.create(:patient, user: user_p)}
+    let!(:medicine) {FactoryBot.create(:medicine)}
+    let!(:order) {FactoryBot.create(:order,patient: patient,ordered: false,total_price:0)}
+    let!(:order_item) {FactoryBot.create(:order_item,order: order,medicine: medicine,quantity: 2, price:medicine.price)}
     # let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor)}
 
     before(:each) do
-      sign_in patient.user
+      sign_in user_p
     end
 
     it "is a successful request" do 
@@ -15,6 +18,8 @@ RSpec.describe "OrderItems", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  
 
   describe "POST /create" do
     let(:user_p) {FactoryBot.create(:user, role: 2)}

@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/environment.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/environment.rb": {
         "lines": [
           null,
           1,
@@ -10,7 +10,7 @@
           1
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/application.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/application.rb": {
         "lines": [
           1,
           null,
@@ -41,7 +41,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/boot.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/boot.rb": {
         "lines": [
           1,
           null,
@@ -49,7 +49,7 @@
           1
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/environments/test.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/environments/test.rb": {
         "lines": [
           1,
           null,
@@ -117,7 +117,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/initializers/assets.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/initializers/assets.rb": {
         "lines": [
           null,
           null,
@@ -133,7 +133,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/initializers/content_security_policy.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/initializers/content_security_policy.rb": {
         "lines": [
           null,
           null,
@@ -144,355 +144,6 @@
           null,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/initializers/devise.rb": {
-        "lines": [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/initializers/filter_parameter_logging.rb": {
-        "lines": [
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/initializers/inflections.rb": {
-        "lines": [
           null,
           null,
           null,
@@ -511,7 +162,356 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/initializers/permissions_policy.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/initializers/devise.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/config/initializers/filter_parameter_logging.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/config/initializers/inflections.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/config/initializers/permissions_policy.rb": {
         "lines": [
           null,
           null,
@@ -528,7 +528,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/addresses.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/addresses.rb": {
         "lines": [
           1,
           1,
@@ -541,16 +541,16 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/appointments.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/appointments.rb": {
         "lines": [
           1,
           null,
           1,
-          4,
           6,
-          6,
-          6,
-          6,
+          8,
+          8,
+          8,
+          8,
           1,
           1,
           null,
@@ -559,38 +559,39 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/doctors.rb": {
-        "lines": [
-          1,
-          1,
-          12,
-          12,
-          12,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/medicines.rb": {
-        "lines": [
-          1,
-          1,
-          13,
-          13,
-          13,
-          13,
-          13,
-          13,
-          null,
-          null
-        ]
-      },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/order_items.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/doctors.rb": {
         "lines": [
           1,
           1,
           1,
+          15,
+          15,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/medicines.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          null,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/order_items.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           1,
           1,
           1,
@@ -598,7 +599,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/orders.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/orders.rb": {
         "lines": [
           1,
           1,
@@ -609,44 +610,44 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/patients.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/patients.rb": {
         "lines": [
           1,
           null,
           1,
-          17,
-          17,
-          17,
+          19,
+          19,
+          19,
           1,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/specializations.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/specializations.rb": {
         "lines": [
           1,
           null,
           1,
-          17,
-          17,
+          20,
+          20,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/factories/users.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/factories/users.rb": {
         "lines": [
           1,
           1,
-          52,
-          52,
-          50,
-          50,
-          28,
+          56,
+          56,
+          54,
+          54,
+          24,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/config/routes.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/config/routes.rb": {
         "lines": [
           1,
           1,
@@ -674,7 +675,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/user.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -702,25 +703,25 @@
           null,
           null,
           1,
-          54,
+          58,
           null,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/application_record.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/helpers/application_helper.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null,
           1,
-          1380,
+          1204,
           null,
           null,
           1,
@@ -749,10 +750,10 @@
           null,
           1,
           4,
-          0,
+          2,
           null,
           4,
-          4,
+          2,
           null,
           null,
           null,
@@ -779,21 +780,21 @@
           null,
           null,
           1,
-          10,
+          8,
+          2,
           1,
-          0,
-          0,
-          null,
           1,
           null,
+          1,
           null,
-          9,
+          null,
+          6,
           null,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/helpers/appointments_helper.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/helpers/appointments_helper.rb": {
         "lines": [
           1,
           1,
@@ -838,7 +839,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/helpers/order_items_helper.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/helpers/order_items_helper.rb": {
         "lines": [
           1,
           null,
@@ -859,49 +860,51 @@
           null,
           null,
           1,
-          1326,
+          null,
+          1146,
           0,
           0,
           null,
           0,
           null,
           null,
-          1326,
+          1146,
           null,
           null,
           null,
           1,
-          1327,
-          0,
-          0,
+          null,
+          1147,
+          1,
+          1,
           null,
           null,
           null,
           null,
           1,
+          5,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           0,
           null,
           null,
           1,
-          0,
-          0,
           null,
           null,
           1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          null,
           1,
-          0,
-          0,
+          1,
           null,
           null,
           1,
@@ -922,7 +925,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/helpers/orders_helper.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/helpers/orders_helper.rb": {
         "lines": [
           1,
           1,
@@ -939,7 +942,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/patient.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/patient.rb": {
         "lines": [
           1,
           null,
@@ -960,7 +963,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/models/user_spec.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/models/user_spec.rb": {
         "lines": [
           1,
           null,
@@ -989,7 +992,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/requests/appointment_spec.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/requests/appointment_spec.rb": {
         "lines": [
           1,
           null,
@@ -1073,6 +1076,63 @@
           null,
           null,
           1,
+          4,
+          4,
+          4,
+          4,
+          4,
+          null,
+          1,
+          3,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
           3,
           3,
           3,
@@ -1090,48 +1150,6 @@
           null,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          3,
-          3,
-          3,
-          3,
-          3,
-          null,
-          1,
-          2,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
           1,
           1,
           1,
@@ -1142,22 +1160,19 @@
           1,
           1,
           1,
+          null,
           null,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/requests/doctor_spec.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/requests/doctor_spec.rb": {
         "lines": [
           1,
           null,
           1,
           null,
           1,
-          3,
-          null,
-          1,
-          2,
           null,
           null,
           1,
@@ -1270,17 +1285,6 @@
           1,
           null,
           null,
-          1,
-          2,
-          2,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
           null,
           null,
           1,
@@ -1292,6 +1296,21 @@
           null,
           1,
           1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          null,
+          1,
+          1,
           null,
           null,
           null,
@@ -1300,6 +1319,35 @@
           1,
           null,
           null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          3,
+          3,
+          3,
+          1,
+          2,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
           null,
           null,
           null,
@@ -1307,7 +1355,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/requests/medicine_spec.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/requests/medicine_spec.rb": {
         "lines": [
           1,
           null,
@@ -1434,7 +1482,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/requests/order_item_spec.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/requests/order_item_spec.rb": {
         "lines": [
           1,
           null,
@@ -1442,6 +1490,9 @@
           1,
           2,
           2,
+          2,
+          2,
+          2,
           null,
           null,
           1,
@@ -1451,6 +1502,8 @@
           1,
           1,
           1,
+          null,
+          null,
           null,
           null,
           null,
@@ -1546,7 +1599,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/spec/requests/order_spec.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/requests/order_spec.rb": {
         "lines": [
           1,
           null,
@@ -1585,7 +1638,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/controllers/appointments_controller.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/controllers/appointments_controller.rb": {
         "lines": [
           1,
           1,
@@ -1619,20 +1672,20 @@
           null,
           1,
           null,
+          3,
+          2,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          2,
           2,
           1,
           null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          2,
-          2,
-          2,
-          1,
-          null,
           null,
           1,
           null,
@@ -1642,35 +1695,35 @@
           1,
           null,
           1,
-          4,
-          4,
-          4,
+          5,
+          5,
+          5,
           null,
           null,
           null,
           1,
-          8,
+          9,
           null,
           null,
           null,
           1,
-          2,
-          0,
-          0,
-          0,
+          3,
+          1,
+          1,
+          1,
           null,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/controllers/application_controller.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/controllers/application_controller.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/appointment.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/appointment.rb": {
         "lines": [
           1,
           1,
@@ -1684,7 +1737,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/order.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/order.rb": {
         "lines": [
           1,
           1,
@@ -1695,7 +1748,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/doctor.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/doctor.rb": {
         "lines": [
           1,
           1,
@@ -1718,7 +1771,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/specialization.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/specialization.rb": {
         "lines": [
           1,
           1,
@@ -1728,7 +1781,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/mailers/appointment_confirmation_mailer.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/mailers/appointment_confirmation_mailer.rb": {
         "lines": [
           1,
           1,
@@ -1741,7 +1794,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/mailers/application_mailer.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/mailers/application_mailer.rb": {
         "lines": [
           1,
           1,
@@ -1749,7 +1802,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/lib/services/appointments_service.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/lib/services/appointments_service.rb": {
         "lines": [
           1,
           1,
@@ -1764,7 +1817,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/lib/services/appointments/downloader.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/lib/services/appointments/downloader.rb": {
         "lines": [
           1,
           1,
@@ -1787,7 +1840,7 @@
           2,
           2,
           2,
-          null,
+          2,
           2,
           0,
           0,
@@ -1803,7 +1856,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/controllers/doctors_controller.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/controllers/doctors_controller.rb": {
         "lines": [
           1,
           1,
@@ -1849,10 +1902,10 @@
           null,
           null,
           1,
-          0,
-          0,
+          2,
+          1,
           null,
-          0,
+          1,
           null,
           null,
           null,
@@ -1873,6 +1926,7 @@
           null,
           null,
           1,
+          null,
           2,
           2,
           null,
@@ -1907,14 +1961,14 @@
           null,
           null,
           1,
-          3,
-          3,
+          5,
+          5,
           null,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/lib/services/slots_service.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/lib/services/slots_service.rb": {
         "lines": [
           1,
           1,
@@ -1924,6 +1978,7 @@
           null,
           null,
           1,
+          null,
           2,
           null,
           null,
@@ -1939,7 +1994,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/lib/services/slots/displayer.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/lib/services/slots/displayer.rb": {
         "lines": [
           1,
           1,
@@ -1948,17 +2003,19 @@
           2,
           null,
           1,
+          null,
           2,
           2,
-          2,
+          3,
           2,
           2,
           2,
           null,
           2,
-          0,
-          0,
-          0,
+          null,
+          1,
+          1,
+          1,
           null,
           null,
           2,
@@ -1970,7 +2027,7 @@
           null,
           290,
           290,
-          246,
+          290,
           2,
           null,
           null,
@@ -1978,14 +2035,14 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/lib/services/slots/dates_formater.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/lib/services/slots/dates_formater.rb": {
         "lines": [
           1,
           1,
           1,
           null,
           1,
-          0,
+          1,
           null,
           null,
           1,
@@ -2006,14 +2063,14 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/lib/services/slots/getter.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/lib/services/slots/getter.rb": {
         "lines": [
           1,
           1,
           1,
           null,
           1,
-          0,
+          2,
           null,
           null,
           1,
@@ -2022,10 +2079,10 @@
           2,
           2,
           2,
-          148,
-          20,
+          192,
+          64,
           null,
-          148,
+          192,
           null,
           2,
           null,
@@ -2034,7 +2091,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/controllers/medicines_controller.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/controllers/medicines_controller.rb": {
         "lines": [
           1,
           1,
@@ -2090,7 +2147,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/medicine.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/medicine.rb": {
         "lines": [
           1,
           null,
@@ -2104,7 +2161,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/order_item.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/order_item.rb": {
         "lines": [
           1,
           1,
@@ -2112,7 +2169,7 @@
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/controllers/order_items_controller.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/controllers/order_items_controller.rb": {
         "lines": [
           1,
           1,
@@ -2122,8 +2179,8 @@
           null,
           1,
           1,
-          0,
-          0,
+          1,
+          1,
           null,
           null,
           null,
@@ -2198,14 +2255,24 @@
           1,
           1,
           1,
-          1,
           null,
           null,
           null,
           null
         ]
       },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/controllers/orders_controller.rb": {
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/address.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/app/controllers/orders_controller.rb": {
         "lines": [
           1,
           1,
@@ -2275,21 +2342,10 @@
           1,
           1,
           null,
-          null
-        ]
-      },
-      "/Users/mparameswarappa/Desktop/Refactor/Medicare/app/models/address.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
           null
         ]
       }
     },
-    "timestamp": 1715865253
+    "timestamp": 1715889831
   }
 }

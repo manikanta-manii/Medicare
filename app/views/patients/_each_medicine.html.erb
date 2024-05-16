@@ -1,6 +1,6 @@
 <div class="doctor-card">
         <div class="avatar-container">
-          <%= image_tag medicine.image.attached? ? medicine.image : 'avatars/default_avatar.png', class: "doctor-image" %>
+          <%= image_tag medicine.medicine_picture.attached? ? medicine.medicine_picture : 'avatars/default_avatar.png', class: "doctor-image" %>
         </div>
         <div class="info-container">
           <h3><%= medicine.name %></h3>
