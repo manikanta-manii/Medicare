@@ -577,12 +577,12 @@
           1,
           1,
           null,
-          14,
-          14,
-          14,
-          14,
-          14,
-          14,
+          36,
+          36,
+          36,
+          36,
+          36,
+          36,
           null,
           null
         ]
@@ -615,9 +615,9 @@
           1,
           null,
           1,
-          19,
-          19,
-          19,
+          41,
+          41,
+          41,
           1,
           null,
           null
@@ -638,10 +638,10 @@
         "lines": [
           1,
           1,
-          56,
-          56,
-          54,
-          54,
+          83,
+          83,
+          81,
+          81,
           24,
           null,
           null
@@ -703,7 +703,7 @@
           null,
           null,
           1,
-          58,
+          85,
           null,
           null,
           null
@@ -721,29 +721,23 @@
           1,
           null,
           1,
-          1204,
+          1623,
           null,
           null,
           1,
-          0,
-          0,
-          null,
-          null,
-          null,
+          2,
           1,
-          0,
-          0,
           null,
           null,
           null,
           1,
-          4,
-          0,
+          2,
+          1,
           null,
           null,
           null,
           1,
-          1,
+          7,
           1,
           null,
           null,
@@ -752,43 +746,49 @@
           4,
           2,
           null,
+          null,
+          null,
+          1,
+          7,
+          3,
+          null,
+          7,
+          3,
+          null,
+          null,
+          null,
+          1,
           4,
-          2,
+          1,
           null,
           null,
           null,
           1,
-          1,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          8,
           2,
           1,
-          1,
+          null,
+          null,
           null,
           1,
+          2,
+          1,
           null,
           null,
-          6,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          10,
+          3,
+          2,
+          2,
+          null,
+          1,
+          null,
+          null,
+          7,
           null,
           null,
           null
@@ -861,20 +861,20 @@
           null,
           1,
           null,
-          1146,
+          1550,
           0,
           0,
           null,
           0,
           null,
           null,
-          1146,
+          1550,
           null,
           null,
           null,
           1,
           null,
-          1147,
+          1551,
           1,
           1,
           null,
@@ -882,7 +882,7 @@
           null,
           null,
           1,
-          5,
+          6,
           null,
           null,
           1,
@@ -896,7 +896,7 @@
           1,
           1,
           1,
-          0,
+          1,
           null,
           null,
           1,
@@ -938,6 +938,15 @@
           0,
           0,
           null,
+          null,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/spec/models/patient_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
           null,
           null
         ]
@@ -1638,6 +1647,39 @@
           null
         ]
       },
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/medicine.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/order.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/manikanta/Desktop/Refactor/Medicare/app/models/order_item.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/manikanta/Desktop/Refactor/Medicare/app/controllers/appointments_controller.rb": {
         "lines": [
           1,
@@ -1737,17 +1779,6 @@
           null
         ]
       },
-      "/home/manikanta/Desktop/Refactor/Medicare/app/models/order.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
       "/home/manikanta/Desktop/Refactor/Medicare/app/models/doctor.rb": {
         "lines": [
           1,
@@ -1840,7 +1871,7 @@
           2,
           2,
           2,
-          2,
+          null,
           2,
           0,
           0,
@@ -2027,7 +2058,7 @@
           null,
           290,
           290,
-          290,
+          272,
           2,
           null,
           null,
@@ -2079,10 +2110,10 @@
           2,
           2,
           2,
-          192,
-          64,
+          174,
+          46,
           null,
-          192,
+          174,
           null,
           2,
           null,
@@ -2144,28 +2175,6 @@
           null,
           null,
           null,
-          null
-        ]
-      },
-      "/home/manikanta/Desktop/Refactor/Medicare/app/models/medicine.rb": {
-        "lines": [
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/manikanta/Desktop/Refactor/Medicare/app/models/order_item.rb": {
-        "lines": [
-          1,
-          1,
-          1,
           null
         ]
       },
@@ -2346,6 +2355,6 @@
         ]
       }
     },
-    "timestamp": 1715889831
+    "timestamp": 1715928738
   }
 }

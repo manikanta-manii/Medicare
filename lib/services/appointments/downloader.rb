@@ -19,7 +19,7 @@ module Services
                 appointment_pdf.move_down 10
                 appointment_pdf.text "Note:", style: :italic
                 appointment_pdf.text @appointment.note.body.to_plain_text
-                debugger
+                # debugger
                 if @appointment.note.body.attachments.any?
                   image_attachment = @appointment.note.body.attachments.first
                   if image_attachment.image?
