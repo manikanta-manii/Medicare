@@ -8,7 +8,6 @@ class OrdersController  < ApplicationController
 
     #displaying all the orders
     def index
-        # debugger
         @all_orders = Order.paginate(page: params[:page], per_page: 10).where(ordered: true)
         @orders = active_user.patient.orders.where(ordered: true).paginate(page: params[:page], per_page: 10) if active_user.patient?
     end
@@ -16,7 +15,7 @@ class OrdersController  < ApplicationController
     #displaying each order details
     def show
         @order_items = @order.order_items.includes(:medicine)
-        @address = Address.find(@order.address_id)
+        @address = Address.find_by(id: @order.address_id)
     end
 
     #update the order - [status , address ,prescription if any?]

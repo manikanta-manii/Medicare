@@ -1,8 +1,10 @@
 <%= stylesheet_link_tag  "all_appointment" %>
-<h1>All Appointments</h1>
+<div class="container">
+<h4> Your Appointments</h4>
 <div class="display-doctors-div">
   <% @all_appointments.each do |appointment| %>
       <%= render partial: active_user.patient? ? "each_appointment" : "doctors/each_appointment", locals: {appointment: appointment} %>
   <% end %>
    <%= will_paginate @all_appointments , renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 </div>

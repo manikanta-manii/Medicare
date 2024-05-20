@@ -15,9 +15,22 @@
 </div>
 <h3>Available slots </h3>
 
-<button id="today-btn" class="btn btn-outline-success"   data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[0]%></button>
+<button id="today-btn" class="btn btn-outline-success active"   data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[0]%></button>
 <button id="tomo-btn" class="btn btn-outline-success"    data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[1]%></button>
 <button id="nextday-btn" class="btn btn-outline-success"  data-doctor-id=<%= @doctor.id%> ><%= @formatted_dates[2]%></button>
 <div id="current_slots">
       <%= render partial: "patients/slots_display"%>
 </div>
+<script>
+$(document).ready(function () {
+  const buttons = document.querySelectorAll(".btn.btn-outline-success");
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      buttons.forEach(otherButton => otherButton.classList.remove("active"));
+      this.classList.add("active");
+      updateSlotsContent(this.id);
+    });
+  });
+});
+
+</script>

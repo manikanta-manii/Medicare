@@ -1,24 +1,23 @@
 module Services
-    module Slots
-        class DatesFormater
-            
-            def initialize(params=nil)
-                @params=params
-            end
+  module Slots
+    class DatesFormater
+      def initialize
+      end
 
-            def call
-                formatted_dates = []
-                today = Date.today
-                3.times do |i|
-                    date = today + i
-                    month_abbr = date.strftime("%b")
-                    day = date.day.to_s
-                    full_day_name = date.strftime("%A")  
-                    formatted_date = "#{full_day_name} #{month_abbr} #{day}, #{date.year}"
-                    formatted_dates << formatted_date
-                end
-                formatted_dates
-            end  
+      def call
+        formatted_dates = []
+        3.times do |i|
+          date = Date.today + i
+          formatted_dates << format_date(date)
         end
+        formatted_dates
+      end
+
+      private
+
+      def format_date(date)
+        "#{date.strftime("%A")} #{date.strftime("%b")} #{date.day}, #{date.year}"
+      end
     end
+  end
 end

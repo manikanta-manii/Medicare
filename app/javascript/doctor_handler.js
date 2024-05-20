@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  $("#doctor_register_form").on("submit", function (e) {
-    e.preventDefault();
+  $("#doctor_register_form").on("submit", function (event) {
+    event.preventDefault();
+   
     var formData = new FormData($("#doctor_register_form")[0]);
     var fileInput = $("#doctor_picture")[0];
     if (fileInput.files && fileInput.files[0]) {
@@ -19,13 +20,14 @@ $(document).ready(function () {
         $("#doctor_register_form")[0].reset();
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.error("Error deleting doctor:", textStatus, errorThrown);
+        console.error("Error adding doctor:", textStatus, errorThrown);
       },
     });
   });
 
   $("#display-doctors-div").on("click", ".delete-button", function (event) {
     event.preventDefault();
+    event.stopPropagation();
     var deleteButton = $(this);
     var docObject = deleteButton.data("doc");
     const doctor_id = docObject.id;
@@ -47,6 +49,7 @@ $(document).ready(function () {
 
     $("#display-doctors-div").on("click", ".edit-button", function(event) {
          event.preventDefault();
+         event.stopPropagation();
          var editButton = $(this);
          var doctorId = $(this).data('doctor-id');
          var doctorName = $(this).data('doctor-name');
@@ -64,8 +67,9 @@ $(document).ready(function () {
          $('#doctor_years_of_experience').val(doctorYearsOfExperience);
          $('#editDoctorModal').modal('show');
           
-          $("#edit_form").on("submit", function (e) {
-           e.preventDefault();
+          $("#edit_form").on("submit", function (event) {
+           event.preventDefault();
+           event.stopPropagation();
            var formData = new FormData($("#edit_form")[0]);  
            console.log(formData);
              

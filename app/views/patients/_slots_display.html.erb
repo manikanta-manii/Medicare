@@ -2,29 +2,41 @@
   <div class="col text-center">
     <% morning_slots = @available_slots.select { |slot| slot.hour < 12 } %>
     <h4 class="mb-3">Morning Slots: <%= morning_slots.count%></h4>
-    <% morning_slots.each do |slot| %>
-      <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
+   <% if morning_slots.empty? %>
+   <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/appointment-2641304-2207804.png" style="width: 200px; height: 200px;" alt="No slots available">
+<% else %>
+  <% morning_slots.each do |slot| %>
+      <button type="button" class="btn m-1 px-3 slot-button" style="background-color:#8DECB4" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
       </button>
     <% end %>
+<% end %>
   </div>
   <div class="col text-center">
     <% afternoon_slots = @available_slots.select { |slot| slot.hour >= 12 && slot.hour < 17 } %>  
     <h4 class="mb-3">Afternoon Slots: <%= afternoon_slots.count%></h4>
+       <% if afternoon_slots.empty? %>
+   <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/appointment-2641304-2207804.png" style="width: 200px; height: 200px;" alt="No slots available">
+<% else %>
     <% afternoon_slots.each do |slot| %>
-      <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
+      <button type="button" class="btn m-1 px-3 slot-button" style="background-color:#8DECB4" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
       </button>
     <% end %>
+<% end %>
   </div>
   <div class="col text-center">
     <% evening_slots = @available_slots.select { |slot| slot.hour >= 17 } %>
     <h4 class="mb-3">Evening Slots: <%= evening_slots.count%></h4>
+          <% if evening_slots.empty? %>
+   <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/appointment-2641304-2207804.png" style="width: 200px; height: 200px;" alt="No slots available">
+<% else %>
     <% evening_slots.each do |slot| %>
-      <button type="button" class="btn btn-info m-1 px-3 slot-button" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
+      <button type="button" class="btn m-1 px-3 slot-button" style="background-color:#8DECB4" data-slot-time="<%= slot %>" data-doctor-id="<%= @doctor.id %>" data-toggle="modal" data-target="#confirmationModal">
         <%= slot.strftime("%I:%M %p") %>
       </button>
     <% end %>
+<% end %>
   </div>
 </div>
 
@@ -38,8 +50,8 @@
         <p>Please enter a brief reason for your appointment at <span id="selected-slot"></span>:</p>
         <%= form_with(url: appointments_path, method: :post,id:"appointment_confirmation_form") do |f| %>
           <div class="field">
-            <%= f.label :reason %>
-            <%= f.text_area :reason, rows: 5 ,id: "appointmentReason"%>
+            <%= f.label :reason %><br>
+            <%= f.text_area :reason, rows: 5 ,id: "appointmentReason",placeholder: "Reason for appointment" %>
           </div>
           <!-- Add hidden fields to store slot time and doctor id -->
           <%= f.hidden_field :slot_time, id: "slot-time-field" %>
@@ -47,7 +59,7 @@
           
            <div class="modal-footer">
             <button type="button" class="btn btn-secondary close" data-dismiss="modal">Cancel</button>
-            <%= f.submit "Confirm", "data-bs-dismiss": "modal" %>
+            <%= f.submit "Confirm", "data-bs-dismiss": "modal" ,class:"btn btn-primary"%>
           </div>
         <% end %>
       </div>

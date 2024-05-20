@@ -1,6 +1,6 @@
   <%= javascript_include_tag "quantity_selector" %>
 <%= stylesheet_link_tag "order_page" %>
-  <div id="whole-page">
+  <div id="whole-page" class="container">
   <span id="display-div"></span>
   <div id="order-item-div">
     <% if @order_items && @order_items.count > 0 %>
@@ -38,7 +38,7 @@
       </div>
     <% else %>
           <div>
-            <h3>Cart is Empty</h3>
+            <h4>Cart is Empty</h4>
             <img src="https://cdni.iconscout.com/illustration/free/thumb/free-empty-cart-4085814-3385483.png?f=webp",alt="cart is empty">
          </div>
     <% end %>

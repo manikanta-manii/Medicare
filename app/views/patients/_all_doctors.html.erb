@@ -1,12 +1,12 @@
 <%= stylesheet_link_tag "all_doctors" %>
 
 <%= search_form_for @q do |f| %>
-  <div class="search-container">
-    <%= f.search_field :user_name_or_specialization_name_cont ,placeholder: "Search Doctor / Speacilization ", class: "searchbar" %>
-
+  <div class="search-container container w-50">
+  <i class="fas fa-search" style="font-size:2rem;color:#211C6A;"></i>
+    <%= f.search_field :user_name_or_specialization_name_cont ,placeholder: "Search doctor / specialization ...", class: "searchbar" %>
     <div class="dropdown specialization-dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="specializationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Select Specialization
+      <button class="btn dropdown-toggle" type="button" id="specializationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style= "background-color: #52D3D8; border:none; height:3rem;">
+        Specialization
       </button>
       <div class="dropdown-menu" aria-labelledby="specializationDropdown">
         <% @specializations.each do |specialization| %>
@@ -18,8 +18,8 @@
       </div>
     </div>
 
-    <%= sort_link(@q, :rating, class: "m-1 btn btn-primary") %>
-    <%= f.submit "Search", class: "btn btn-success submit-btn" %>
+    <%= sort_link(@q, :rating, class: "mx-3 btn" , style: "background-color: #52D3D8;height:3rem;width:10rem;padding:10px;") %>
+    <%= f.submit "Search", class: "btn submit-btn" ,style: "background-color: #52D3D8;height:3rem;" %>
   </div>
 <% end %>
 

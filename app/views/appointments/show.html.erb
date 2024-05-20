@@ -10,22 +10,19 @@
       <%end%>
 
       <% check_if_status_is_completed(@appointment) do %>
-            <h1>Appointment Details</h1>
-            <div class="container mx-auto">
-            <p> <strong>Note:</strong>
-            <%= @appointment.note %></p>
-            </div>
-
            <% check_if_feedback_is_present(@appointment) do %>
-                  <h4>Feedback Submitted</h4>
+                  <span style="font-size:1.2rem">
+                     Feedback Submitted <br>
+                    Review given by you = <span class="text-success"><%= @appointment.feedback%></span><br>
+                    Rating given by you = <span class="text-success"><%= @appointment.rating%></span><br>
+                  </span>
             <%end%>
 
           <%check_if_feedback_is_not_present(@appointment) do%>
               <%= render partial:"patients/manage_appointments/give_feedback_modal"%>
           <%end%>
-           <%= link_to "Download Invoice", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
+           <%= link_to "View Appointment Details", download_appointment_path(@appointment , preview: true),class:"btn btn-outline-success"%>
       <%end%>
-
         <%check_if_status_is_canceled(@appointment) do%>
             <h4>Appointment canceled</h4>
         <%end%>

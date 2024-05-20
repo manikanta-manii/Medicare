@@ -6,13 +6,11 @@ class AppointmentsController < ApplicationController
     
     # displaying all appointments - based on active_user
     def index
-        # debugger
         @all_appointments = active_user.patient? ? active_user.patient.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10) : active_user.doctor.appointments.order(slot_time: :asc).paginate(page: params[:page], per_page: 10)
     end
     
     #creating a new appointment
     def create
-        #debugger
         @appointment = Appointment.new(appointment_params.merge(patient_id:active_user.patient.id))
         if @appointment.save
             AppointmentConfirmationMailer.appointment_confirmation_email(@appointment).deliver_later
@@ -29,7 +27,6 @@ class AppointmentsController < ApplicationController
     
     #updating the appointment - [REASON ,PRESCRIPTION]
     def update
-        # debugger
           if @appointment.update(appointment_params)
             redirect_to appointment_path, notice: "Appointment updated successfully"
           else
@@ -39,18 +36,12 @@ class AppointmentsController < ApplicationController
 
     #download the appointment details
     def download
-        #debugger
         appointment_pdf = Services::AppointmentsService.new(@appointment).download
-        if params[:preview].present?
-          send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
-                    type: "application/pdf", disposition: 'inline')
-        else
-          send_data(appointment_pdf.render, filename: "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf",
-                    type: "application/pdf")
-        end 
+        filename = "Medicare_#{current_user.name}_#{@appointment.slot_time}.pdf"
+        send_data(appointment_pdf.render, filename: filename, type: "application/pdf", disposition: params[:preview].present? ? 'inline' : 'attachment')
     end
-
-    private  
+      
+    private
     #permiting the appointment params and converting rating to integer
     def appointment_params
         permitted_params = params.permit(:reason, :note , :status , :doctor_id ,:slot_time ,:feedback ,:rating)

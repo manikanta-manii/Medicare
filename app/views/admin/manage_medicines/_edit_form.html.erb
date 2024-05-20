@@ -1,7 +1,7 @@
 <%= form_with(url: medicines_path, method: :patch, remote: true , id: "edit_form") do |f| %>
   <div class="form-group">
-    <%= f.label :image, "Medicine Image", class: "form-control-label" %>
-    <%= f.file_field :image, class: "form-control",id: "medicine_image" %>
+    <%= f.label :medicines_picture, "Medicine Image", class: "form-control-label" %>
+    <%= f.file_field :medicine_picture, class: "form-control",id: "medicine_image" %>
   </div>
 
   <div class="form-group">

@@ -47,6 +47,6 @@ class MedicinesController < ApplicationController
     def medicine_params
       params.permit(:medicine_picture,:name, :description,:dosage, :price,:need_prescription,:quantity)
     end
-
+    
   end
   

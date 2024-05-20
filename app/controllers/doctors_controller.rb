@@ -51,8 +51,7 @@ class DoctorsController < ApplicationController
     
     #displaying particular doctor
     def show
-        selected_day=Time.now.day.to_i
-        @available_slots = get_slots(selected_day)
+        @available_slots = get_slots(Time.now.day.to_i)
     end
 
     #slots display based on selected day - [ today , tomorrow , day_after_tomorrow ] - AJAX
@@ -66,8 +65,7 @@ class DoctorsController < ApplicationController
     
 
     def slot_allotment
-        # debugger
-        @doctor = Doctor.find_by(id:params[:id])
+        set_user
         @slots = Services::SlotsService.new(params).display
     end
     

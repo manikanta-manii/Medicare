@@ -1,65 +1,57 @@
-
-<h2 style="color: #392AB1">Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
- 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-    <%= f.object.errors[:name].join(', ') if f.object.errors[:name].any? %>
-  </div>
-   
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
-    <%= f.object.errors[:phone_number].join(', ') if f.object.errors[:phone_number].any? %>
-  </div>
-
-   
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <%= f.object.errors[:email].join(', ') if f.object.errors[:email].any? %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <%= f.object.errors[:password].join(', ') if f.object.errors[:password].any? %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    <%= f.object.errors[:password_confirmation].join(', ') if f.object.errors[:password_confirmation].any? %>
-  </div>
-
-  <%= f.fields_for :patient do |patient_form| %>
-    <div class="field">
-      <%= patient_form.label :dob %><br />
-      <%= patient_form.date_field :dob, max: Date.today , autocomplete: "dob"%>
-      <%= patient_form.object.errors[:dob].join(', ') if patient_form.object.errors[:dob].any? %>
+<div class="container d-flex justify-content-center">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation novalidate w-50 border p-2 " }) do |f| %>
+    <div class="text-center">
+            <h5 class="card-title text-center" style="color:#392AB1; font-weight: bold; font-size: 24px;">Sign Up</h5>
+    </div>
+    
+    <%= render "devise/shared/error_messages", resource: resource %>
+    
+    <div class="form-group mb-3">
+      <label for="name" class="form-label"><i class="fas fa-user"></i> Name</label>
+      <%= f.text_field :name, class: "form-control", autofocus: true, autocomplete: "name", required: true %>
     </div>
 
-    <div class="field">
-      <%= patient_form.label :gender %><br />
-      <%= patient_form.select :gender, options_for_select(Patient.genders.keys.map { |key| [key.capitalize, key] }) ,{ include_blank: "Select Gender" },autocomplete: "gender" %>
-      <%= patient_form.object.errors[:gender].join(', ') if patient_form.object.errors[:gender].any? %>
+    <div class="form-group mb-3">
+      <label for="phone_number" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
+      <%= f.text_field :phone_number, class: "form-control", autocomplete: "phone_number" %>
     </div>
 
-    <div class="field">
-      <%= patient_form.label :blood_type %><br />
-      <%= patient_form.select :blood_type, options_for_select(Patient.blood_types.keys.map { |key| [key, key] }),{ include_blank: "Select Blood_Type" }, autocomplete: "blood_type" %>
-      <%= patient_form.object.errors[:blood_type].join(', ') if patient_form.object.errors[:blood_type].any? %>
+    <div class="form-group mb-3">
+      <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+      <%= f.email_field :email, class: "form-control", autocomplete: "email", required: true %>
     </div>
+
+    <div class="form-group mb-3">
+      <label for="password" class="form-label"><i class="fas fa-lock"></i> Password</label>
+      <%= f.password_field :password, class: "form-control", autocomplete: "new-password", required: true %>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="password_confirmation" class="form-label"><i class="fas fa-lock"></i> Confirm Password</label>
+      <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password", required: true %>
+    </div>
+
+    <%= f.fields_for :patient do |patient_form| %>
+      <div class="form-group mb-3">
+        <label for="dob" class="form-label"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
+        <%= patient_form.date_field :dob, class: "form-control", max: Date.today, autocomplete: "dob", required: true %>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="gender" class="form-label"><i class="fas fa-venus-mars"></i> Gender</label>
+        <%= patient_form.select :gender, options_for_select(Patient.genders.keys.map { |key| [key.capitalize, key] }), { include_blank: "Select Gender" }, class: "form-control", autocomplete: "gender", required: true %>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="blood_type" class="form-label"><i class="fas fa-tint"></i> Blood Type</label>
+        <%= patient_form.select :blood_type, options_for_select(Patient.blood_types.keys.map { |key| [key, key] }), { include_blank: "Select Blood Type" }, class: "form-control", autocomplete: "blood_type", required: true %>
+      </div>
+    <% end %>
+
+    <div class="form-group mb-3">
+      <%= f.submit "Sign up", class: "btn btn-primary" %>
+    </div>
+
+    <%= render "devise/shared/links" %>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Sign up"%>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
- 
+</div>

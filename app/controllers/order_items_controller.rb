@@ -84,5 +84,5 @@ class OrderItemsController < ApplicationController
      total_price == 0 ? (render plain: "no items") : (render partial: "order_items/place_order")
    end
 
- end
- 
+  end
+  

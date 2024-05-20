@@ -64,7 +64,8 @@ $("#display-medicines-div").on("click", ".delete-button", function(event) {
      
      $("#edit_form").on("submit", function (e) {
       e.preventDefault();
-      var formData = new FormData($("#edit_form")[0]);      
+      var formData = new FormData($("#edit_form")[0]);    
+      console.log(formData);  
       $.ajax({
           url: `http://localhost:3000/medicines/${medicineId}`,
           method: "PATCH",
