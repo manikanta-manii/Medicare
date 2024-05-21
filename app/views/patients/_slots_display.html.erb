@@ -51,7 +51,7 @@
         <%= form_with(url: appointments_path, method: :post,id:"appointment_confirmation_form") do |f| %>
           <div class="field">
             <%= f.label :reason %><br>
-            <%= f.text_area :reason, rows: 5 ,id: "appointmentReason",placeholder: "Reason for appointment" %>
+            <%= f.text_area :reason, rows: 5 ,id: "appointmentReason",placeholder: "Reason for appointment",autofocus: true %>
           </div>
           <!-- Add hidden fields to store slot time and doctor id -->
           <%= f.hidden_field :slot_time, id: "slot-time-field" %>

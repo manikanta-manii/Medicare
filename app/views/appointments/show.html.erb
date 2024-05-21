@@ -2,6 +2,7 @@
 <%= stylesheet_link_tag "appointment_show" %>
 
 <% check_if_current_user_is_patient do%>
+
       <%= render partial: "patients/manage_appointments/appointment_details" %>
 
       <% check_if_status_is_scheduled(@appointment) do %>

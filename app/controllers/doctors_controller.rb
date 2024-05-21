@@ -4,6 +4,7 @@ class DoctorsController < ApplicationController
     before_action :slot_allotment ,only: [:show , :slot_display]
     before_action :get_formated_date ,only: :show
     before_action :set_user ,only: [:update , :destroy] 
+    before_action :is_admin? ,only: [:create , :update ,:destroy]
     
     #displaying all doctors
     def index
@@ -102,5 +103,8 @@ class DoctorsController < ApplicationController
         @doctor = Doctor.find_by(id: params[:id])
         @user = User.find_by(id: @doctor.user_id)
     end
-       
+
+    def is_admin?
+        redirect_to root_path,alert:"You are not authorized to access this page" unless active_user.admin? 
+    end   
 end

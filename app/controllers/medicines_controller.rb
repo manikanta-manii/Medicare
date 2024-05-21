@@ -2,6 +2,7 @@ class MedicinesController < ApplicationController
     before_action :authenticate_user! 
     skip_before_action :verify_authenticity_token, only: [:create ,:destroy ,:update]
     before_action :set_medicine, only: [:destroy , :update]
+    before_action :is_admin? ,only: [:create , :update ,:destroy]
    
     #displaying all medicines
     def index
@@ -47,6 +48,10 @@ class MedicinesController < ApplicationController
     def medicine_params
       params.permit(:medicine_picture,:name, :description,:dosage, :price,:need_prescription,:quantity)
     end
+
+    def is_admin?
+      redirect_to root_path,alert:"You are not authorized to access this page" unless active_user.admin? 
+    end 
     
   end
   

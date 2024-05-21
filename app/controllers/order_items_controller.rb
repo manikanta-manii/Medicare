@@ -3,6 +3,7 @@ class OrderItemsController < ApplicationController
    before_action :authenticate_user!
    before_action :set_order, only: [:create, :update, :destroy]
    before_action :find_order_item , only: [:update,:destroy]
+   before_action :is_patient? ,only: :index
 
    def index
      if order_exists
@@ -84,5 +85,8 @@ class OrderItemsController < ApplicationController
      total_price == 0 ? (render plain: "no items") : (render partial: "order_items/place_order")
    end
 
+   def is_patient?
+    redirect_to root_path,alert:"You are not authorized to access this page" unless active_user.patient? 
+   end  
   end
   

@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
   
     # Update the order - [status, address, prescription if any?]
     def update
+      #  debugger
         unless valid_address?
             render plain: "not ok"
             return
@@ -88,4 +89,7 @@ class OrdersController < ApplicationController
       update_medicine_quantities(@order)
       render plain: "ok"
     end
+
+   
+
   end

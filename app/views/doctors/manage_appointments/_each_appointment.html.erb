@@ -6,6 +6,12 @@
       Patient: <%= appointment.patient.user.name %>
     </div>
     <div class="doctor-info">
+      Patient blood type: <%= appointment.patient.blood_type %>
+    </div>
+    <div class="doctor-info">
+      Patient gender: <%= appointment.patient.gender %>
+    </div>
+    <div class="doctor-info">
       Slot Time: <%= Time.strptime(appointment.slot_time, "%Y-%m-%d %H:%M:%S %z").strftime("%A, %B %d, %Y , %I:%M %p") %>
     </div>
     <div class="doctor-info">
