@@ -40,12 +40,12 @@ RSpec.describe "OrderItems", type: :request do
       expect(response).to redirect_to(medicines_path)
     end
 
-    it "render same page if order_item is added" do
+    it "render root path if order_item is not added" do
       # debugger
       #invalid medicine id
       post order_items_path(
         {
-        medicine_id: 1111,
+        medicine_id: 0,
         price: medicine.price,
       })
       expect(response).to redirect_to(root_path)

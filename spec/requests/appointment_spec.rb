@@ -141,7 +141,7 @@ describe "GET /download" do
   let(:user_d) {FactoryBot.create(:user, role: 1)}
   let(:patient) {FactoryBot.create(:patient, user: user_p)}
   let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
-  let!(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor,status: "completed",note:double(body: double(attachments: File.open('/home/manikanta/Desktop/Refactor/Medicare/app/assets/images/avatars/default_avatar.png', 'r'))))}
+  let!(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor,status: "completed",note:"paracetmol")}
   
   before(:each) do
     sign_in patient.user
@@ -156,7 +156,7 @@ describe "GET /download" do
     )
     expect(response).to have_http_status(:success)
     expect(response.content_type).to eq('application/pdf')
-  response.headers['Content-Disposition'].split(";")[0] == "inline"
+   response.headers['Content-Disposition'].split(";")[0] == "inline"
   end
 
   it "download without preview = false" do 
