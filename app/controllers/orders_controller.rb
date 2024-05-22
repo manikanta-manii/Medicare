@@ -89,7 +89,4 @@ class OrdersController < ApplicationController
       update_medicine_quantities(@order)
       render plain: "ok"
     end
-
-   
-
   end

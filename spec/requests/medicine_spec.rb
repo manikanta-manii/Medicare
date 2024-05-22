@@ -4,7 +4,6 @@ RSpec.describe "Medicines", type: :request do
 
   describe "GET /index" do
     let(:user) { FactoryBot.create(:user,role: "patient") }
-
     before(:each) do
       sign_in user
     end
@@ -22,7 +21,7 @@ RSpec.describe "Medicines", type: :request do
   end
 
   describe "POST /create" do
-    let(:user) { FactoryBot.build(:user)}
+    let(:user) { FactoryBot.build(:user,role: 0)}
     let(:medicine) { FactoryBot.create(:medicine) }
     before(:each) do
       sign_in user
@@ -57,7 +56,7 @@ RSpec.describe "Medicines", type: :request do
   end
 
   describe "PATCH /update" do
-    let(:user) { FactoryBot.build(:user)}
+    let(:user) { FactoryBot.build(:user,role: 0)}
     let(:medicine) { FactoryBot.create(:medicine) }
     before(:each) do
       sign_in user
@@ -94,7 +93,7 @@ RSpec.describe "Medicines", type: :request do
   end
 
   describe "DELETE /destroy" do
-    let(:user) { FactoryBot.build(:user)}
+    let(:user) { FactoryBot.build(:user,role: 0)}
     let!(:medicine) { FactoryBot.create(:medicine) }
     before(:each) do
       sign_in user

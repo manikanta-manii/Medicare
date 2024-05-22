@@ -24,7 +24,7 @@ class AppointmentsController < ApplicationController
     def show
         @status = @appointment.status
     end
-    
+
     #updating the appointment - [REASON ,PRESCRIPTION]
     def update
           if @appointment.update(appointment_params)
@@ -58,7 +58,7 @@ class AppointmentsController < ApplicationController
     def update_doctor_rating
         if @appointment.rating.present?
             new_rating = Appointment.where(doctor_id:@appointment.doctor_id).average(:rating)
-            @doctor = Doctor.find_by(id:@appointment.doctor_id)
+            @doctor = @appointment.doctor
             @doctor.update(rating: new_rating)
         end
     end

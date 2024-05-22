@@ -70,13 +70,13 @@ module OrderItemsHelper
           return false if order_item.medicine.quantity < order_item.quantity
         end
         true
-      end
+    end
     
-      def update_medicine_quantities(order)
+    def update_medicine_quantities(order)
         order.order_items.each do |order_item|
           # Reduce medicine quantity in inventory
           medicine = order_item.medicine
           medicine.update(quantity: medicine.quantity - order_item.quantity)
         end
-      end
+    end
 end

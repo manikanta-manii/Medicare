@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Appointments", type: :request do
+  let(:user_p) {FactoryBot.create(:user, role: 2)}
+  let(:user_d) {FactoryBot.create(:user, role: 1)}
+  let(:patient) {FactoryBot.create(:patient, user: user_p)}
+  let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
+  let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor)}
+  
   describe "GET /index" do
-    let(:user_p) {FactoryBot.create(:user, role: 2)}
-    let(:user_d) {FactoryBot.create(:user, role: 1)}
-    let(:patient) {FactoryBot.create(:patient, user: user_p)}
-    let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
-    let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor)}
-    
+   
     before(:each) do
       sign_in patient.user
     end
@@ -20,10 +21,10 @@ RSpec.describe "Appointments", type: :request do
   end
 
   describe "POST /create" do
-    let(:user_p) {FactoryBot.create(:user, role: 2)}
-    let(:user_d) {FactoryBot.create(:user, role: 1)}
-    let(:patient) {FactoryBot.create(:patient, user: user_p)}
-    let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
+    # let(:user_p) {FactoryBot.create(:user, role: 2)}
+    # let(:user_d) {FactoryBot.create(:user, role: 1)}
+    # let(:patient) {FactoryBot.create(:patient, user: user_p)}
+    # let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
 
     before(:each) do
       sign_in patient.user
@@ -62,11 +63,11 @@ RSpec.describe "Appointments", type: :request do
 
   describe "GET /show" do
 
-    let(:user_p) {FactoryBot.create(:user, role: 2)}
-    let(:user_d) {FactoryBot.create(:user, role: 1)}
-    let(:patient) {FactoryBot.create(:patient, user: user_p)}
-    let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
-    let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor)}
+    # let(:user_p) {FactoryBot.create(:user, role: 2)}
+    # let(:user_d) {FactoryBot.create(:user, role: 1)}
+    # let(:patient) {FactoryBot.create(:patient, user: user_p)}
+    # let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
+    # let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor)}
 
     before(:each) do
       sign_in patient.user
@@ -80,11 +81,11 @@ RSpec.describe "Appointments", type: :request do
   end
 
   describe "PATCH /update" do    
-    let(:user_p) {FactoryBot.create(:user, role: 2)}
-    let(:user_d) {FactoryBot.create(:user, role: 1)}
-    let(:patient) {FactoryBot.create(:patient, user: user_p)}
-    let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
-    let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor)}
+    # let(:user_p) {FactoryBot.create(:user, role: 2)}
+    # let(:user_d) {FactoryBot.create(:user, role: 1)}
+    # let(:patient) {FactoryBot.create(:patient, user: user_p)}
+    # let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
+    # let(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor)}
 
     before(:each) do
       sign_in patient.user
@@ -137,10 +138,10 @@ RSpec.describe "Appointments", type: :request do
 end
 
 describe "GET /download" do    
-  let(:user_p) {FactoryBot.create(:user, role: 2)}
-  let(:user_d) {FactoryBot.create(:user, role: 1)}
-  let(:patient) {FactoryBot.create(:patient, user: user_p)}
-  let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
+  # let(:user_p) {FactoryBot.create(:user, role: 2)}
+  # let(:user_d) {FactoryBot.create(:user, role: 1)}
+  # let(:patient) {FactoryBot.create(:patient, user: user_p)}
+  # let(:doctor) {FactoryBot.create(:doctor, user: user_d)}
   let!(:appointment) {FactoryBot.create(:appointment, patient: patient, doctor: doctor,status: "completed",note:"paracetmol")}
   
   before(:each) do

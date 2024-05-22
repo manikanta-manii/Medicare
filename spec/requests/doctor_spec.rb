@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe "Doctors", type: :request do
 
   describe "GET /index" do
-    
-
     it "is successful request" do 
       get doctors_path
       expect(response).to have_http_status(:success)
@@ -18,11 +16,11 @@ RSpec.describe "Doctors", type: :request do
   end
 
   describe "POST /create" do
-    let(:user) { FactoryBot.build(:user)}
+    let(:user) { FactoryBot.build(:user,role: 0)}
     let(:specialization) { FactoryBot.create(:specialization) }
     before(:each) do
       sign_in user
-    end 
+    end
     
     it "render doctors/each_doctor on success" do
       post doctors_path(
@@ -63,7 +61,7 @@ RSpec.describe "Doctors", type: :request do
   end
 
   describe "PATCH /update" do    
-    let(:user1) { FactoryBot.build(:user) }
+    let(:user1) { FactoryBot.build(:user,role: 0) }
     let(:doctor) {FactoryBot.create(:doctor)}
     let(:specialization) { FactoryBot.create(:specialization) }
 

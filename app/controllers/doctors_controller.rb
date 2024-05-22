@@ -21,6 +21,7 @@ class DoctorsController < ApplicationController
              if @doctor.save
                 render partial: "doctors/each_doctor",locals: {doc:@doctor}
              else
+                @user.destroy
                 render_errors(@doctor)             
              end
         else
