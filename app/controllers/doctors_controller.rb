@@ -7,8 +7,10 @@ class DoctorsController < ApplicationController
     before_action :is_admin? ,only: [:create , :update ,:destroy]
     
     #displaying all doctors
+    # @q = Doctor.includes(:specialization , :user).ransack(params[:q])
+    #bullet gem N+1 Query optimization
     def index
-        @q = Doctor.includes(:specialization , :user).ransack(params[:q])
+        @q = Doctor.includes(active_user.doctor?? [:specialization, user: [:avatar_attachment]] : [:specialization]).ransack(params[:q])
         @doctors = @q.result(distinct: true)
         @specializations = Specialization.all
     end

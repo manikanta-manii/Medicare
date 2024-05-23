@@ -6,7 +6,8 @@ class MedicinesController < ApplicationController
    
     #displaying all medicines
     def index
-      @medicines = Medicine.all
+      # @medicines = Medicine.all
+      @medicines = Medicine.all.includes([medicine_picture_attachment: [:blob]])
     end
 
     #Adding a new medicine - AJAX

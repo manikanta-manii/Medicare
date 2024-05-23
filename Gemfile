@@ -80,4 +80,5 @@ gem 'activestorage', '~> 7.1.3'
 gem 'will_paginate-bootstrap4'
 gem "faker", "~> 3.3"
 gem 'rails-controller-testing'
+gem 'bullet', group: 'development'
 

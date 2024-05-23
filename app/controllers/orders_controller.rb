@@ -9,8 +9,9 @@ class OrdersController < ApplicationController
   
     # Displaying all the orders
     def index
-      @all_orders = Order.where(ordered: true).paginate(page: params[:page], per_page: 10)
-      @orders = active_user.patient.orders.where(ordered: true).paginate(page: params[:page], per_page: 10) if active_user.patient?
+      #@all_orders = Order.where(ordered: true).paginate(page: params[:page], per_page: 10)
+      @all_orders = Order.where(ordered: true).paginate(page: params[:page], per_page: 10).includes(patient: [:user])
+      @orders = active_user.patient.orders.includes(prescription_attachment: [:blob]).where(ordered: true).paginate(page: params[:page], per_page: 10) if active_user.patient?
     end
   
     # Displaying each order details
